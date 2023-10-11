@@ -7,14 +7,15 @@ import java.util.Scanner;
 public class task_2 {
     public static int countDigits(int num) {
         int result = 1;
-        while (Math.abs(num) > 9)
-        {
+        while (Math.abs(num) > 9) {
             num /= 10;
             result += 1;
         }
         return result;
     }
+
     private final static Logger LOGGER = LogManager.getLogger();
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         LOGGER.info("Input number:");

@@ -8,14 +8,17 @@ public class task_4 {
     public static String fixString(String line) {
         String result = "";
         for (int i = 0; i < line.length(); i += 2) {
-            if (i + 1 >= line.length())
+            if (i + 1 >= line.length()) {
                 result = result + line.charAt(i);
-            else
+            } else {
                 result = result + line.charAt(i + 1) + line.charAt(i);
+            }
         }
         return result;
     }
+
     private final static Logger LOGGER = LogManager.getLogger();
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         LOGGER.info("Input line:");
