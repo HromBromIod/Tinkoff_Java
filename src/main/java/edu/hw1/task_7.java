@@ -16,12 +16,12 @@ public class task_7 {
     }
     public static int rotateRight(int num, int shift) {
         String bin = intToBinary(num);
-        if (bin != null)
-        {
+        //if (bin != null)
+        //{
             //for ()
 
-                num = binaryToInt(bin);
-        }
+               // num = binaryToInt(bin);
+       // }
         return num;
     }
     public static int rotateLeft(int num, int shift) {
