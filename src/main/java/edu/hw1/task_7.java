@@ -20,7 +20,7 @@ public class task_7 {
         //{
             //for ()
 
-               // num = binaryToInt(bin);
+               num = binaryToInt(bin);
        // }
         return num;
     }
