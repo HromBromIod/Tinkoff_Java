@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.util.Scanner;
 
-public class task_4 {
+public class Task4 {
     public static String fixString(String line) {
         String result = "";
         for (int i = 0; i < line.length(); i += 2) {

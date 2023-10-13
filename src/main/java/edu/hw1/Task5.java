@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.util.Scanner;
 
-public class task_5 {
+public class Task5 {
     public static int getDescendant(int num) {
         int result = 0, count = 1;
         while (num > 99) {

@@ -1,14 +1,15 @@
 package edu.hw1;
 
+import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import java.util.Scanner;
 
-public class task_2 {
+public class Task2 {
+    private static final int TEN = 10;
     public static int countDigits(int num) {
         int result = 1;
         while (Math.abs(num) > 9) {
-            num /= 10;
+            num /= TEN;
             result += 1;
         }
         return result;

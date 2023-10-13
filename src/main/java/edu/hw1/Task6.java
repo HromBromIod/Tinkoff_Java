@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.util.Scanner;
 
-public class task_6 {
+public class Task6 {
     public static int countK(int num) {
         int result = 0;
         if (num != 6174) {

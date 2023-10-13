@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.util.Scanner;
 
-public class task_7 {
+public class Task7 {
     public static String intToBinary(int num) {
         String result = "1";
         return result;
@@ -16,17 +16,20 @@ public class task_7 {
     }
 
     public static int rotateRight(int num, int shift) {
-        String bin = intToBinary(num);
-        //if (bin != null)
-        //{
-        //for ()
+        if (num >= 0)
+        {
+            if (shift < 0)
+                num = rotateLeft(num, Math.abs(shift));
+            else {
 
-        num = binaryToInt(bin);
-        // }
+                //for ()
+            }
+        }
         return num;
     }
 
     public static int rotateLeft(int num, int shift) {
+
         return num;
     }
 
