@@ -12,7 +12,10 @@ public class Task3 {
 
     public static boolean isNestable(int[] arrL, int[] arrR) {
         boolean result = false;
-        int maxL = 1, maxR = 1, minL = -1, minR = -1;
+        int maxL = 1;
+        int maxR = 1;
+        int minL = -1;
+        int minR = -1;
         for (int i = 0; i < arrL.length; ++i) {
             if (i == 0) {
                 maxR = arrR[i];

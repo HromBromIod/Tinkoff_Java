@@ -24,8 +24,7 @@ public class Task6 {
             Arrays.sort(newNum);
             int numR = newNum[0] + newNum[1] * TEN + newNum[2] * HUNDRED + newNum[THREE] * THOUSAND;
             int numL = newNum[THREE] + newNum[2] * TEN + newNum[1] * HUNDRED + newNum[0] * THOUSAND;
-            num = numR - numL;
-            result = 1 + countK(num);
+            result = 1 + countK(numR - numL);
         }
         return result;
     }

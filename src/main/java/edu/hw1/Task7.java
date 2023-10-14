@@ -1,8 +1,8 @@
 package edu.hw1;
 
+import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import java.util.Scanner;
 
 @SuppressWarnings("uncommentedmain")
 public class Task7 {
@@ -19,7 +19,8 @@ public class Task7 {
         return result;
     }
 
-    public static int rotateRight(int num, int shift) {
+    public static int rotateRight(int value, int shift) {
+        int num = value;
         if (num >= 0) {
             if (shift < 0) {
                 num = rotateLeft(num, Math.abs(shift));

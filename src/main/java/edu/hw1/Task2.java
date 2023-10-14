@@ -7,13 +7,15 @@ import org.apache.logging.log4j.Logger;
 @SuppressWarnings("uncommentedmain")
 public class Task2 {
     private static final int TEN = 10;
+    private static final int NINE = 9;
 
     private Task2() {
     }
 
-    public static int countDigits(int num) {
+    public static int countDigits(int value) {
         int result = 1;
-        while (Math.abs(num) > 9) {
+        int num = value;
+        while (Math.abs(num) > NINE) {
             num /= TEN;
             result += 1;
         }

@@ -14,8 +14,10 @@ public class Task5 {
     private Task5() {
     }
 
-    public static int getDescendant(int num) {
-        int result = 0, count = 1;
+    public static int getDescendant(int value) {
+        int result = 0;
+        int count = 1;
+        int num = value;
         while (num > NINETYNINE) {
             result = result + ((num % TEN) + (num % HUNDRED / TEN)) * count;
             count *= TEN;
@@ -29,13 +31,15 @@ public class Task5 {
         return result;
     }
 
-    public static boolean isPalindromeDescendant(int num) {
+    public static boolean isPalindromeDescendant(int value) {
         boolean result = false;
+        int num = value;
         while (num > NINE && !result) {
             boolean checkPalindrome = true;
             int numCheck = num;
             while (numCheck > 0 && checkPalindrome) {
-                int f = numCheck, count = 1;
+                int f = numCheck;
+                int count = 1;
                 while (f > NINE) {
                     f /= TEN;
                     count *= TEN;
