@@ -3,6 +3,7 @@ package edu.hw1;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+@SuppressWarnings("uncommentedmain")
 public class Task8 {
     private static final int EIGHT = 8;
 
