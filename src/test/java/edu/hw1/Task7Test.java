@@ -14,6 +14,7 @@ class Task7Test {
         int expected = -1;
         assertEquals(expected, actual);
     }
+
     @Test
     @DisplayName("test2")
     void rotateRight2() {
@@ -21,6 +22,7 @@ class Task7Test {
         int expected = -2;
         assertEquals(expected, actual);
     }
+
     @Test
     @DisplayName("test3")
     void rotateRight3() {
@@ -28,6 +30,7 @@ class Task7Test {
         int expected = 2;
         assertEquals(expected, actual);
     }
+
     @Test
     @DisplayName("test4")
     void rotateRight4() {
@@ -35,6 +38,7 @@ class Task7Test {
         int expected = 4;
         assertEquals(expected, actual);
     }
+
     @Test
     @DisplayName("test6")
     void rotateRight6() {
@@ -42,6 +46,7 @@ class Task7Test {
         int expected = 6;
         assertEquals(expected, actual);
     }
+
     @Test
     @DisplayName("test7")
     void rotateRight7() {
@@ -49,6 +54,7 @@ class Task7Test {
         int expected = 1;
         assertEquals(expected, actual);
     }
+
     @Test
     @DisplayName("test8")
     void rotateLeft1() {
@@ -56,6 +62,7 @@ class Task7Test {
         int expected = -1;
         assertEquals(expected, actual);
     }
+
     @Test
     @DisplayName("test9")
     void rotateLeft2() {
@@ -63,6 +70,7 @@ class Task7Test {
         int expected = -2;
         assertEquals(expected, actual);
     }
+
     @Test
     @DisplayName("test10")
     void rotateLeft3() {
@@ -70,6 +78,7 @@ class Task7Test {
         int expected = 1;
         assertEquals(expected, actual);
     }
+
     @Test
     @DisplayName("test11")
     void rotateLeft4() {
@@ -77,6 +86,7 @@ class Task7Test {
         int expected = 3;
         assertEquals(expected, actual);
     }
+
     @Test
     @DisplayName("test12")
     void rotateLeft5() {
@@ -84,6 +94,7 @@ class Task7Test {
         int expected = 1;
         assertEquals(expected, actual);
     }
+
     @Test
     @DisplayName("test13")
     void rotateLeft6() {
@@ -91,6 +102,7 @@ class Task7Test {
         int expected = 3;
         assertEquals(expected, actual);
     }
+
     @Test
     @DisplayName("test14")
     void rotateLeft7() {
