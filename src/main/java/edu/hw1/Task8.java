@@ -50,8 +50,8 @@ public class Task8 {
         for (int i = 0; i < EIGHT && result; ++i) {
             for (int j = 0; j < EIGHT && result; ++j) {
                 if (desk[i][j] == 1) {
-                    if (checkLeft(desk, i, j) || checkRight(desk, i, j) || checkAbove(desk, i, j) ||
-                        checkUnder(desk, i, j)) {
+                    if (checkLeft(desk, i, j) || checkRight(desk, i, j) || checkAbove(desk, i, j)
+                        || checkUnder(desk, i, j)) {
                         result = false;
                     }
                 }
