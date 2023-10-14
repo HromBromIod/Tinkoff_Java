@@ -1,9 +1,8 @@
 package edu.hw1;
 
+import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import java.util.Scanner;
-
 public class Task4 {
     public static String fixString(String line) {
         String result = "";
