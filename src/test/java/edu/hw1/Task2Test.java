@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class Task2Test {
 
     @Test
-    @DisplayName("test1")
+    @DisplayName("Кол-во цифр в 100 = 3")
     void countDigits1() {
         int actual = Task2.countDigits(100);
         int expected = 3;
@@ -16,7 +16,7 @@ class Task2Test {
     }
 
     @Test
-    @DisplayName("test2")
+    @DisplayName("Кол-во цифр в -12 = 2")
     void countDigits2() {
         int actual = Task2.countDigits(-12);
         int expected = 2;
@@ -24,24 +24,16 @@ class Task2Test {
     }
 
     @Test
-    @DisplayName("test3")
+    @DisplayName("Кол-во цифр в 1 = 1")
     void countDigits3() {
-        int actual = Task2.countDigits(-12);
-        int expected = 2;
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    @DisplayName("test4")
-    void countDigits4() {
         int actual = Task2.countDigits(1);
         int expected = 1;
         assertEquals(expected, actual);
     }
 
     @Test
-    @DisplayName("test5")
-    void countDigits5() {
+    @DisplayName("Кол-во цифр в 0 = 1")
+    void countDigits4() {
         int actual = Task2.countDigits(0);
         int expected = 1;
         assertEquals(expected, actual);

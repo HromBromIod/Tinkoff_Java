@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class Task4Test {
 
     @Test
-    @DisplayName("test1")
+    @DisplayName("hTsii  s aimex dpus rtni.g -> This is a mixed up string.")
     void fixString1() {
         String actual = Task4.fixString("hTsii  s aimex dpus rtni.g");
         String expected = "This is a mixed up string.";
@@ -16,7 +16,7 @@ class Task4Test {
     }
 
     @Test
-    @DisplayName("test2")
+    @DisplayName("123456 -> 214365")
     void fixString2() {
         String actual = Task4.fixString("123456");
         String expected = "214365";
@@ -24,7 +24,7 @@ class Task4Test {
     }
 
     @Test
-    @DisplayName("test3")
+    @DisplayName("badce -> abcde")
     void fixString3() {
         String actual = Task4.fixString("badce");
         String expected = "abcde";
@@ -32,7 +32,7 @@ class Task4Test {
     }
 
     @Test
-    @DisplayName("test4")
+    @DisplayName("a -> a")
     void fixString4() {
         String actual = Task4.fixString("a");
         String expected = "a";

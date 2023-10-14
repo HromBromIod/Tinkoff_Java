@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class Task3Test {
 
     @Test
-    @DisplayName("test1")
+    @DisplayName("Массив {1,2,3,4} входит в интервал {0,6}")
     void isNestable1() {
         int[] arrL = new int[] {1, 2, 3, 4};
         int[] arrR = new int[] {0, 6};
@@ -18,7 +18,7 @@ class Task3Test {
     }
 
     @Test
-    @DisplayName("test2")
+    @DisplayName("Массив {0, 6} не входит в интервал {1, 2}")
     void isNestable2() {
         int[] arrL = new int[] {0, 6};
         int[] arrR = new int[] {1, 2};
@@ -28,7 +28,7 @@ class Task3Test {
     }
 
     @Test
-    @DisplayName("test3")
+    @DisplayName("Массив {1,24} не входит в интервал {2, 1}")
     void isNestable3() {
         int[] arrL = new int[] {1, 2};
         int[] arrR = new int[] {2, 1};
@@ -38,7 +38,7 @@ class Task3Test {
     }
 
     @Test
-    @DisplayName("test4")
+    @DisplayName("Массив {0, 6} входит в интервал {-1, 7}")
     void isNestable4() {
         int[] arrL = new int[] {0, 6};
         int[] arrR = new int[] {-1, 7};
@@ -48,7 +48,7 @@ class Task3Test {
     }
 
     @Test
-    @DisplayName("test5")
+    @DisplayName("Массив {-1, 7} не входит в интервал {0,6}")
     void isNestable5() {
         int[] arrL = new int[] {-1, 7};
         int[] arrR = new int[] {0, 6};

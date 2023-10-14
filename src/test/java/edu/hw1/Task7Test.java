@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class Task7Test {
 
     @Test
-    @DisplayName("test1")
+    @DisplayName("Отрицательное исходное значение")
     void rotateRight1() {
         int actual = Task7.rotateRight(-1, 1);
         int expected = -1;
@@ -16,7 +16,7 @@ class Task7Test {
     }
 
     @Test
-    @DisplayName("test2")
+    @DisplayName("Отрицательное исходное значение")
     void rotateRight2() {
         int actual = Task7.rotateRight(-2, 3);
         int expected = -2;
@@ -24,7 +24,7 @@ class Task7Test {
     }
 
     @Test
-    @DisplayName("test3")
+    @DisplayName("8 -> 2 = 2")
     void rotateRight3() {
         int actual = Task7.rotateRight(8, 2);
         int expected = 2;
@@ -32,7 +32,7 @@ class Task7Test {
     }
 
     @Test
-    @DisplayName("test4")
+    @DisplayName("8 -> 1 = 4")
     void rotateRight4() {
         int actual = Task7.rotateRight(8, 1);
         int expected = 4;
@@ -40,7 +40,7 @@ class Task7Test {
     }
 
     @Test
-    @DisplayName("test6")
+    @DisplayName("9 -> -2 = 6")
     void rotateRight6() {
         int actual = Task7.rotateRight(9, -2);
         int expected = 6;
@@ -48,7 +48,7 @@ class Task7Test {
     }
 
     @Test
-    @DisplayName("test7")
+    @DisplayName("8 -> -1 = 1")
     void rotateRight7() {
         int actual = Task7.rotateRight(8, -1);
         int expected = 1;
@@ -56,7 +56,7 @@ class Task7Test {
     }
 
     @Test
-    @DisplayName("test8")
+    @DisplayName("Отрицательное исходное значение")
     void rotateLeft1() {
         int actual = Task7.rotateLeft(-1, 1);
         int expected = -1;
@@ -64,7 +64,7 @@ class Task7Test {
     }
 
     @Test
-    @DisplayName("test9")
+    @DisplayName("Отрицательное исходное значение")
     void rotateLeft2() {
         int actual = Task7.rotateLeft(-2, 1);
         int expected = -2;
@@ -72,7 +72,7 @@ class Task7Test {
     }
 
     @Test
-    @DisplayName("test10")
+    @DisplayName("1 = 1 <- 2")
     void rotateLeft3() {
         int actual = Task7.rotateLeft(1, 2);
         int expected = 1;
@@ -80,7 +80,7 @@ class Task7Test {
     }
 
     @Test
-    @DisplayName("test11")
+    @DisplayName("3 = 1 <- 5")
     void rotateLeft4() {
         int actual = Task7.rotateLeft(5, 1);
         int expected = 3;
@@ -88,7 +88,7 @@ class Task7Test {
     }
 
     @Test
-    @DisplayName("test12")
+    @DisplayName("1 = 1 <- 2")
     void rotateLeft5() {
         int actual = Task7.rotateLeft(2, 1);
         int expected = 1;
@@ -96,7 +96,7 @@ class Task7Test {
     }
 
     @Test
-    @DisplayName("test13")
+    @DisplayName("3 = -2 <- 3")
     void rotateLeft6() {
         int actual = Task7.rotateLeft(3, -2);
         int expected = 3;
@@ -104,7 +104,7 @@ class Task7Test {
     }
 
     @Test
-    @DisplayName("test14")
+    @DisplayName("6 = -2 <- 9")
     void rotateLeft7() {
         int actual = Task7.rotateLeft(9, -2);
         int expected = 6;
