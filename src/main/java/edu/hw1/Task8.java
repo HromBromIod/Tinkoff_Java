@@ -11,8 +11,8 @@ public class Task8 {
 
     public static boolean checkLeft(int[][] desk, int i, int j) {
         boolean result = false;
-        if (i - 1 >= 0 && j - 2 >= 0 && desk[i - 1][j - 2] == 1 ||
-            i + 1 < EIGHT && j - 2 >= 0 && desk[i + 1][j - 2] == 1) {
+        if (i - 1 >= 0 && j - 2 >= 0 && desk[i - 1][j - 2] == 1
+            || i + 1 < EIGHT && j - 2 >= 0 && desk[i + 1][j - 2] == 1) {
             result = true;
         }
         return result;
@@ -20,8 +20,8 @@ public class Task8 {
 
     public static boolean checkRight(int[][] desk, int i, int j) {
         boolean result = false;
-        if (i - 1 >= 0 && j + 2 < EIGHT && desk[i - 1][j + 2] == 1 ||
-            i + 1 < EIGHT && j + 2 < EIGHT && desk[i + 1][j + 2] == 1) {
+        if (i - 1 >= 0 && j + 2 < EIGHT && desk[i - 1][j + 2] == 1
+            || i + 1 < EIGHT && j + 2 < EIGHT && desk[i + 1][j + 2] == 1) {
             result = true;
         }
         return result;
@@ -29,8 +29,8 @@ public class Task8 {
 
     public static boolean checkAbove(int[][] desk, int i, int j) {
         boolean result = false;
-        if (i - 2 >= 0 && j - 1 >= 0 && desk[i - 2][j - 1] == 1 ||
-            i - 2 >= 0 && j + 1 < EIGHT && desk[i - 2][j + 1] == 1) {
+        if (i - 2 >= 0 && j - 1 >= 0 && desk[i - 2][j - 1] == 1
+            || i - 2 >= 0 && j + 1 < EIGHT && desk[i - 2][j + 1] == 1) {
             result = true;
         }
         return result;
@@ -38,8 +38,8 @@ public class Task8 {
 
     public static boolean checkUnder(int[][] desk, int i, int j) {
         boolean result = false;
-        if (i + 2 < EIGHT && j - 1 >= 0 && desk[i + 2][j - 1] == 1 ||
-            i + 2 < EIGHT && j + 1 < EIGHT && desk[i + 2][j + 1] == 1) {
+        if (i + 2 < EIGHT && j - 1 >= 0 && desk[i + 2][j - 1] == 1
+            || i + 2 < EIGHT && j + 1 < EIGHT && desk[i + 2][j + 1] == 1) {
             result = true;
         }
         return result;
