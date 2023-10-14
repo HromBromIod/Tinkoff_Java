@@ -4,15 +4,19 @@ import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 public class Task5 {
+    private static final int HUNDRED = 100;
+    private static final int NINETYNINE = 99;
+    private static final int TEN = 10;
+    private static final int NINE = 9;
     public static int getDescendant(int num) {
         int result = 0, count = 1;
-        while (num > 99) {
-            result = result + ((num % 10) + (num % 100 / 10)) * count;
-            count *= 10;
-            num /= 100;
+        while (num > NINETYNINE) {
+            result = result + ((num % TEN) + (num % HUNDRED / TEN)) * count;
+            count *= TEN;
+            num /= HUNDRED;
         }
-        if (num > 9) {
-            result = result + ((num / 10) + (num % 10)) * count;
+        if (num > NINE) {
+            result = result + ((num / TEN) + (num % TEN)) * count;
         } else {
             result = result + num * count;
         }
@@ -21,20 +25,20 @@ public class Task5 {
 
     public static boolean isPalindromeDescendant(int num) {
         boolean result = false;
-        while (num > 9 && !result) {
+        while (num > NINE && !result) {
             boolean checkPalindrome = true;
             int numCheck = num;
             while (numCheck > 0 && checkPalindrome) {
                 int f = numCheck, count = 1;
-                while (f > 9) {
-                    f /= 10;
-                    count *= 10;
+                while (f > NINE) {
+                    f /= TEN;
+                    count *= TEN;
                 }
-                if (f != numCheck % 10) {
+                if (f != numCheck % TEN) {
                     checkPalindrome = false;
                 } else {
                     numCheck = numCheck - f * count;
-                    numCheck /= 10;
+                    numCheck /= TEN;
                 }
             }
             if (!checkPalindrome) {

@@ -5,11 +5,15 @@ import org.apache.logging.log4j.Logger;
 import java.util.Scanner;
 
 public class Task6 {
+    private static final int KAPREKAR = 6174;
+    private static final int THOUSAND = 1000;
+    private static final int HUNDRED = 100;
+    private static final int TEN = 10;
     public static int countK(int num) {
         int result = 0;
-        if (num != 6174) {
+        if (num != KAPREKAR) {
             int numR = 0, numL = 0;
-            int[] newNum = new int[] {num % 10, num % 100 / 10, num % 1000 / 100, num / 1000};
+            int[] newNum = new int[] {num % TEN, num % HUNDRED / TEN, num % THOUSAND / HUNDRED, num / THOUSAND};
             int count = 1;
             for (int i = 3; i >= 1; --i) {
                 for (int j = i - 1; j >= 0; --j) {
@@ -20,9 +24,9 @@ public class Task6 {
                     }
                 }
                 numR += newNum[i];
-                numR *= 10;
+                numR *= TEN;
                 numL += (newNum[i] * count);
-                count *= 10;
+                count *= TEN;
             }
             numR += newNum[0];
             numL += (newNum[0] * count);
