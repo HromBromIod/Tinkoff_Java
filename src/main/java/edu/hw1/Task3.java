@@ -4,7 +4,12 @@ import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+@SuppressWarnings("uncommentedmain")
 public class Task3 {
+
+    private Task3() {
+    }
+
     public static boolean isNestable(int[] arrL, int[] arrR) {
         boolean result = false;
         int maxL = 1, maxR = 1, minL = -1, minR = -1;
@@ -36,18 +41,17 @@ public class Task3 {
 
     private final static Logger LOGGER = LogManager.getLogger();
 
+    //main
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int lenL = in.nextInt();
         int[] arrL = new int[lenL];
-        for (int i = 0; i < lenL; ++i)
-        {
+        for (int i = 0; i < lenL; ++i) {
             arrL[i] = in.nextInt();
         }
         int lenR = in.nextInt();
         int[] arrR = new int[lenR];
-        for (int i = 0; i < lenR; ++i)
-        {
+        for (int i = 0; i < lenR; ++i) {
             arrR[i] = in.nextInt();
         }
         LOGGER.info(isNestable(arrL, arrR));

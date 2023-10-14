@@ -4,7 +4,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.util.Scanner;
 
+@SuppressWarnings("uncommentedmain")
 public class Task7 {
+    private Task7() {
+    }
+
     public static String intToBinary(int num) {
         String result = "1";
         return result;
@@ -16,11 +20,10 @@ public class Task7 {
     }
 
     public static int rotateRight(int num, int shift) {
-        if (num >= 0)
-        {
-            if (shift < 0)
+        if (num >= 0) {
+            if (shift < 0) {
                 num = rotateLeft(num, Math.abs(shift));
-            else {
+            } else {
 
                 //for ()
             }
@@ -35,6 +38,7 @@ public class Task7 {
 
     private final static Logger LOGGER = LogManager.getLogger();
 
+    //main
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         LOGGER.info("Input number:");

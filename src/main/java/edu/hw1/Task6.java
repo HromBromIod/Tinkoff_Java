@@ -1,35 +1,29 @@
 package edu.hw1;
 
+import java.util.Arrays;
+import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import java.util.Scanner;
 
+@SuppressWarnings("uncommentedmain")
 public class Task6 {
     private static final int KAPREKAR = 6174;
     private static final int THOUSAND = 1000;
     private static final int HUNDRED = 100;
     private static final int TEN = 10;
+    private static final int THREE = 3;
+
+    private Task6() {
+    }
+
     public static int countK(int num) {
-        int result = 0;
+        Integer result = 0;
         if (num != KAPREKAR) {
-            int numR = 0, numL = 0;
             int[] newNum = new int[] {num % TEN, num % HUNDRED / TEN, num % THOUSAND / HUNDRED, num / THOUSAND};
             int count = 1;
-            for (int i = 3; i >= 1; --i) {
-                for (int j = i - 1; j >= 0; --j) {
-                    if (newNum[i] < newNum[j]) {
-                        int x = newNum[i];
-                        newNum[i] = newNum[j];
-                        newNum[j] = x;
-                    }
-                }
-                numR += newNum[i];
-                numR *= TEN;
-                numL += (newNum[i] * count);
-                count *= TEN;
-            }
-            numR += newNum[0];
-            numL += (newNum[0] * count);
+            Arrays.sort(newNum);
+            int numR = newNum[0] + newNum[1] * TEN + newNum[2] * HUNDRED + newNum[THREE] * THOUSAND;
+            int numL = newNum[THREE] + newNum[2] * TEN + newNum[1] * HUNDRED + newNum[0] * THOUSAND;
             num = numR - numL;
             result = 1 + countK(num);
         }
@@ -38,6 +32,7 @@ public class Task6 {
 
     private final static Logger LOGGER = LogManager.getLogger();
 
+    //main
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         LOGGER.info("Input number:");

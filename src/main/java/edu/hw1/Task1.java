@@ -4,8 +4,12 @@ import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Task1 {
+@SuppressWarnings("uncommentedmain") public class Task1 {
     private static final int SIXTY = 60;
+
+    private Task1() {
+    }
+
     public static boolean isTime(String time) {
         boolean result = true;
         for (int i = 0; i < time.indexOf(":") && result; ++i) {
@@ -41,6 +45,7 @@ public class Task1 {
 
     private final static Logger LOGGER = LogManager.getLogger();
 
+    //main
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         LOGGER.info("Input time:");
