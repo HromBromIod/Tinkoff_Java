@@ -46,4 +46,12 @@ class Task5Test {
         boolean expected = false;
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("9765, потомоки - не палиндромы")
+    void isPalindromeDescendant6() {
+        boolean actual = Task5.isPalindromeDescendant(9765);
+        boolean expected = false;
+        assertEquals(expected, actual);
+    }
 }

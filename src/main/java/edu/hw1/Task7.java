@@ -9,16 +9,6 @@ public class Task7 {
     private Task7() {
     }
 
-    public static String intToBinary(int num) {
-        String result = "1";
-        return result;
-    }
-
-    public static int binaryToInt(String bin) {
-        int result = -1;
-        return result;
-    }
-
     public static int rotateRight(int value, int shift) {
         int num = value;
         if (num > 0) {

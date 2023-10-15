@@ -1,5 +1,6 @@
 package edu.hw1;
 
+import java.util.Arrays;
 import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,30 +13,10 @@ public class Task3 {
 
     public static boolean isNestable(int[] arrL, int[] arrR) {
         boolean result = false;
-        int maxL = 1;
-        int maxR = 1;
-        int minL = -1;
-        int minR = -1;
-        for (int i = 0; i < arrL.length; ++i) {
-            if (i == 0) {
-                maxR = arrR[i];
-                minR = arrR[i + 1];
-                maxL = arrL[i];
-                minL = arrL[i];
-            } else {
-                if (maxL < arrL[i]) {
-                    maxL = arrL[i];
-                }
-                if (minL > arrL[i]) {
-                    maxL = arrL[i];
-                }
-            }
-        }
-        if (maxR < minR) {
-            int x = minR;
-            minR = maxR;
-            maxR = x;
-        }
+        int maxL = Arrays.stream(arrL).max().getAsInt();
+        int maxR = Arrays.stream(arrR).max().getAsInt();
+        int minL = Arrays.stream(arrL).min().getAsInt();
+        int minR = Arrays.stream(arrR).min().getAsInt();
         if (maxR > maxL && minR < minL) {
             result = true;
         }

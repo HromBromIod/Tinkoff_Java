@@ -11,15 +11,16 @@ public class Task4 {
     }
 
     public static String fixString(String line) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (int i = 0; i < line.length(); i += 2) {
             if (i + 1 >= line.length()) {
-                result = result + line.charAt(i);
+                result.append(line.charAt(i));
             } else {
-                result = result + line.charAt(i + 1) + line.charAt(i);
+                result.append(line.charAt(i + 1));
+                result.append(line.charAt(i));
             }
         }
-        return result;
+        return result.toString();
     }
 
     private final static Logger LOGGER = LogManager.getLogger();
