@@ -18,14 +18,15 @@ public class Task5 {
         int result = 0;
         int count = 1;
         int num = value;
-        while (num > NINETYNINE) {
+        while (num > NINE) {
+            if ((num % TEN) + (num % HUNDRED / TEN) > 9 && count != 1) {
+                count *= 10;
+            }
             result = result + ((num % TEN) + (num % HUNDRED / TEN)) * count;
             count *= TEN;
             num /= HUNDRED;
         }
-        if (num > NINE) {
-            result = result + ((num / TEN) + (num % TEN)) * count;
-        } else {
+        if (num > 0) {
             result = result + num * count;
         }
         return result;
