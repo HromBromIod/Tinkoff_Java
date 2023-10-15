@@ -19,8 +19,8 @@ public class Task5 {
         int count = 1;
         int num = value;
         while (num > NINE) {
-            if ((num % TEN) + (num % HUNDRED / TEN) > 9 && count != 1) {
-                count *= 10;
+            if ((num % TEN) + (num % HUNDRED / TEN) > NINE && count != 1) {
+                count *= TEN;
             }
             result = result + ((num % TEN) + (num % HUNDRED / TEN)) * count;
             count *= TEN;
