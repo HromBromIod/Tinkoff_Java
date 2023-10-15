@@ -48,7 +48,7 @@ class Task5Test {
     }
 
     @Test
-    @DisplayName("9765, потомоки - не палиндромы")
+    @DisplayName("9765, потомки - не палиндромы")
     void isPalindromeDescendant6() {
         boolean actual = Task5.isPalindromeDescendant(9765);
         boolean expected = false;
