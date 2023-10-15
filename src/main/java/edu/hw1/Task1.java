@@ -17,10 +17,15 @@ import org.apache.logging.log4j.Logger;
                 result = false;
             }
         }
+        int countSeconds = 0;
         for (int i = time.indexOf(":") + 1; i < time.length() && result; ++i) {
             if (time.charAt(i) > '9' || time.charAt(i) < '0') {
                 result = false;
             }
+            countSeconds += 1;
+        }
+        if (countSeconds != 2) {
+            result = false;
         }
         if (result) {
             int sec = Integer.parseInt(time.substring(time.indexOf(":") + 1, time.length()));

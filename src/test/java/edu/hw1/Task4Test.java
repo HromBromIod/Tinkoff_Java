@@ -38,4 +38,20 @@ class Task4Test {
         String expected = "a";
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("символ пробела -> символ пробела")
+    void fixString5() {
+        String actual = Task4.fixString(" ");
+        String expected = " ";
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("пустая строка -> пустая строка")
+    void fixString6() {
+        String actual = Task4.fixString("");
+        String expected = "";
+        assertEquals(expected, actual);
+    }
 }

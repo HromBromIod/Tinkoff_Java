@@ -56,8 +56,24 @@ class Task8Test {
     }
 
     @Test
-    @DisplayName("На доске нет коней")
+    @DisplayName("Конь d5 бьёт коня f6")
     void knightBoardCapture4() {
+        int[][] desk = {{0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 1, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 1, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0}};
+        boolean actual = Task8.knightBoardCapture(desk);
+        boolean expected = false;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("На доске нет коней")
+    void knightBoardCapture5() {
         int[][] desk = {{0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0},
@@ -68,6 +84,22 @@ class Task8Test {
             {0, 0, 0, 0, 0, 0, 0, 0}};
         boolean actual = Task8.knightBoardCapture(desk);
         boolean expected = true;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("На доске 64 коня")
+    void knightBoardCapture6() {
+        int[][] desk = {{1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1}};
+        boolean actual = Task8.knightBoardCapture(desk);
+        boolean expected = false;
         assertEquals(expected, actual);
     }
 }

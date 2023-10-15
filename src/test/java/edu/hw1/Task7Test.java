@@ -110,4 +110,12 @@ class Task7Test {
         int expected = 6;
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("0 = -2 <- 0")
+    void rotateLeft8() {
+        int actual = Task7.rotateLeft(0, -2);
+        int expected = 0;
+        assertEquals(expected, actual);
+    }
 }

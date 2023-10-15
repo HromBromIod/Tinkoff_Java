@@ -56,4 +56,14 @@ class Task3Test {
         boolean expected = false;
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("Массив {-1, 5, 8, 7} входит в интервал {9, -2}")
+    void isNestable6() {
+        int[] arrL = new int[] {-1, 5, 8, 7};
+        int[] arrR = new int[] {9, -2};
+        boolean actual = Task3.isNestable(arrL, arrR);
+        boolean expected = true;
+        assertEquals(expected, actual);
+    }
 }

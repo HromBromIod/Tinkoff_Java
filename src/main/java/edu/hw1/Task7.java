@@ -21,7 +21,7 @@ public class Task7 {
 
     public static int rotateRight(int value, int shift) {
         int num = value;
-        if (num >= 0) {
+        if (num > 0) {
             if (shift < 0) {
                 num = rotateLeft(num, Math.abs(shift));
             } else {
@@ -38,9 +38,9 @@ public class Task7 {
 
     public static int rotateLeft(int value, int shift) {
         int num = value;
-        if (num >= 0) {
+        if (num > 0) {
             if (shift < 0) {
-                num = rotateLeft(num, Math.abs(shift));
+                num = rotateRight(num, Math.abs(shift));
             } else {
                 String binary = Integer.toBinaryString(num);
                 int length = binary.length();

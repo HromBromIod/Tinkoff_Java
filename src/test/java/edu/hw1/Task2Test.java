@@ -38,4 +38,12 @@ class Task2Test {
         int expected = 1;
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("Кол-во цифр в -1294 = 4")
+    void countDigits5() {
+        int actual = Task2.countDigits(-1294);
+        int expected = 4;
+        assertEquals(expected, actual);
+    }
 }

@@ -38,4 +38,12 @@ class Task6Test {
         int expected = 2;
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("6174 -> 6174 = 0 шагов")
+    void countK5() {
+        int actual = Task6.countK(6174);
+        int expected = 0;
+        assertEquals(expected, actual);
+    }
 }

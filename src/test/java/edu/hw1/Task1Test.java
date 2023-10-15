@@ -54,4 +54,20 @@ class Task1Test {
         int expected = -1;
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("Некорректный ввод секунд")
+    void timeToSecond7() {
+        int actual = Task1.timeToSecond("11:");
+        int expected = -1;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Некорректный ввод секунд")
+    void timeToSecond8() {
+        int actual = Task1.timeToSecond("11:324");
+        int expected = -1;
+        assertEquals(expected, actual);
+    }
 }
