@@ -27,7 +27,7 @@ public class Task3 {
     }
 
     public interface AutoCloseable {
-        public void close();
+        void close();
     }
 
     public interface Connection extends AutoCloseable {
