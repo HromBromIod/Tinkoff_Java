@@ -4,8 +4,7 @@ import java.util.Random;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@SuppressWarnings("uncommentedmain")
-public class Task3 {
+@SuppressWarnings("uncommentedmain") public class Task3 {
     private static final int MAX_ATTEMPTS = 3;
     private static final String COMPLETED = " has completed.";
     private static final String CONNECTED = "Server has connected.";
@@ -122,6 +121,8 @@ public class Task3 {
                 countAttempts++;
             }
             if (countAttempts >= maxAttempts) {
+                LOGGER.info(error.getMessage());
+                connection.close();
                 throw new ConnectionException(error.getMessage(), error.getCause());
             } else {
                 LOGGER.info(command + COMPLETED);
