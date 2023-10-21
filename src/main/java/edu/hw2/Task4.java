@@ -15,8 +15,7 @@ public class Task4 {
         LOGGER.info(callingInfo());
     }
 
-    public static CallingInfo callingInfo()
-    {
+    public static CallingInfo callingInfo() {
         String className;
         String methodName;
         try {
@@ -28,6 +27,7 @@ public class Task4 {
         }
         return new CallingInfo(className, methodName);
     }
+
     public record CallingInfo(String className, String methodName) {
     }
 }
