@@ -7,7 +7,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Task3Test {
-    @ParameterizedTest(name = "Check some commands")
+    @DisplayName("Check some commands")
+    @ParameterizedTest()
     @CsvSource({
         "apt download hello.exe && apt execute hello.exe && apt delete hello.exe",
         "apt execute goodbye.exe"
@@ -27,7 +28,7 @@ public class Task3Test {
 
     @DisplayName("Check update")
     @RepeatedTest(10)
-    void check() {
+    void checkUpdate() {
         boolean actual = false;
         boolean expected = true;
         try {
