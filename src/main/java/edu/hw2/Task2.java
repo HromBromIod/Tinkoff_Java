@@ -4,15 +4,23 @@ public class Task2 {
     private Task2() {
     }
 
-    public class Rectangle {
+    public static class Rectangle {
         private int width;
         private int height;
 
-        void setWidth(int width) {
+        public Rectangle() {
+        }
+
+        public Rectangle(int width, int height) {
+            this.width = width;
+            this.height = height;
+        }
+
+        public void setWidth(int width) {
             this.width = width;
         }
 
-        void setHeight(int height) {
+        public void setHeight(int height) {
             this.height = height;
         }
 
@@ -21,17 +29,17 @@ public class Task2 {
         }
     }
 
-    public class Square extends Rectangle {
-        @Override
-        void setWidth(int width) {
-            super.setHeight(width);
-            super.setWidth(width);
+    public static class Square extends Task2.Rectangle {
+        public Square() {
         }
 
-        @Override
-        void setHeight(int height) {
-            super.setHeight(height);
-            super.setWidth(height);
+        public Square(int side) {
+            super(side, side);
+        }
+
+        public void setSide(int side) {
+            setHeight(side);
+            setWidth(side);
         }
     }
 }
