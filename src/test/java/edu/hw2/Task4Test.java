@@ -16,16 +16,17 @@ public class Task4Test {
     @Test
     @DisplayName("Call checkThis2")
     void checkThis2() {
-        Task4.CallingInfo actual = Task4.callingInfo();
-        Task4.CallingInfo expected = new Task4.CallingInfo("edu.hw2.Task4Test", "checkThis2");
-        assertEquals(expected, actual);
-    }
+        class CheckClass {
+            CheckClass() {
+            }
 
-    @Test
-    @DisplayName("Call checkThis3")
-    void checkThis3() {
-        Task4.CallingInfo actual = Task4.callingInfo();
-        Task4.CallingInfo expected = new Task4.CallingInfo("edu.hw2.Task4Test", "checkThis3");
+            public static Task4.CallingInfo call() {
+                return Task4.callingInfo();
+            }
+        }
+        CheckClass personClass = new CheckClass();
+        Task4.CallingInfo actual = personClass.call();
+        Task4.CallingInfo expected = new Task4.CallingInfo("edu.hw2.Task4Test$1CheckClass", "call");
         assertEquals(expected, actual);
     }
 }
