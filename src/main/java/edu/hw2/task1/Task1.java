@@ -14,6 +14,9 @@ public class Task1 {
     private final static Logger LOGGER = LogManager.getLogger();
 
     public static void main(String[] args) {
+        var zero = new Expr.Exponent(new Expr.Constant(0), -1);
+        LOGGER.info(zero + " = " + zero.evaluate());
+
         var two = new Expr.Constant(2);
         var four = new Expr.Constant(FOUR);
         var negOne = new Expr.Negate(new Expr.Constant(1));
