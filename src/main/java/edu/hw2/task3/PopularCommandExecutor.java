@@ -27,27 +27,28 @@ public class PopularCommandExecutor {
     }
 
     public void tryExecute(String command) throws Connect.ConnectionException {
-        final Connect.Connection connection = manager.getConnection();
         int countAttempts = 0;
         boolean executeFlag = false;
-        Connect.ConnectionException error =
-            new Connect.ConnectionException(Connect.CONNECTION_ERROR, new RuntimeException());
-        while (countAttempts < maxAttempts && !executeFlag) {
-            try {
-                connection.execute(command);
-                executeFlag = true;
-            } catch (Connect.ConnectionException exception) {
-                error = new Connect.ConnectionException(exception.getMessage(), exception.getCause());
+        try (final Connect.Connection connection = manager.getConnection()) {
+            Connect.ConnectionException error =
+                new Connect.ConnectionException(Connect.CONNECTION_ERROR, new RuntimeException());
+            while (countAttempts < maxAttempts && !executeFlag) {
+                try {
+                    connection.execute(command);
+                    executeFlag = true;
+                } catch (Connect.ConnectionException exception) {
+                    error = new Connect.ConnectionException(exception.getMessage(), exception.getCause());
+                }
+                countAttempts++;
             }
-            countAttempts++;
-        }
-        if (countAttempts >= maxAttempts) {
-            LOGGER.info(error.getMessage() + " Server can't complete " + command + ".");
-            connection.close();
+            if (countAttempts >= maxAttempts) {
+                LOGGER.info(error.getMessage() + " Server can't complete " + command + ".");
+                throw new Connect.ConnectionException(error.getMessage(), error.getCause());
+            } else {
+                LOGGER.info(command + COMPLETED);
+            }
+        } catch (Connect.ConnectionException error) {
             throw new Connect.ConnectionException(error.getMessage(), error.getCause());
-        } else {
-            LOGGER.info(command + COMPLETED);
         }
-        connection.close();
     }
 }
