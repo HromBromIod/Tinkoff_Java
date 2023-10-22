@@ -42,6 +42,7 @@ public class Word {
     public boolean isEmpty() {
         return word.equalsIgnoreCase("");
     }
+
     public void inputLetterInSet(String letter) {
         usedLetters.add(letter);
     }

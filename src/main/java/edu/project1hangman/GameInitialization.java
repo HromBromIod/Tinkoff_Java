@@ -112,8 +112,8 @@ public class GameInitialization {
                                     } else {
                                         countOfMistakes++;
                                         System.out.print(
-                                            ">Missed, mistake " + countOfMistakes + " out of " + MAX_COUNT_OF_MISTAKES +
-                                                ".\n");
+                                            ">Missed, mistake " + countOfMistakes + " out of " + MAX_COUNT_OF_MISTAKES
+                                                + ".\n");
                                     }
                                 }
                             }
