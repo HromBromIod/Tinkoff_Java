@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 public class Task1 {
     private static final double FOUR = 4;
+    private static final String EQUALS = " = ";
 
     private Task1() {
     }
@@ -15,7 +16,7 @@ public class Task1 {
 
     public static void main(String[] args) {
         var zero = new Expr.Exponent(new Expr.Constant(0), -1);
-        LOGGER.info(zero + " = " + zero.evaluate());
+        LOGGER.info(zero + EQUALS + zero.evaluate());
 
         var two = new Expr.Constant(2);
         var four = new Expr.Constant(FOUR);
@@ -25,6 +26,6 @@ public class Task1 {
         var exp = new Expr.Exponent(mult, 2);
         var res = new Expr.Addition(exp, new Expr.Constant(1));
 
-        LOGGER.info(res + " = " + res.evaluate());
+        LOGGER.info(res + EQUALS + res.evaluate());
     }
 }

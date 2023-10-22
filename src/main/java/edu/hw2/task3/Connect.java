@@ -1,14 +1,17 @@
 package edu.hw2.task3;
 
+import java.util.Random;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import java.util.Random;
 
 public class Connect {
     public static final String CONNECTED = "Server has connected.";
     public static final String CONNECTION_ERROR = "Error! Connection is unavailable.";
     public static final String CLOSED = "Connection has closed.";
     public final static Logger LOGGER = LogManager.getLogger();
+
+    Connect() {
+    }
 
     public interface Connection extends AutoCloseable {
         void execute(String command);
