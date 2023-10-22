@@ -64,5 +64,4 @@ public class Word {
         usedLetters.clear();
         wordUniqueLetters.clear();
     }
-
 }

@@ -6,7 +6,7 @@ public class StartGame {
     }
 
     public static void main(String[] args) {
-        Game initialization = new Game();
-        initialization.start();
+        GameInitialization init = new GameInitialization("src\\main\\java\\edu\\project1\\words.txt");
+        init.start();
     }
 }
