@@ -7,7 +7,7 @@ import org.apache.logging.log4j.LogManager;
 
 @SuppressWarnings("RegexpSinglelineJava")
 public class GameInitialization {
-    private static int MAX_COUNT_OF_MISTAKES;
+    private static int maxCountOfMistakes;
     private final RandomWordSelector wordSelector;
     private final Word wordOperator;
     int countOfMistakes;
@@ -17,22 +17,22 @@ public class GameInitialization {
     private final Scanner scanner;
     private final static org.apache.logging.log4j.Logger LOGGER = LogManager.getLogger();
 
-    public GameInitialization(final String[] dictionary, int maxCountOfMistakes) {
+    public GameInitialization(final String[] dictionary, int count) {
         scanner = new Scanner(System.in);
         out = new PrintStream(System.out);
         wordSelector = new RandomWordSelector(dictionary);
         wordOperator = new Word();
-        MAX_COUNT_OF_MISTAKES = maxCountOfMistakes;
+        maxCountOfMistakes = count;
         countOfMistakes = 0;
     }
 
-    public GameInitialization(final String[] dictionary, String in, int maxCountOfMistakes) {
+    public GameInitialization(final String[] dictionary, String in, int count) {
         scanner = new Scanner(in);
         stream = new ByteArrayOutputStream();
         out = new PrintStream(stream);
         wordSelector = new RandomWordSelector(dictionary);
         wordOperator = new Word();
-        MAX_COUNT_OF_MISTAKES = maxCountOfMistakes;
+        maxCountOfMistakes = count;
         countOfMistakes = 0;
     }
 
@@ -91,7 +91,7 @@ public class GameInitialization {
                         System.out.print("\n>You give up!");
                         break;
                     }
-                    if (countOfMistakes == MAX_COUNT_OF_MISTAKES) {
+                    if (countOfMistakes == maxCountOfMistakes) {
                         System.out.print("\n>You lost!");
                         break;
                     }
@@ -113,7 +113,7 @@ public class GameInitialization {
                     } else {
                         countOfMistakes++;
                         System.out.print(
-                            ">Missed, mistake " + countOfMistakes + " out of " + MAX_COUNT_OF_MISTAKES
+                            ">Missed, mistake " + countOfMistakes + " out of " + maxCountOfMistakes
                                 + ".\n");
                     }
                 }
