@@ -11,7 +11,7 @@ public class Connect {
 
     public final static Logger LOGGER = LogManager.getLogger();
 
-    Connect() {
+    private Connect() {
     }
 
     public interface Connection extends AutoCloseable {

@@ -29,7 +29,7 @@ public class PopularCommandExecutor {
     public void tryExecute(String command) throws Connect.ConnectionException {
         int countAttempts = 0;
         boolean executeFlag = false;
-        try (final Connect.Connection connection = manager.getConnection()) {
+        try (Connect.Connection connection = manager.getConnection()) {
             Connect.ConnectionException error =
                 new Connect.ConnectionException(Connect.CONNECTION_ERROR, new RuntimeException());
             while (countAttempts < maxAttempts && !executeFlag) {
