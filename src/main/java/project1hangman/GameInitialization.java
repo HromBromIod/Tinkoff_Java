@@ -69,7 +69,7 @@ import org.apache.logging.log4j.LogManager;
     }
 
     public void startGame(BufferedInputStream bis, BufferedOutputStream bos) {
-
+        LOGGER.info("hello");
     }
 
 
