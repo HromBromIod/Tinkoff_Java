@@ -15,7 +15,7 @@ public class Task1 {
 
     public static void main(String[] args) {
         var two = new Expr.Constant(2);
-        var four = new Expr.Constant(4);
+        var four = new Expr.Constant(FOUR);
         var negOne = new Expr.Negate(new Expr.Constant(1));
         var sumTwoFour = new Expr.Addition(two, four);
         var mult = new Expr.Multiplication(sumTwoFour, negOne);

@@ -18,13 +18,9 @@ public class Task4 {
     public static CallingInfo callingInfo() {
         String className;
         String methodName;
-        try {
-            throw new Exception();
-        } catch (Throwable exception) {
-            StackTraceElement[] ste = exception.getStackTrace();
-            className = ste[1].getClassName();
-            methodName = ste[1].getMethodName();
-        }
+        StackTraceElement[] ste = new Throwable().getStackTrace();
+        className = ste[1].getClassName();
+        methodName = ste[1].getMethodName();
         return new CallingInfo(className, methodName);
     }
 
