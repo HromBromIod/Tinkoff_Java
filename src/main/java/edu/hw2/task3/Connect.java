@@ -8,6 +8,7 @@ public class Connect {
     public static final String CONNECTED = "Server has connected.";
     public static final String CONNECTION_ERROR = "Error! Connection is unavailable.";
     public static final String CLOSED = "Connection has closed.";
+
     public final static Logger LOGGER = LogManager.getLogger();
 
     Connect() {
