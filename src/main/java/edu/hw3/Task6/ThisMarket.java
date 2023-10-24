@@ -1,7 +1,9 @@
 package edu.hw3.Task6;
 
+import org.apache.logging.log4j.core.Filter;
 import java.util.PriorityQueue;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 public class ThisMarket implements StockMarket {
     private final PriorityQueue<Stock> que;
@@ -15,8 +17,6 @@ public class ThisMarket implements StockMarket {
     }
 
     public void remove(Stock stock) {
-        //Predicate<Stock> stockToRemove = st -> st.getPrice().equals(stock.getPrice());
-        //que.removeIf(stockToRemove);
         que.remove(stock);
     }
 

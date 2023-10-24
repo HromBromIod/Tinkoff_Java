@@ -12,12 +12,12 @@ public class Task3 {
     private final static Logger LOGGER = LogManager.getLogger();
 
     public static void main(String[] args) {
-        List<Object> list = new ArrayList<>(Arrays.asList(1, 2, 1, 3));
-        HashMap<Object, Integer> hashMap = freqDict(list);
-        LOGGER.info(hashMap.get(2));
+        List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 1, 3));
+        HashMap<?, Integer> hashMap = freqDict(list);
+        LOGGER.info(hashMap.get(1));
     }
 
-    public static HashMap<Object, Integer> freqDict(List<Object> list) {
+    public static HashMap<?, Integer> freqDict(List<?> list) {
         HashMap<Object, Integer> hashMap = new HashMap<>();
         for (int i = 0; i < list.size(); ++i) {
             if (hashMap.containsKey(list.get(i))) {
