@@ -5,5 +5,5 @@ public interface StockMarket {
 
     void remove(Stock stock);
 
-    Stock mostvaluableStock();
+    Stock mostValuableStock();
 }

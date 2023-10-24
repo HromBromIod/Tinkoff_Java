@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import static edu.hw3.Task2.Clusterizator3000.clusterize;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Task2Test {
@@ -25,6 +26,7 @@ public class Task2Test {
         boolean actual = clusterize("((()))").equals(new ArrayList<>(Arrays.asList("((()))")));
         boolean expected = true;
         assertEquals(actual, expected);
+        //assertArrayEquals(clusterize("((()))").toArray(), Arrays.stream(new String[] {"((()))"}).toArray());
     }
 
     @Test
