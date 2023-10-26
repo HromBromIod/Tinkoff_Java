@@ -31,7 +31,17 @@ public class Task3Test {
     @DisplayName("String test")
     void task3StringTest() {
         boolean actual =
-            freqDict(new ArrayList<>(Arrays.asList("1", "2", "3", "4", "2", "3", "1", "1", "1"))).equals(new HashMap<>() {{
+            freqDict(new ArrayList<>(Arrays.asList(
+                "1",
+                "2",
+                "3",
+                "4",
+                "2",
+                "3",
+                "1",
+                "1",
+                "1"
+            ))).equals(new HashMap<>() {{
                 put("1", 4);
                 put("2", 2);
                 put("3", 2);
@@ -45,10 +55,11 @@ public class Task3Test {
     @DisplayName("Boolean test")
     void task3BooleanTest() {
         boolean actual =
-            freqDict(new ArrayList<>(Arrays.asList(true, false, true, true, false, false, true, false, true))).equals(new HashMap<>() {{
-                put(true, 5);
-                put(false, 4);
-            }});
+            freqDict(new ArrayList<>(Arrays.asList(true, false, true, true, false, false, true, false, true))).equals(
+                new HashMap<>() {{
+                    put(true, 5);
+                    put(false, 4);
+                }});
         boolean expected = true;
         assertEquals(actual, expected);
     }

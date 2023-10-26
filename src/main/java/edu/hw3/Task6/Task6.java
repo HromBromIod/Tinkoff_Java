@@ -18,6 +18,6 @@ public class Task6 {
         market.remove(market.mostValuableStock());
         market.add(new Stock(3000));
         market.remove(market.mostValuableStock());
-        LOGGER.info("Hello world!");
+        LOGGER.info("");
     }
 }
