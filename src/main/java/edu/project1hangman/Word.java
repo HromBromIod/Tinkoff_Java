@@ -3,12 +3,10 @@ package edu.project1hangman;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import org.apache.logging.log4j.LogManager;
 
 @SuppressWarnings("RegexpSinglelineJava")
 public class Word {
     private String word;
-    private final static org.apache.logging.log4j.Logger LOGGER = LogManager.getLogger();
     private String mask;
     private final Set<String> wordUniqueLetters = new HashSet<>();
     private final Set<String> usedLetters = new HashSet<>();

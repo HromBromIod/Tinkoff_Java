@@ -1,13 +1,10 @@
 package edu.project1hangman;
 
 import java.util.Random;
-import org.apache.logging.log4j.LogManager;
 
 @SuppressWarnings("RegexpSinglelineJava")
 public class RandomWordSelector {
     private String[] words;
-
-    private final static org.apache.logging.log4j.Logger LOGGER = LogManager.getLogger();
 
     public RandomWordSelector(final String[] dictionary) {
         words = dictionary;

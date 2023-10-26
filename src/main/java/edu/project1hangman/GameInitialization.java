@@ -3,7 +3,6 @@ package edu.project1hangman;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
-import org.apache.logging.log4j.LogManager;
 
 @SuppressWarnings("RegexpSinglelineJava")
 public class GameInitialization {
@@ -12,10 +11,9 @@ public class GameInitialization {
     private final Word wordOperator;
     int countOfMistakes;
     private String letter;
-    private PrintStream out;
+    private final PrintStream out;
     private ByteArrayOutputStream stream;
     private final Scanner scanner;
-    private final static org.apache.logging.log4j.Logger LOGGER = LogManager.getLogger();
 
     public GameInitialization(final String[] dictionary, int count) {
         scanner = new Scanner(System.in);
