@@ -2,7 +2,6 @@ package edu.hw3.Task7;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import java.util.Comparator;
 import java.util.TreeMap;
 
 public class Task7 {
