@@ -9,7 +9,7 @@ public class ConverterToRoman {
     private ConverterToRoman() {
     }
 
-    public static void initRomanNumbers() {
+    private static void initRomanNumbers() {
         hashMap = new HashMap<>();
         hashMap.put(Numbers.ZERO.getValue(), 'N');
         hashMap.put(Numbers.ONE.getValue(), 'I');

@@ -11,7 +11,6 @@ public class Task1 {
     private final static Logger LOGGER = LogManager.getLogger();
 
     public static void main(String[] args) {
-        Encoder encoder = new Encoder();
         String str = "Hello world!";
         LOGGER.info(str);
         str = Encoder.atbash(str);
