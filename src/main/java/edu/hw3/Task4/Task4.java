@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 @SuppressWarnings("uncommentedmain")
 public class Task4 {
     private static final int NUMBER = 1999;
+
     private Task4() {
     }
 

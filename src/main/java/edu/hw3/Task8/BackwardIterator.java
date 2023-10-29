@@ -8,9 +8,9 @@ public class BackwardIterator<T> implements Iterator<T> {
     private Integer index;
     private final Collection<T> collection;
 
-    public BackwardIterator(Collection<T> coll) {
-        this.index = coll.size() - 1;
-        this.collection = coll;
+    public BackwardIterator(Collection<T> collect) {
+        this.index = collect.size() - 1;
+        this.collection = collect;
     }
 
     @Override
@@ -24,7 +24,7 @@ public class BackwardIterator<T> implements Iterator<T> {
             return null;
         }
         index -= 1;
-        T[] elements = null;
+        T[] elements = (T[]) new Object[0];
         collection.toArray(elements);
         return elements[index];
     }
