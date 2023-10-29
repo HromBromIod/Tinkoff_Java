@@ -10,7 +10,7 @@ public class BackwardIterator<T> implements Iterator<T> {
     private final Collection<T> collection;
 
     public BackwardIterator(Collection<T> coll) {
-        this.index = coll.size();
+        this.index = coll.size() - 1;
         this.collection = coll;
     }
 

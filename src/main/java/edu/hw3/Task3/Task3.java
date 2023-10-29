@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 
+@SuppressWarnings("uncommentedmain")
 public class Task3 {
     private Task3() {
     }

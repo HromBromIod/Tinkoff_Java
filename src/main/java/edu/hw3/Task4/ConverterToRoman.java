@@ -6,7 +6,10 @@ public class ConverterToRoman {
 
     private static HashMap<Integer, Character> hashMap;
 
-    public ConverterToRoman() {
+    private ConverterToRoman() {
+    }
+
+    public static void initRomanNumbers() {
         hashMap = new HashMap<>();
         hashMap.put(Numbers.ZERO.getValue(), 'N');
         hashMap.put(Numbers.ONE.getValue(), 'I');
@@ -18,37 +21,38 @@ public class ConverterToRoman {
         hashMap.put(Numbers.THOUSAND.getValue(), 'M');
     }
 
-    public static String convertToRoman(int number) {
+    public static String convertToRoman(int num) {
+        int number = num;
         if (number == Numbers.ZERO.getValue()) {
             return "N";
         }
-        String result = "";
+        StringBuilder result = new StringBuilder();
         while (number >= Numbers.THOUSAND.getValue()) {
             number -= Numbers.THOUSAND.getValue();
-            result = result + hashMap.get(Numbers.THOUSAND.getValue());
+            result.append(hashMap.get(Numbers.THOUSAND.getValue()));
         }
-        for (int i = Numbers.THOUSAND.getValue(); number > Numbers.ZERO.getValue(); i /= 10) {
+        for (int i = Numbers.THOUSAND.getValue(); number > Numbers.ZERO.getValue(); i /= Numbers.TEN.getValue()) {
             if (number >= Numbers.NINE.getValue() * i) {
                 number -= Numbers.NINE.getValue() * i;
-                result = result + hashMap.get(i) + hashMap.get(Numbers.TEN.getValue() * i);
+                result.append(hashMap.get(i)).append(hashMap.get(Numbers.TEN.getValue() * i));
             }
             if (number >= Numbers.FIVE.getValue() * i) {
-                result = result + hashMap.get(Numbers.FIVE.getValue() * i);
+                result.append(hashMap.get(Numbers.FIVE.getValue() * i));
                 while (number >= Numbers.SIX.getValue() * i) {
                     number -= i;
-                    result = result + hashMap.get(i);
+                    result.append(hashMap.get(i));
                 }
                 number -= Numbers.FIVE.getValue() * i;
             }
             if (number >= Numbers.FOUR.getValue() * i) {
                 number -= (Numbers.FOUR.getValue() * i);
-                result = result + hashMap.get(i) + hashMap.get(Numbers.FIVE.getValue() * i);
+                result.append(hashMap.get(i)).append(hashMap.get(Numbers.FIVE.getValue() * i));
             }
             while (number >= i) {
                 number -= i;
-                result = result + hashMap.get(i);
+                result.append(hashMap.get(i));
             }
         }
-        return result;
+        return result.toString();
     }
 }

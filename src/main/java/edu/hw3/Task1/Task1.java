@@ -3,6 +3,7 @@ package edu.hw3.Task1;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+@SuppressWarnings("uncommentedmain")
 public class Task1 {
     private Task1() {
     }

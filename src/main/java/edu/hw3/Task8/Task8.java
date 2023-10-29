@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import edu.hw3.Task8.BackwardIterator.*;
 
+@SuppressWarnings("uncommentedmain")
 public class Task8 {
     private Task8() {
     }
@@ -15,7 +16,7 @@ public class Task8 {
     public static void main(String[] args) {
         BackwardIterator<Integer> it = new BackwardIterator<>(List.of(1, 2, 3));
 
-
+        it.next();
 
         LOGGER.info("");
     }

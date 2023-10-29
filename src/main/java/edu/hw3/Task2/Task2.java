@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import static edu.hw3.Task2.Clusterizator3000.clusterize;
 
+@SuppressWarnings("uncommentedmain")
 public class Task2 {
     private Task2() {
     }

@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.util.TreeMap;
 
+@SuppressWarnings("uncommentedmain")
 public class Task7 {
     private Task7() {
     }
