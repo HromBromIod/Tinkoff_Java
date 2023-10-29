@@ -24,8 +24,8 @@ public class BackwardIterator<T> implements Iterator<T> {
             return null;
         }
         index -= 1;
-        T[] elements = (T[]) new Object[0];
+        T[] elements = (T[]) new Object[collection.size()];
         collection.toArray(elements);
-        return elements[index];
+        return elements[index + 1];
     }
 }

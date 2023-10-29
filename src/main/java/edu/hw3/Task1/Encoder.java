@@ -25,8 +25,8 @@ public class Encoder {
         String string = str;
         for (int i = 0; i < string.length(); ++i) {
             if (hashMapCode.containsKey(string.charAt(i))) {
-                string = string.substring(0, i) + hashMapCode.get(string.charAt(i)) +
-                    string.substring(i + 1);
+                string = string.substring(0, i) + hashMapCode.get(string.charAt(i))
+                    + string.substring(i + 1);
             }
         }
         return string;
