@@ -4,6 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class Stock implements Comparable<Stock> {
     private final Integer price;
+
     public Stock(Integer cost) {
         price = cost;
     }

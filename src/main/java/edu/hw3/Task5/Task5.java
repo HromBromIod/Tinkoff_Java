@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+@SuppressWarnings("uncommentedmain")
 public class Task5 {
     private final static Logger LOGGER = LogManager.getLogger();
 

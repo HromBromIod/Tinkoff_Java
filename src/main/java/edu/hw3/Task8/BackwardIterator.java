@@ -1,6 +1,5 @@
 package edu.hw3.Task8;
 
-import org.jetbrains.annotations.NotNull;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -21,8 +20,9 @@ public class BackwardIterator<T> implements Iterator<T> {
 
     @Override
     public T next() {
-        if (!hasNext())
+        if (!hasNext()) {
             return null;
+        }
         index -= 1;
         T[] elements = null;
         collection.toArray(elements);

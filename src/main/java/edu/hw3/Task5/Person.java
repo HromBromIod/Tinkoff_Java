@@ -40,8 +40,9 @@ public class Person implements Comparable<Person> {
         int result = 0;
         String name = getSecondName();
         String nameO = o.getSecondName();
-        if (name.isEmpty())
+        if (name.isEmpty()) {
             name = getFirstName();
+        }
         if (nameO.isEmpty()) {
             nameO = o.getFirstName();
         }

@@ -9,22 +9,19 @@ public class Clusterizator3000 {
 
     public static ArrayList<String> clusterize(String string) {
         ArrayList<String> result = new ArrayList<>();
-        boolean flagOfOut = false;
-        for (int i = 0; i < string.length() && !flagOfOut; ++i) {
+        for (int i = 0; i < string.length(); ++i) {
             if (string.charAt(i) != '(' && string.charAt(i) != ')') {
-                flagOfOut = true;
+                return result;
             }
         }
-        if (flagOfOut) {
-            return result;
-        }
-        for (int i = 1; !string.equalsIgnoreCase(""); ++i) {
-            String str = cutBalance(string);
+        String cut = string;
+        for (int i = 1; !cut.equalsIgnoreCase(""); ++i) {
+            String str = cutBalance(cut);
             if (str.equalsIgnoreCase("")) {
-                string = str;
+                cut = str;
             } else {
                 result.add(str);
-                string = string.substring(str.length(), string.length());
+                cut = cut.substring(str.length());
             }
         }
         return result;

@@ -22,6 +22,7 @@ public class ConverterToRoman {
     }
 
     public static String convertToRoman(int num) {
+        initRomanNumbers();
         int number = num;
         if (number == Numbers.ZERO.getValue()) {
             return "N";
