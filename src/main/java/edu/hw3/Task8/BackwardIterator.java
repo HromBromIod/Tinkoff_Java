@@ -19,9 +19,9 @@ public class BackwardIterator<T> implements Iterator<T> {
     }
 
     @Override
-    public T next() {
+    public T next() throws NullPointerException{
         if (!hasNext()) {
-            return null;
+            throw new NullPointerException();
         }
         index -= 1;
         T[] elements = (T[]) new Object[collection.size()];
