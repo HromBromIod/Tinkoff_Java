@@ -214,5 +214,7 @@ public class Tasks {
         return isDogs && isSpiders && countOfDogsWhoBites > countOfSpidersWhoBites;
     }
 
-    public static Animal heaviest
+    public static Animal heaviest(){
+        return null;
+    }
 }
