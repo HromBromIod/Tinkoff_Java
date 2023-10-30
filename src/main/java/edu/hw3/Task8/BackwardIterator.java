@@ -19,7 +19,7 @@ public class BackwardIterator<T> implements Iterator<T> {
     }
 
     @Override
-    public T next() throws NullPointerException{
+    public T next() throws NullPointerException {
         if (!hasNext()) {
             throw new NullPointerException();
         }
