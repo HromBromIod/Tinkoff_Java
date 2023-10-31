@@ -9,6 +9,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Tasks {
+    private Tasks() {
+    }
 
     //Ready
     public static List<Animal> heightSortingTask1(List<Animal> listOfAnimals) {
@@ -64,8 +66,8 @@ public class Tasks {
 
     //Ready
     public static Optional<Animal> heaviestAnimalFromKTask8(List<Animal> listOfAnimals, int k) {
-        return k <= 0 ? Optional.empty() :
-            listOfAnimals.stream().filter(o -> o.weight() < k).max(Comparator.comparing(Animal::weight));
+        return k <= 0 ? Optional.empty()
+            : listOfAnimals.stream().filter(o -> o.weight() < k).max(Comparator.comparing(Animal::weight));
     }
 
     //Ready
@@ -117,8 +119,8 @@ public class Tasks {
         Map<Animal.Type, List<Animal>> mapOfSpidersAndDogs =
             listOfAnimals.stream().filter(o -> o.type().equals(Animal.Type.SPIDER) || o.type().equals(Animal.Type.DOG))
                 .collect(Collectors.groupingBy(Animal::type));
-        return mapOfSpidersAndDogs.get(Animal.Type.DOG).stream().filter(Animal::bites).toList().size() <
-            mapOfSpidersAndDogs.get(Animal.Type.SPIDER).stream().filter(Animal::bites).toList().size();
+        return mapOfSpidersAndDogs.get(Animal.Type.DOG).stream().filter(Animal::bites).toList().size()
+            < mapOfSpidersAndDogs.get(Animal.Type.SPIDER).stream().filter(Animal::bites).toList().size();
     }
 
     //Ready
