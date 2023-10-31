@@ -18,8 +18,9 @@ public class Tasks {
     }
 
     //Ready
-    public static List<Animal> weightSortingTask2(List<Animal> listOfAnimals) {
-        return listOfAnimals.stream().sorted((o1, o2) -> o2.weight() - o1.weight()).collect(Collectors.toList());
+    public static List<Animal> weightSortingTask2(List<Animal> listOfAnimals, int k) {
+        return listOfAnimals.stream().sorted((o1, o2) -> o2.weight() - o1.weight()).collect(Collectors.toList())
+            .subList(0, k);
     }
 
     //Ready
@@ -29,7 +30,7 @@ public class Tasks {
 
     //Ready
     public static Animal longestNameAnimalTask4(List<Animal> listOfAnimals) {
-        return listOfAnimals.stream().max(Comparator.comparing(Animal::name)).orElse(null);
+        return listOfAnimals.stream().sorted((o1, o2) -> o2.name().equals(o1.name())).toList().get(0).orElse(null);
     }
 
     //Ready
