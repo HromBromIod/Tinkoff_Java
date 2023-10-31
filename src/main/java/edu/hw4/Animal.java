@@ -7,7 +7,7 @@ public record Animal(
     int age,
     int height,
     int weight,
-    Boolean bites
+    boolean bites
 ) {
     enum Type {
         CAT, DOG, BIRD, FISH, SPIDER
