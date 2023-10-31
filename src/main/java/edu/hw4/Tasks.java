@@ -30,7 +30,7 @@ public class Tasks {
 
     //Ready
     public static Animal longestNameAnimalTask4(List<Animal> listOfAnimals) {
-        return listOfAnimals.stream().sorted((o1, o2) -> o2.name().equals(o1.name())).toList().get(0).orElse(null);
+        return listOfAnimals.stream().max(Comparator.comparing(o -> o.name().length())).orElse(null);
     }
 
     //Ready
@@ -54,7 +54,7 @@ public class Tasks {
         for (var o : mapOfAnimals.entrySet()) {
             mapOfHeaviestAnimal.put(
                 o.getKey(),
-                mapOfAnimals.get(o.getKey()).stream().sorted((o1, o2) -> o2.height() - o1.height()).toList().get(0)
+                mapOfAnimals.get(o.getKey()).stream().sorted((o1, o2) -> o2.weight() - o1.weight()).toList().get(0)
             );
         }
         return mapOfHeaviestAnimal;
@@ -62,13 +62,13 @@ public class Tasks {
 
     //Ready
     public static Animal oldestAnimalTask7(List<Animal> listOfAnimals, int k) {
-        return listOfAnimals.stream().sorted((o1, o2) -> o2.age() - o1.age()).toList().get(k);
+        return k > 0 && k < listOfAnimals.size() ? listOfAnimals.stream().sorted((o1, o2) -> o2.age() - o1.age()).toList().get(k - 1) : null;
     }
 
     //Ready
     public static Optional<Animal> heaviestAnimalFromKTask8(List<Animal> listOfAnimals, int k) {
         return k <= 0 ? Optional.empty()
-            : listOfAnimals.stream().filter(o -> o.weight() < k).max(Comparator.comparing(Animal::weight));
+            : listOfAnimals.stream().filter(o -> o.weight() < k).max(Comparator.comparingInt(Animal::weight));
     }
 
     //Ready

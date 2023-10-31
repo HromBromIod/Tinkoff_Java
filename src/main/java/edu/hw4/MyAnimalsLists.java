@@ -9,8 +9,8 @@ public class MyAnimalsLists {
 
     public static final List<Animal> myFirstList = Arrays.asList(
         new Animal("мяу", Animal.Type.CAT, Animal.Sex.M, 6, 32, 5000, true),
-        new Animal("Dog", Animal.Type.DOG, Animal.Sex.M, 9, 57, 7000, true),
-        new Animal("АкЧиж CO", Animal.Type.BIRD, Animal.Sex.F, 7, 46, 1230, false),
+        new Animal("Dog", Animal.Type.DOG, Animal.Sex.M, 9, 57, 7001, true),
+        new Animal("Чиж CO", Animal.Type.BIRD, Animal.Sex.F, 7, 46, 1230, false),
         new Animal("Henry", Animal.Type.FISH, Animal.Sex.F, 2, 5, 120, false),
         new Animal("Douglas", Animal.Type.BIRD, Animal.Sex.M, 11, 34, 785, true),
         new Animal("Аркадий Павук", Animal.Type.SPIDER, Animal.Sex.M, 3, 15, 220, true),
