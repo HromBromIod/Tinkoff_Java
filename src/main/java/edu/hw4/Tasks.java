@@ -6,7 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
+import static edu.hw4.ValidationError.animalErrors;
 
 public class Tasks {
     private Tasks() {
@@ -62,13 +64,14 @@ public class Tasks {
 
     //Ready
     public static Animal oldestAnimalTask7(List<Animal> listOfAnimals, int k) {
-        return k > 0 && k < listOfAnimals.size() ? listOfAnimals.stream().sorted((o1, o2) -> o2.age() - o1.age()).toList().get(k - 1) : null;
+        return k > 0 && k < listOfAnimals.size() ?
+            listOfAnimals.stream().sorted((o1, o2) -> o2.age() - o1.age()).toList().get(k - 1) : null;
     }
 
     //Ready
     public static Optional<Animal> heaviestAnimalFromKTask8(List<Animal> listOfAnimals, int k) {
         return k <= 0 ? Optional.empty()
-            : listOfAnimals.stream().filter(o -> o.weight() < k).max(Comparator.comparingInt(Animal::weight));
+            : listOfAnimals.stream().filter(o -> o.height() < k).max(Comparator.comparingInt(Animal::weight));
     }
 
     //Ready
@@ -99,14 +102,28 @@ public class Tasks {
 
     //Ready
     public static Boolean ifDogHeightMoreKTask14(List<Animal> listOfAnimals, int k) {
-        return !listOfAnimals.stream().filter(o -> o.type().equals(Animal.Type.DOG) && o.height() > k).toList()
-            .isEmpty();
+        return k <= 0 ? null :
+            !listOfAnimals.stream().filter(o -> o.type().equals(Animal.Type.DOG) && o.height() > k).toList()
+                .isEmpty();
     }
 
     //Ready
-    public static Integer summaryWeightTask15(List<Animal> listOfAnimals, int k, int i) {
-        return listOfAnimals.stream().filter(o -> o.age() > k && o.age() < i).toList().stream().mapToInt(Animal::weight)
-            .sum();
+    public static Map<Animal.Type, Integer> summaryWeightTask15(List<Animal> listOfAnimals, int k, int i) {
+        if (k < i && k >= 0) {
+            Map<Animal.Type, List<Animal>> mapOfAnimalTypes = listOfAnimals.stream()
+                .collect(Collectors.groupingBy(Animal::type));
+            Map<Animal.Type, Integer> newMapOfAnimalTypes = new HashMap<>();
+            for (var o : mapOfAnimalTypes.entrySet()) {
+                newMapOfAnimalTypes.put(o.getKey(), (int) mapOfAnimalTypes.get(o.getKey())
+                    .stream()
+                    .filter(animal -> animal.age() >= k && animal.age() <= i)
+                    .mapToInt(Animal::weight)
+                    .summaryStatistics()
+                    .getSum());
+            }
+            return newMapOfAnimalTypes;
+        }
+        return null;
     }
 
     //Ready
@@ -134,6 +151,16 @@ public class Tasks {
             .sorted((o1, o2) -> o2.weight() - o1.weight())
             .toList()
             .get(0);
+    }
+
+    public static Map<String, Set<ValidationError>> errorsInAnimalsTask19(List<Animal> listOfAnimals) {
+        Map<String, Set<ValidationError>> mapOfErrorAnimals = new HashMap<>();
+        listOfAnimals.forEach((animal -> {
+            if (!(animalErrors(animal).isEmpty())) {
+                mapOfErrorAnimals.put(animal.name(), animalErrors(animal));
+            }
+        }));
+        return mapOfErrorAnimals;
     }
 
 }
