@@ -3,6 +3,7 @@ package edu.hw4;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -257,7 +258,10 @@ public class SomeTests {
     @Test
     @DisplayName("Heaviest FISH from lists test")
     void task18Test() {
-        Animal actual = Tasks.heaviestFishFromAllListsTask18(MyAnimalsLists.listOfLists);
+        Animal actual = Tasks.heaviestFishFromAllListsTask18(Arrays.asList(
+            MyAnimalsLists.MYFIRSTLIST,
+            MyAnimalsLists.MYSECONDLIST
+        ));
         Animal expected = MyAnimalsLists.MYFIRSTLIST.get(6);
         assertEquals(expected, actual);
     }
