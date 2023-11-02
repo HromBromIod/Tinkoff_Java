@@ -3,7 +3,6 @@ package edu.hw4;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -66,8 +65,8 @@ public class Tasks {
 
     //Ready
     public static Animal oldestAnimalTask7(List<Animal> listOfAnimals, int k) {
-        return k > 0 && k < listOfAnimals.size() ?
-            listOfAnimals.stream().sorted((o1, o2) -> o2.age() - o1.age()).toList().get(k - 1) : null;
+        return k > 0 && k < listOfAnimals.size()
+            ? listOfAnimals.stream().sorted((o1, o2) -> o2.age() - o1.age()).toList().get(k - 1) : null;
     }
 
     //Ready
@@ -104,9 +103,9 @@ public class Tasks {
 
     //Ready
     public static Boolean ifDogHeightMoreKTask14(List<Animal> listOfAnimals, int k) {
-        return k <= 0 ? null :
-            !listOfAnimals.stream().filter(o -> o.type().equals(Animal.Type.DOG) && o.height() > k).toList()
-                .isEmpty();
+        return k <= 0 ? null
+            : !listOfAnimals.stream().filter(o -> o.type().equals(Animal.Type.DOG) && o.height() > k)
+            .toList().isEmpty();
     }
 
     //Ready

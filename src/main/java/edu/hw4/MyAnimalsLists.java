@@ -1,6 +1,5 @@
 package edu.hw4;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -8,7 +7,7 @@ public class MyAnimalsLists {
     private MyAnimalsLists() {
     }
 
-    public static final List<Animal> myFirstList = Arrays.asList(
+    public static final List<Animal> MYFIRSTLIST = Arrays.asList(
         new Animal("мяу", Animal.Type.CAT, Animal.Sex.M, 6, 32, 5000, true),
         new Animal("Dog", Animal.Type.DOG, Animal.Sex.M, 9, 57, 7001, true),
         new Animal("Чиж CO", Animal.Type.BIRD, Animal.Sex.F, 7, 46, 1230, false),
@@ -19,7 +18,7 @@ public class MyAnimalsLists {
         new Animal("Paper", Animal.Type.DOG, Animal.Sex.F, 5, 58, 6708, true)
     );
 
-    public static final List<Animal> mySecondList = Arrays.asList(
+    public static final List<Animal> MYSECONDLIST = Arrays.asList(
         new Animal("мяу", Animal.Type.CAT, Animal.Sex.F, 4, 32, 5000, true),
         new Animal("Dog", Animal.Type.DOG, Animal.Sex.F, 9, 101, 7000, true),
         new Animal("Чиж CO", Animal.Type.BIRD, Animal.Sex.M, 7, 46, 1230, false),
@@ -29,9 +28,9 @@ public class MyAnimalsLists {
         new Animal("Paper", Animal.Type.DOG, Animal.Sex.M, 5, 90, 6708, true)
     );
 
-    public static final List<List<Animal>> listOfLists = Arrays.asList(myFirstList, mySecondList);
+    public static final List<List<Animal>> listOfLists = Arrays.asList(MYFIRSTLIST, MYSECONDLIST);
 
-    public static final List<Animal> myBadList = Arrays.asList(
+    public static final List<Animal> MYBADLIST = Arrays.asList(
         new Animal(null, Animal.Type.CAT, Animal.Sex.F, 6, 32, 5000, true),
         new Animal("Dog", null, Animal.Sex.F, 9, 57, 7000, true),
         new Animal("Чиж CO", Animal.Type.BIRD, null, 7, 46, 1230, false),
