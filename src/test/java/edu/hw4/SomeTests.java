@@ -3,14 +3,13 @@ package edu.hw4;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -264,40 +263,41 @@ public class SomeTests {
     }
 
     @Test
-    @DisplayName("Check errors in animals test")
-    void task19Test() {
+    @DisplayName("Check errors in animals with errors test")
+    void task19Test1() {
         Map<String, Set<ValidationError>> actual = Tasks.errorsInAnimalsTask19(MyAnimalsLists.myBadList);
         Map<String, Set<ValidationError>> expected = new HashMap<>();
-        Set<ValidationError> setErrors = new HashSet<>();
+        assertNotEquals(expected, actual);
+    }
 
-        setErrors.add(new ValidationError("EMPTY name"));
-        expected.put("", setErrors);
-        setErrors.clear();
+    @Test
+    @DisplayName("Check errors in animals without errors test")
+    void task19Test2() {
+        Map<String, Set<ValidationError>> actual = Tasks.errorsInAnimalsTask19(MyAnimalsLists.myFirstList);
+        Map<String, Set<ValidationError>> expected = new HashMap<>();
+        assertEquals(expected, actual);
+    }
 
-        setErrors.add(new ValidationError("NULL type"));
-        expected.put("Dog", new HashSet<>());
-        setErrors.clear();
+    @Test
+    @DisplayName("Check errors in animals with errors test")
+    void task20Test1() {
+        Map<String, String> actual = Tasks.errorsInAnimalsToStringTask20(MyAnimalsLists.myBadList);
+        Map<String, String> expected = new HashMap<>();
+        expected.put(null, "0: NULL name.");
+        expected.put("Harry", "3: NEGATIVE age.");
+        expected.put("", "1: NULL type, 2: NULL sex, 3: NEGATIVE age, 4: NEGATIVE height, 5: NEGATIVE weight, 6: EMPTY name.");
+        expected.put("Douglas", "4: NEGATIVE height.");
+        expected.put("Locker", "5: NEGATIVE weight.");
+        expected.put("Чиж CO", "2: NULL sex.");
+        expected.put("Dog", "1: NULL type.");
+        assertEquals(expected, actual);
+    }
 
-        setErrors.add(new ValidationError("NULL sex"));
-        expected.put("Чиж CO", setErrors);
-        setErrors.clear();
-
-        setErrors.add(new ValidationError("NEGATIVE age"));
-        expected.put("Harry", setErrors);
-        setErrors.clear();
-
-        setErrors.add(new ValidationError("NEGATIVE height"));
-        expected.put("Douglas", setErrors);
-        setErrors.clear();
-
-        setErrors.add(new ValidationError("EMPTY name"));
-        expected.put("Locker", setErrors);
-        setErrors.clear();
-
-        setErrors.add(new ValidationError("NEGATIVE weight"));
-        expected.put(null, setErrors);
-        setErrors.clear();
-
+    @Test
+    @DisplayName("Check errors in animals without errors test")
+    void task20Test2() {
+        Map<String, String> actual = Tasks.errorsInAnimalsToStringTask20(MyAnimalsLists.myFirstList);
+        Map<String, String> expected = new HashMap<>();
         assertEquals(expected, actual);
     }
 }

@@ -3,12 +3,14 @@ package edu.hw4;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import static edu.hw4.ValidationError.animalErrors;
+import static edu.hw4.ValidationError.animalErrorsToString;
 
 public class Tasks {
     private Tasks() {
@@ -163,4 +165,13 @@ public class Tasks {
         return mapOfErrorAnimals;
     }
 
+    public static Map<String, String> errorsInAnimalsToStringTask20(List<Animal> listOfAnimals) {
+        Map<String, String> mapOfErrorAnimals = new HashMap<>();
+        listOfAnimals.forEach((animal -> {
+            if (!(animalErrors(animal).isEmpty())) {
+                mapOfErrorAnimals.put(animal.name(), animalErrorsToString(animalErrors(animal)));
+            }
+        }));
+        return mapOfErrorAnimals;
+    }
 }
