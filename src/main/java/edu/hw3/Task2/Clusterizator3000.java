@@ -30,12 +30,15 @@ public class Clusterizator3000 {
 
     public static String cutBalance(String string) {
         String result = "";
+        if (string.charAt(0) == ')') {
+            return result;
+        }
         Stack<Character> st = new Stack<>();
         st.push(string.charAt(0));
         int iterator;
         for (iterator = 1; !st.isEmpty() && iterator < string.length(); ++iterator) {
             char c = string.charAt(iterator);
-            if (c == ')' && c != st.peek()) {
+            if (c != st.peek()) {
                 st.pop();
             } else {
                 st.push(c);

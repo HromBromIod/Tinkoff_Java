@@ -1,37 +1,40 @@
 package edu.hw3.Task5;
 
 import java.util.ArrayList;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.Comparator;
+import java.util.List;
 
 @SuppressWarnings("uncommentedmain")
 public class Task5 {
     private Task5() {
     }
 
-    private final static Logger LOGGER = LogManager.getLogger();
-
-    public static void main(String[] args) {
-        Person[] list =
-            parseContacts(new String[] {"James Hatfield", "Lars Urlich", "   ", " Kirk Hammet", "Robert"}, "ASC");
-        for (Person person : list) {
-            LOGGER.info(person.getName());
-        }
-    }
-
     public static Person[] parseContacts(String[] listOfContacts, String sortType) {
-        ArrayList<Person> newListOfContacts = new ArrayList<>();
-        String name;
-        for (int i = 0; listOfContacts != null && i < listOfContacts.length; ++i) {
-            name = listOfContacts[i];
-            name = name.trim();
+        List<Person> newListOfContacts = new ArrayList<>();
+        if (listOfContacts == null) {
+            return newListOfContacts.toArray(new Person[0]);
+        }
+        Comparator<Person> comparator = (o1, o2) -> {
+            String nameL = o1.getName().trim();
+            String nameR = o2.getName().trim();
+            if (nameL.indexOf(' ') != -1) {
+                nameL = nameL.substring(o1.getName().trim().indexOf(' ') + 1);
+            }
+            if (o2.getName().trim().indexOf(' ') != -1) {
+                nameR = nameR.substring(o2.getName().trim().indexOf(' ') + 1);
+            }
+            if (o1.getSortType().equals("ASC")) {
+                return nameL.compareTo(nameR);
+            }
+            return nameR.compareTo(nameL);
+        };
+        for (String o : listOfContacts) {
+            String name = o.trim();
             if (!name.isEmpty()) {
                 newListOfContacts.add(new Person(name, sortType));
             }
         }
-        if (listOfContacts != null) {
-            newListOfContacts.sort(Person::compareTo);
-        }
+        newListOfContacts.sort(comparator);
         return newListOfContacts.toArray(new Person[0]);
     }
 }

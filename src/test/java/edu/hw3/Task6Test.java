@@ -2,6 +2,7 @@ package edu.hw3;
 
 import edu.hw3.Task6.Stock;
 import edu.hw3.Task6.ThisMarket;
+import edu.hw3.Task6.StockMarket;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
@@ -17,7 +18,7 @@ public class Task6Test {
         boolean actual = true;
         boolean expected = true;
         Integer[] source = new Integer[] {123, 345, 234};
-        ThisMarket market = new ThisMarket();
+        StockMarket market = new ThisMarket();
         for (Integer integer : source) {
             market.add(new Stock(integer));
         }
@@ -25,6 +26,7 @@ public class Task6Test {
         for (int i = source.length - 1; i >= 0; --i) {
             if (!source[i].equals(market.mostValuableStock().getPrice())) {
                 actual = false;
+                break;
             }
             market.remove(market.mostValuableStock());
         }

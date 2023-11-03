@@ -38,9 +38,10 @@ public class Task5Test {
             new Person(metallica[0].trim(), sortType), new Person(metallica[2].trim(), sortType)};
         boolean actual = true;
         boolean expected = true;
-        for (int i = 0; i < sorted.length && actual; ++i) {
-            if (sorted[i].compareTo(mySorted[i]) != 0) {
+        for (int i = 0; i < sorted.length; ++i) {
+            if (!sorted[i].getName().equals(mySorted[i].getName())) {
                 actual = false;
+                break;
             }
         }
         assertEquals(expected, actual);
@@ -57,9 +58,10 @@ public class Task5Test {
             new Person(metallica[4].trim(), sortType), new Person(metallica[2].trim(), sortType)};
         boolean actual = true;
         boolean expected = true;
-        for (int i = 0; i < sorted.length && actual; ++i) {
-            if (sorted[i].compareTo(mySorted[i]) != 0) {
+        for (int i = 0; i < sorted.length; ++i) {
+            if (!sorted[i].getName().equals(mySorted[i].getName())) {
                 actual = false;
+                break;
             }
         }
         assertEquals(expected, actual);
