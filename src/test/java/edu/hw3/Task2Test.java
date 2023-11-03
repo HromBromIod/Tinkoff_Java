@@ -26,7 +26,6 @@ public class Task2Test {
         boolean actual = clusterize("((()))").equals(new ArrayList<>(Arrays.asList("((()))")));
         boolean expected = true;
         assertEquals(actual, expected);
-        //assertArrayEquals(clusterize("((()))").toArray(), Arrays.stream(new String[] {"((()))"}).toArray());
     }
 
     @Test
