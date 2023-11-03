@@ -43,7 +43,8 @@ public class Task4Test {
         "2957, MMCMLVII"
     })
     void task4Test(Integer number, String expected) {
-        String actual = ConverterToRoman.convertToRoman(number);
+        ConverterToRoman converter = new ConverterToRoman();
+        String actual = converter.convertToRoman(number);
         assertEquals(actual, expected);
     }
 }

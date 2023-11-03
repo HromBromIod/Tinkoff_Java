@@ -4,12 +4,9 @@ import java.util.HashMap;
 
 public class ConverterToRoman {
 
-    private static HashMap<Integer, Character> hashMap;
+    private final HashMap<Integer, Character> hashMap;
 
-    private ConverterToRoman() {
-    }
-
-    private static void initRomanNumbers() {
+    public ConverterToRoman() {
         hashMap = new HashMap<>();
         hashMap.put(Numbers.ZERO.getValue(), 'N');
         hashMap.put(Numbers.ONE.getValue(), 'I');
@@ -21,8 +18,7 @@ public class ConverterToRoman {
         hashMap.put(Numbers.THOUSAND.getValue(), 'M');
     }
 
-    public static String convertToRoman(int num) {
-        initRomanNumbers();
+    public String convertToRoman(int num) {
         int number = num;
         if (number == Numbers.ZERO.getValue()) {
             return "N";
