@@ -16,7 +16,8 @@ public class Task1Test {
         "Did you know who I am?, Wrw blf pmld dsl R zn?",
         "R'n Yzgnzm!, I'm Batman!"})
     void encoderTest(String source, String expected) {
-        String actual = Encoder.atbash(source);
+        Encoder encoder = new Encoder();
+        String actual = encoder.atbash(source);
         assertEquals(actual, expected);
     }
 }
