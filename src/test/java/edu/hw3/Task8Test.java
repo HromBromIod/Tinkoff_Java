@@ -51,7 +51,7 @@ public class Task8Test {
     @DisplayName("Empty test")
     void backwardIteratorTest3() {
         List<Integer> list = List.of();
-        BackwardIterator<?> iterator = new BackwardIterator<>(list);
+        BackwardIterator<Integer> iterator = new BackwardIterator<>(list);
         boolean actual = iterator.hasNext();
         assertFalse(actual);
     }
