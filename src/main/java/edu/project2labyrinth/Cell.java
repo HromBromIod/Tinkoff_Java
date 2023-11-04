@@ -1,14 +1,18 @@
 package edu.project2labyrinth;
 
 public class Cell {
-    private final int x;
-    private final int y;
+    protected final int x;
+    protected final int y;
 
-    private TypeOfCell type;
+    protected TypeOfCell type;
+
+    protected Boolean isVisited;
+
     public Cell(int x, int y) {
         this.x = x;
         this.y = y;
         this.type = TypeOfCell.WALL;
+        this.isVisited = false;
     }
 
     public void setTypeToWay() {
