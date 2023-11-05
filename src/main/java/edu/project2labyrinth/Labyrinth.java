@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Random;
 import java.util.Stack;
 
-@SuppressWarnings("RegexpSinglelineJava")
+@SuppressWarnings({"RegexpSinglelineJava", "CyclomaticComplexity"})
 public class Labyrinth {
-    private final int MAX_HEIGHT_OR_WIDTH = 39;
-    private final int MIN_HEIGHT_OR_WIDTH = 9;
+    private final int MAXHEIGHTORWIDTH = 39;
+    private final int MINHEIGHTORWIDTH = 9;
     private final int height;
     private final int width;
     protected final Cell[][] maze;
@@ -17,7 +17,7 @@ public class Labyrinth {
         final int TWENTY_SIX = 26;
         final int SIX = 6;
         Random random = new Random();
-        int randomInt = random.nextInt(MIN_HEIGHT_OR_WIDTH, MAX_HEIGHT_OR_WIDTH + 1);
+        int randomInt = random.nextInt(MINHEIGHTORWIDTH, MAXHEIGHTORWIDTH + 1);
         height = randomInt % 2 == 0 ? randomInt + 1 : randomInt;
         if (height > TWENTY_SIX) {
             randomInt = random.nextInt(0, SIX);
@@ -35,7 +35,7 @@ public class Labyrinth {
     }
 
     public Labyrinth(int n, int m) {
-        if (n < MIN_HEIGHT_OR_WIDTH || n > MAX_HEIGHT_OR_WIDTH || m < MIN_HEIGHT_OR_WIDTH || m > MAX_HEIGHT_OR_WIDTH) {
+        if (n < MINHEIGHTORWIDTH || n > MAXHEIGHTORWIDTH || m < MINHEIGHTORWIDTH || m > MAXHEIGHTORWIDTH) {
             height = 0;
             width = 0;
             maze = null;
@@ -52,16 +52,16 @@ public class Labyrinth {
     }
 
     public Labyrinth(Cell[][] personMatrix, int n, int m) {
-        boolean flag = personMatrix == null || personMatrix.length < MIN_HEIGHT_OR_WIDTH ||
-            personMatrix.length > MAX_HEIGHT_OR_WIDTH;
+        boolean flag = personMatrix == null || personMatrix.length < MINHEIGHTORWIDTH
+            || personMatrix.length > MAXHEIGHTORWIDTH;
         for (int i = 0; !flag && i < personMatrix.length; ++i) {
-            if ((personMatrix[i].length < MIN_HEIGHT_OR_WIDTH || personMatrix[i].length > MAX_HEIGHT_OR_WIDTH)) {
+            if ((personMatrix[i].length < MINHEIGHTORWIDTH || personMatrix[i].length > MAXHEIGHTORWIDTH)) {
                 flag = true;
                 break;
             }
         }
-        if (n < MIN_HEIGHT_OR_WIDTH || n > MAX_HEIGHT_OR_WIDTH || m < MIN_HEIGHT_OR_WIDTH || m > MAX_HEIGHT_OR_WIDTH ||
-            flag) {
+        if (n < MINHEIGHTORWIDTH || n > MAXHEIGHTORWIDTH || m < MINHEIGHTORWIDTH || m > MAXHEIGHTORWIDTH
+            || flag) {
             height = 0;
             width = 0;
             maze = null;
@@ -111,15 +111,15 @@ public class Labyrinth {
         if (x > 1 && isKLeftNeighbourWay(myCell, k) && (k == 2 || k == 1 && !isKLeftNeighbourVisited(myCell, k))) {
             listOfNeighbours.add(maze[x - 1][y]);
         }
-        if (x < height - 2 && isKRightNeighbourWay(myCell, k) &&
-            (k == 2 || k == 1 && !isKRightNeighbourVisited(myCell, k))) {
+        if (x < height - 2 && isKRightNeighbourWay(myCell, k)
+            && (k == 2 || k == 1 && !isKRightNeighbourVisited(myCell, k))) {
             listOfNeighbours.add(maze[x + 1][y]);
         }
         if (y > 1 && isKUnderNeighbourWay(myCell, k) && (k == 2 || k == 1 && !isKUnderNeighbourVisited(myCell, k))) {
             listOfNeighbours.add(maze[x][y - 1]);
         }
-        if (y < width - 2 && isKTopNeighbourWay(myCell, k) &&
-            (k == 2 || k == 1 && !isKTopNeighbourVisited(myCell, k))) {
+        if (y < width - 2 && isKTopNeighbourWay(myCell, k)
+            && (k == 2 || k == 1 && !isKTopNeighbourVisited(myCell, k))) {
             listOfNeighbours.add(maze[x][y + 1]);
         }
         return listOfNeighbours;
