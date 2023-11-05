@@ -130,15 +130,27 @@ public class LabyrinthTests {
     }
 
     @Test
+    @DisplayName("Проверка на очистку лабиринта от найденного пути")
+    void testClear() {
+        Labyrinth labyrinth = new Labyrinth(15, 15);
+        labyrinth.createLabyrinth();
+        List<Cell> actual = labyrinth.findTheWay(new Cell(3, 3), new Cell(13, 13));
+        labyrinth.clearWay(actual);
+        actual = actual.stream().filter(o -> o.type.equals(TypeOfCell.ROUTE)).toList();
+        List<Cell> expected = new ArrayList<>();
+        assertEquals(expected, actual);
+    }
+
+    @Test
     @DisplayName("Неверные параметры при иниицализации лабиринта (размерность)")
-    void testBadParamsTest1() {
+    void testBadParams1() {
         Labyrinth labyrinth = new Labyrinth(4, 41);
         assertFalse(labyrinth.createLabyrinth());
     }
 
     @Test
     @DisplayName("Неверные параметры при иниицализации лабиринта (матрица с исходным лабиринтом пуста)")
-    void testBadParamsTest2() {
+    void testBadParams2() {
         Cell[][] maze = new Cell[][]{};
         Labyrinth labyrinth = new Labyrinth(maze, 13, 13);
         assertFalse(labyrinth.createLabyrinth());
@@ -146,7 +158,7 @@ public class LabyrinthTests {
 
     @Test
     @DisplayName("Неверные параметры при иниицализации лабиринта (матрица с исходным лабиринтом = null)")
-    void testBadParamsTest3() {
+    void testBadParams3() {
         Labyrinth labyrinth = new Labyrinth(null, 13, 13);
         assertFalse(labyrinth.createLabyrinth());
     }
