@@ -7,8 +7,8 @@ import java.util.Stack;
 
 @SuppressWarnings({"RegexpSinglelineJava", "CyclomaticComplexity"})
 public class Labyrinth {
-    private final int MAXHEIGHTORWIDTH = 39;
-    private final int MINHEIGHTORWIDTH = 9;
+    private static final int MAXHEIGHTORWIDTH = 39;
+    private static final int MINHEIGHTORWIDTH = 9;
     private final int height;
     private final int width;
     protected final Cell[][] maze;

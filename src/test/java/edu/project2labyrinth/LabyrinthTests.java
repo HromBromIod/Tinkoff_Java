@@ -1,8 +1,5 @@
 package edu.project2labyrinth;
 
-import edu.project2labyrinth.Cell;
-import edu.project2labyrinth.Labyrinth;
-import edu.project2labyrinth.TypeOfCell;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
