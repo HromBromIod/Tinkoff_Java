@@ -18,4 +18,16 @@ public class Cell {
     public void setTypeToWay() {
         this.type = TypeOfCell.WAY;
     }
+
+    public void setTypeToRoute() {
+        this.type = TypeOfCell.ROUTE;
+    }
+
+    public void makeVisited() {
+        this.isVisited = true;
+    }
+
+    public void makeUnvisited() {
+        this.isVisited = false;
+    }
 }
