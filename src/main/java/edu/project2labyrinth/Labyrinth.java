@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Stack;
 
-@SuppressWarnings("RegexpSinglelineJava")
+@SuppressWarnings({"RegexpSinglelineJava", "CyclomaticComplexity"})
 public class Labyrinth {
     private final int height;
     private final int width;
