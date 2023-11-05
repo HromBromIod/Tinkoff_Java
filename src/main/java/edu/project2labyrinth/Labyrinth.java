@@ -1,6 +1,9 @@
 package edu.project2labyrinth;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Stack;
 
 public class Labyrinth {
     private final int height;
@@ -8,10 +11,13 @@ public class Labyrinth {
     protected final Cell[][] maze;
 
     public Labyrinth() {
+        final int FOURTEEN = 40;
+        final int TWENTYSIX = 26;
+        final int NINE = 9;
         Random random = new Random();
-        int randomInt = random.nextInt(9, 40);
+        int randomInt = random.nextInt(NINE, FOURTEEN);
         height = randomInt % 2 == 0 ? randomInt + 1 : randomInt;
-        if (height > 26) {
+        if (height > TWENTYSIX) {
             randomInt = random.nextInt(0, 6);
             width = height + (randomInt % 2 == 0 ? randomInt : randomInt + 1);
         } else {
@@ -27,7 +33,9 @@ public class Labyrinth {
     }
 
     public Labyrinth(int n, int m) {
-        if (n < 9 || n > 39 || m < 9 || m > 39) {
+        final int THIRTYNINE = 40;
+        final int NINE = 9;
+        if (n < NINE || n > THIRTYNINE || m < NINE || m > THIRTYNINE) {
             height = 0;
             width = 0;
             maze = null;
@@ -44,14 +52,16 @@ public class Labyrinth {
     }
 
     public Labyrinth(Cell[][] personMatrix, int n, int m) {
-        boolean flag = personMatrix == null || personMatrix.length < 9 || personMatrix.length > 39;
+        final int THIRTYNINE = 39;
+        final int NINE = 9;
+        boolean flag = personMatrix == null || personMatrix.length < NINE || personMatrix.length > THIRTYNINE;
         for (int i = 0; !flag && i < personMatrix.length; ++i) {
-            if ((personMatrix[i].length < 9 || personMatrix[i].length > 39)) {
+            if ((personMatrix[i].length < NINE || personMatrix[i].length > THIRTYNINE)) {
                 flag = true;
                 break;
             }
         }
-        if (n < 9 || n > 39 || m < 9 || m > 39 || flag) {
+        if (n < NINE || n > THIRTYNINE || m < NINE || m > THIRTYNINE || flag) {
             height = 0;
             width = 0;
             maze = null;
