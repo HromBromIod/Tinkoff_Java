@@ -58,7 +58,6 @@ public class LabyrinthTests {
         maze[5][6].setTypeToWay();
         maze[5][7].setTypeToWay();
 
-
         maze[6][3].setTypeToWay();
         maze[6][5].setTypeToWay();
         maze[6][7].setTypeToWay();
@@ -72,7 +71,20 @@ public class LabyrinthTests {
 
         Labyrinth labyrinth = new Labyrinth(maze, 9, 9);
         List<Cell> actual = labyrinth.findTheWay(new Cell(1, 1), new Cell(3, 7));
-        List<Cell> expected = Arrays.asList(maze[1][1], maze[2][1], maze[3][1], maze[3][2], maze[3][3], maze[2][3], maze[1][3], maze[1][4], maze[1][5], maze[1][6],maze[1][7], maze[2][7], maze[3][7]);
+        List<Cell> expected = Arrays.asList(maze[1][1],
+            maze[2][1],
+            maze[3][1],
+            maze[3][2],
+            maze[3][3],
+            maze[2][3],
+            maze[1][3],
+            maze[1][4],
+            maze[1][5],
+            maze[1][6],
+            maze[1][7],
+            maze[2][7],
+            maze[3][7]
+        );
         assertEquals(expected, actual);
     }
 
@@ -113,7 +125,6 @@ public class LabyrinthTests {
         maze[5][6].setTypeToWay();
         maze[5][7].setTypeToWay();
 
-
         maze[6][3].setTypeToWay();
         maze[6][5].setTypeToWay();
         maze[6][7].setTypeToWay();
@@ -151,7 +162,7 @@ public class LabyrinthTests {
     @Test
     @DisplayName("Неверные параметры при иниицализации лабиринта (матрица с исходным лабиринтом пуста)")
     void testBadParams2() {
-        Cell[][] maze = new Cell[][]{};
+        Cell[][] maze = new Cell[][] {};
         Labyrinth labyrinth = new Labyrinth(maze, 13, 13);
         assertFalse(labyrinth.createLabyrinth());
     }

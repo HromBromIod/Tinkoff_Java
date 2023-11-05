@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Stack;
 
+@SuppressWarnings("RegexpSinglelineJava")
 public class Labyrinth {
     private final int height;
     private final int width;
@@ -14,14 +15,15 @@ public class Labyrinth {
         final int FOURTEEN = 40;
         final int TWENTYSIX = 26;
         final int NINE = 9;
+        final int SIX = 6;
         Random random = new Random();
         int randomInt = random.nextInt(NINE, FOURTEEN);
         height = randomInt % 2 == 0 ? randomInt + 1 : randomInt;
         if (height > TWENTYSIX) {
-            randomInt = random.nextInt(0, 6);
+            randomInt = random.nextInt(0, SIX);
             width = height + (randomInt % 2 == 0 ? randomInt : randomInt + 1);
         } else {
-            randomInt = random.nextInt(0, 6);
+            randomInt = random.nextInt(0, SIX);
             width = height - (randomInt % 2 == 0 ? randomInt : randomInt + 1);
         }
         maze = new Cell[height][width];
@@ -79,15 +81,15 @@ public class Labyrinth {
         if (x > 1 && maze[x - k][y].type.equals(TypeOfCell.WAY) && (k == 2 || k == 1 && !maze[x - k][y].isVisited)) {
             listOfNeighbours.add(maze[x - 1][y]);
         }
-        if (x < height - 2 && maze[x + k][y].type.equals(TypeOfCell.WAY) &&
-            (k == 2 || k == 1 && !maze[x + k][y].isVisited)) {
+        if (x < height - 2 && maze[x + k][y].type.equals(TypeOfCell.WAY)
+            && (k == 2 || k == 1 && !maze[x + k][y].isVisited)) {
             listOfNeighbours.add(maze[x + 1][y]);
         }
         if (y > 1 && maze[x][y - k].type.equals(TypeOfCell.WAY) && (k == 2 || k == 1 && !maze[x][y - k].isVisited)) {
             listOfNeighbours.add(maze[x][y - 1]);
         }
-        if (y < width - 2 && maze[x][y + k].type.equals(TypeOfCell.WAY) &&
-            (k == 2 || k == 1 && !maze[x][y + k].isVisited)) {
+        if (y < width - 2 && maze[x][y + k].type.equals(TypeOfCell.WAY)
+            && (k == 2 || k == 1 && !maze[x][y + k].isVisited)) {
             listOfNeighbours.add(maze[x][y + 1]);
         }
         return listOfNeighbours;
