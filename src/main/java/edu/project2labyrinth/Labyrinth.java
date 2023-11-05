@@ -1,9 +1,6 @@
 package edu.project2labyrinth;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Stack;
+import java.util.*;
 
 public class Labyrinth {
     private final int height;
@@ -30,20 +27,39 @@ public class Labyrinth {
     }
 
     public Labyrinth(int n, int m) {
-        height = n;
-        width = m;
-        maze = new Cell[height][width];
-        for (int i = 0; i < height; ++i) {
-            for (int j = 0; j < width; ++j) {
-                maze[i][j] = new Cell(i, j);
+        if (n < 9 || n > 39 || m < 9 || m > 39) {
+            height = 0;
+            width = 0;
+            maze = null;
+        } else {
+            height = n;
+            width = m;
+            maze = new Cell[height][width];
+            for (int i = 0; i < height; ++i) {
+                for (int j = 0; j < width; ++j) {
+                    maze[i][j] = new Cell(i, j);
+                }
             }
         }
     }
 
     public Labyrinth(Cell[][] personMatrix, int n, int m) {
-        height = n;
-        width = m;
-        maze = personMatrix;
+        boolean flag = personMatrix == null || personMatrix.length < 9 || personMatrix.length > 39;
+        for (int i = 0; !flag && i < personMatrix.length; ++i) {
+            if ((personMatrix[i].length < 9 || personMatrix[i].length > 39)) {
+                flag = true;
+                break;
+            }
+        }
+        if (n < 9 || n > 39 || m < 9 || m > 39 || flag) {
+            height = 0;
+            width = 0;
+            maze = null;
+        } else {
+            height = n;
+            width = m;
+            maze = personMatrix;
+        }
     }
 
     private List<Cell> getCurrentNeighbours(Cell myCell, int k) {
@@ -73,7 +89,10 @@ public class Labyrinth {
         canBeWays.get(random.nextInt(canBeWays.size())).setTypeToWay();
     }
 
-    public void createLabyrinth() {
+    public boolean createLabyrinth() {
+        if (maze == null) {
+            return false;
+        }
         Random random = new Random();
         int randomInt = random.nextInt(1, height - 2);
         int x = randomInt % 2 == 0 ? randomInt + 1 : randomInt;
@@ -104,6 +123,7 @@ public class Labyrinth {
                 connect(myCell);
             }
         } while (!myList.isEmpty());
+        return true;
     }
 
     public List<Cell> findTheWay(Cell cellA, Cell cellB) {
@@ -129,7 +149,8 @@ public class Labyrinth {
             currentCell = myStack.peek();
         }
         lastCell.setTypeToRoute();
-        neighbours = myStack.stream().filter(o -> o.isVisited).toList().reversed();
+        lastCell.makeVisited();
+        neighbours = myStack.stream().filter(o -> o.isVisited).toList();
         for (Cell o : neighbours) {
             o.setTypeToRoute();
         }
