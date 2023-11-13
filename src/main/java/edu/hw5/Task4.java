@@ -7,7 +7,7 @@ public class Task4 {
     private Task4() {
     }
 
-    public static final Pattern PASSWORD = Pattern.compile("[~!@#$%^&*|]");
+    private static final Pattern PASSWORD = Pattern.compile("[~!@#$%^&*|]");
 
     public static boolean isCorrectPassword(String password) {
         boolean result = false;

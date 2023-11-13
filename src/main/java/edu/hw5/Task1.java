@@ -17,7 +17,7 @@ public class Task1 {
     private final static int START_TIME_OF_SESSION = 4;
     private final static int END_DATE_OF_SESSION = 6;
     private final static int END_TIME_OF_SESSION = 9;
-    public static final Pattern DATA_PATTERN = Pattern.compile(
+    private static final Pattern DATA_PATTERN = Pattern.compile(
         "^(\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2]\\d|3[0-1])),"
             + " (([0-1]\\d|2[0-4]):[0-5]\\d) - (\\d{4}-(0[1-9]|1[0-2])"
             + "-(0[1-9]|[1-2]\\d|3[0-1])), (([0-1]\\d|2[0-4]):[0-5]\\d)$");
