@@ -19,9 +19,9 @@ public class Task3 {
     private static final String STRING_DATA_PATTERN_7 = "tomorrow";
     private static final String STRING_DATA_PATTERN_8 = "(\\d+) days? ago";
     private static final String STRING_DATA_FULL_PATTERN =
-        "^((" + STRING_DATA_PATTERN_1 + SPLITTER + STRING_DATA_PATTERN_2 + SPLITTER + STRING_DATA_PATTERN_3 + SPLITTER +
-            STRING_DATA_PATTERN_4 + SPLITTER + STRING_DATA_PATTERN_5 + SPLITTER + STRING_DATA_PATTERN_6 + SPLITTER +
-            STRING_DATA_PATTERN_7 + SPLITTER + STRING_DATA_PATTERN_8 + "))$";
+        "^((" + STRING_DATA_PATTERN_1 + SPLITTER + STRING_DATA_PATTERN_2 + SPLITTER + STRING_DATA_PATTERN_3 + SPLITTER
+            + STRING_DATA_PATTERN_4 + SPLITTER + STRING_DATA_PATTERN_5 + SPLITTER + STRING_DATA_PATTERN_6 + SPLITTER
+            + STRING_DATA_PATTERN_7 + SPLITTER + STRING_DATA_PATTERN_8 + "))$";
     private static final Pattern DATA_PATTERN = Pattern.compile(STRING_DATA_FULL_PATTERN);
 
     public static Optional<LocalDate> parseDate(String dataStr) {
@@ -73,7 +73,6 @@ public class Task3 {
             if (dataStr.matches("^" + STRING_DATA_PATTERN_8 + "$")) {
                 date = LocalDate.now().minusDays(Integer.parseInt(dataStr.substring(0, dataStr.indexOf(" "))));
             }
-            //assert date != null;
             return Optional.of(date);
         }
         return Optional.empty();
