@@ -16,7 +16,7 @@ public class Task3 {
     private static final String STRING_DATA_PATTERN_5 = "yesterday";
     private static final String STRING_DATA_PATTERN_6 = "today";
     private static final String STRING_DATA_PATTERN_7 = "tomorrow";
-    private static final String STRING_DATA_PATTERN_8 = "(\\\\d+) days? ago";
+    private static final String STRING_DATA_PATTERN_8 = "(\\d+) days? ago";
     private static final String STRING_DATA_FULL_PATTERN =
         "^((" + STRING_DATA_PATTERN_1 + ")|(" + STRING_DATA_PATTERN_2 + ")|(" + STRING_DATA_PATTERN_3 + ")|(" +
             STRING_DATA_PATTERN_4 + ")|(" + STRING_DATA_PATTERN_5 + ")|(" + STRING_DATA_PATTERN_6 + ")|(" +
@@ -68,11 +68,11 @@ public class Task3 {
                 date = LocalDate.now().minusDays(1);
                 return Optional.of(date);
             }
-            if (dataStr.matches("^" + STRING_DATA_PATTERN_7 + "$")) {
+            if (dataStr.matches("^" + STRING_DATA_PATTERN_6 + "$")) {
                 date = LocalDate.now();
                 return Optional.of(date);
             }
-            if (dataStr.matches("^" + STRING_DATA_PATTERN_6 + "$")) {
+            if (dataStr.matches("^" + STRING_DATA_PATTERN_7 + "$")) {
                 date = LocalDate.now().plusDays(1);
                 return Optional.of(date);
             }
