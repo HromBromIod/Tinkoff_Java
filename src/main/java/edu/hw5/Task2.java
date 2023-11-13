@@ -18,7 +18,7 @@ public class Task2 {
         List<LocalDate> result = new ArrayList<>();
         LocalDate date = LocalDate.parse(year + "-01-13");
         while (date.getYear() == year) {
-            if (date.getDayOfWeek().toString().equals("FRIDAY")) {
+            if (date.getDayOfWeek().equals(DayOfWeek.FRIDAY)) {
                 result.add(date);
             }
             date = date.plusMonths(1);
@@ -30,11 +30,12 @@ public class Task2 {
         if (date == null) {
             throw new IllegalArgumentException("Invalid date!");
         }
+        final int thirteen = 13;
         LocalDate nextFridayThirteenDate = date.plusDays(1);
-        while (nextFridayThirteenDate.getDayOfMonth() != 13) {
+        while (nextFridayThirteenDate.getDayOfMonth() != thirteen) {
             nextFridayThirteenDate = nextFridayThirteenDate.plusDays(1);
         }
-        while (!nextFridayThirteenDate.getDayOfWeek().toString().equals("FRIDAY")) {
+        while (!nextFridayThirteenDate.getDayOfWeek().equals(DayOfWeek.FRIDAY)) {
             nextFridayThirteenDate = nextFridayThirteenDate.plusMonths(1);
         }
         return nextFridayThirteenDate;
