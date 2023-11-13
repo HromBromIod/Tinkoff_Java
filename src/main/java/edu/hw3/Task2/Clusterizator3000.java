@@ -8,17 +8,17 @@ public class Clusterizator3000 {
     private Clusterizator3000() {
     }
 
-    public static List<String> clusterize(String string) {
+    public static List<String> clusterize(String string) throws IllegalArgumentException {
         List<String> result = new ArrayList<>();
         for (int i = 0; i < string.length(); ++i) {
             if (string.charAt(i) != '(' && string.charAt(i) != ')') {
-                return result;
+                throw new IllegalArgumentException();
             }
         }
         String cut = string;
         while (!cut.isEmpty()) {
             String str = cutBalance(cut);
-            if (str.equalsIgnoreCase("")) {
+            if (str.isEmpty()) {
                 cut = str;
             } else {
                 result.add(str);

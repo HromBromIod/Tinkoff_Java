@@ -98,4 +98,12 @@ public class Task2Test {
         boolean expected = true;
         assertEquals(actual, expected);
     }
+
+    @Test
+    @DisplayName("\"())(\" -> []")
+    void task2Test11() {
+        List<String> actual = clusterize("())(");
+        boolean expected = true;
+        assertEquals(actual, expected);
+    }
 }
