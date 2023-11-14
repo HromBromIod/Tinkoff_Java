@@ -6,8 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static edu.hw3.Task2.Clusterizator3000.clusterize;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Task2Test {
     private Task2Test() {
@@ -17,16 +17,14 @@ public class Task2Test {
     @DisplayName("\"()()()\" -> [\"()\", \"()\", \"()\"]")
     void task2Test1() {
         boolean actual = clusterize("()()()").equals(Arrays.asList("()", "()", "()"));
-        boolean expected = true;
-        assertEquals(expected, actual);
+        assertTrue(actual);
     }
 
     @Test
     @DisplayName("\"((()))\" -> [\"((()))\"]")
     void task2Test2() {
         boolean actual = clusterize("((()))").equals(List.of("((()))"));
-        boolean expected = true;
-        assertEquals(expected, actual);
+        assertTrue(actual);
     }
 
     @Test
@@ -39,8 +37,7 @@ public class Task2Test {
             "()",
             "(()())"
         ));
-        boolean expected = true;
-        assertEquals(expected, actual);
+        assertTrue(actual);
     }
 
     @Test
@@ -48,32 +45,28 @@ public class Task2Test {
     void task2Test4() {
         boolean actual =
             clusterize("((())())(()(()()))").equals(Arrays.asList("((())())", "(()(()()))"));
-        boolean expected = true;
-        assertEquals(expected, actual);
+        assertTrue(actual);
     }
 
     @Test
     @DisplayName("\"()()())\" -> []")
     void task2Test5() {
         boolean actual = clusterize("()()())").equals(List.of());
-        boolean expected = true;
-        assertEquals(expected, actual);
+        assertTrue(actual);
     }
 
     @Test
     @DisplayName("\"(()()()\" -> []")
     void task2Test6() {
         boolean actual = clusterize("(()()()").equals(List.of());
-        boolean expected = true;
-        assertEquals(expected, actual);
+        assertTrue(actual);
     }
 
     @Test
     @DisplayName("\"\" -> []")
     void task2Test7() {
         boolean actual = clusterize("").equals(List.of());
-        boolean expected = true;
-        assertEquals(expected, actual);
+        assertTrue(actual);
     }
 
     @Test
@@ -86,8 +79,7 @@ public class Task2Test {
     @DisplayName("\"))((\" -> []")
     void task2Test9() {
         boolean actual = clusterize("))((").equals(List.of());
-        boolean expected = true;
-        assertEquals(expected, actual);
+        assertTrue(actual);
     }
 
     @Test
@@ -100,7 +92,13 @@ public class Task2Test {
     @DisplayName("\"())(\" -> []")
     void task2Test11() {
         boolean actual = clusterize("())(").equals(List.of());
-        boolean expected = true;
-        assertEquals(expected, actual);
+        assertTrue(actual);
+    }
+
+    @Test
+    @DisplayName("\"(()))(\" -> []")
+    void task2Test12() {
+        boolean actual = clusterize("(()))(").equals(List.of());
+        assertTrue(actual);
     }
 }

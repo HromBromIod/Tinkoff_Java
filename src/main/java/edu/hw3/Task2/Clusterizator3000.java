@@ -19,6 +19,7 @@ public class Clusterizator3000 {
         while (!cut.isEmpty()) {
             String str = cutBalance(cut);
             if (str.isEmpty()) {
+                result.clear();
                 return result;
             } else {
                 result.add(str);
@@ -40,8 +41,6 @@ public class Clusterizator3000 {
             char c = string.charAt(iterator);
             if (c == '(') {
                 st.push(c);
-            } else if (st.isEmpty()) {
-                return result;
             } else {
                 st.pop();
             }

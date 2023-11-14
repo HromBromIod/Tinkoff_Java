@@ -7,6 +7,7 @@ import static edu.hw3.Task5.Task5.parseContacts;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Task5Test {
     private Task5Test() {
@@ -38,14 +39,13 @@ public class Task5Test {
             new Person(metallica[1].trim()), new Person(metallica[3].trim()),
             new Person(metallica[0].trim()), new Person(metallica[2].trim())};
         boolean actual = true;
-        boolean expected = true;
         for (int i = 0; i < sorted.length; ++i) {
             if (!sorted[i].getName().equals(mySorted[i].getName())) {
                 actual = false;
                 break;
             }
         }
-        assertEquals(expected, actual);
+        assertTrue(actual);
     }
 
     @Test
@@ -58,14 +58,13 @@ public class Task5Test {
             new Person(metallica[3].trim()), new Person(metallica[0].trim()),
             new Person(metallica[4].trim()), new Person(metallica[2].trim())};
         boolean actual = true;
-        boolean expected = true;
         for (int i = 0; i < sorted.length; ++i) {
             if (!sorted[i].getName().equals(mySorted[i].getName())) {
                 actual = false;
                 break;
             }
         }
-        assertEquals(expected, actual);
+        assertTrue(actual);
     }
 
     @Test

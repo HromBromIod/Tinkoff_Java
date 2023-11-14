@@ -14,7 +14,8 @@ public class Task1Test {
     @ParameterizedTest
     @CsvSource({"Hello world!, Svool dliow!",
         "Did you know who I am?, Wrw blf pmld dsl R zn?",
-        "R'n Yzgnzm!, I'm Batman!"})
+        "R'n Yzgnzm!, I'm Batman!",
+        "Привет мир, Привет мир"})
     void encoderTest(String source, String expected) {
         Encoder encoder = new Encoder();
         String actual = encoder.atbash(source);
