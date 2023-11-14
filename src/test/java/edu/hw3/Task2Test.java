@@ -7,6 +7,7 @@ import java.util.List;
 
 import static edu.hw3.Task2.Clusterizator3000.clusterize;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class Task2Test {
     private Task2Test() {
@@ -78,9 +79,7 @@ public class Task2Test {
     @Test
     @DisplayName("\" \" -> []")
     void task2Test8() {
-        boolean actual = clusterize(" ").equals(List.of());
-        boolean expected = true;
-        assertEquals(actual, expected);
+        assertThrows(IllegalArgumentException.class, () -> clusterize(" "));
     }
 
     @Test
@@ -94,15 +93,13 @@ public class Task2Test {
     @Test
     @DisplayName("\"(( ))\" -> []")
     void task2Test10() {
-        boolean actual = clusterize("(( ))").equals(List.of());
-        boolean expected = true;
-        assertEquals(actual, expected);
+        assertThrows(IllegalArgumentException.class, () -> clusterize("(( ))"));
     }
 
     @Test
     @DisplayName("\"())(\" -> []")
     void task2Test11() {
-        List<String> actual = clusterize("())(");
+        boolean actual = clusterize("())(").equals(List.of("()"));
         boolean expected = true;
         assertEquals(actual, expected);
     }

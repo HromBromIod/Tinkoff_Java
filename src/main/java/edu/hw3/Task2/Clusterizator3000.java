@@ -38,7 +38,7 @@ public class Clusterizator3000 {
         int iterator;
         for (iterator = 1; !st.isEmpty() && iterator < string.length(); ++iterator) {
             char c = string.charAt(iterator);
-            if (c != st.peek()) {
+            if (c == ')') {
                 st.pop();
             } else {
                 st.push(c);
