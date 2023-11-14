@@ -18,7 +18,7 @@ public class Task2Test {
     void task2Test1() {
         boolean actual = clusterize("()()()").equals(Arrays.asList("()", "()", "()"));
         boolean expected = true;
-        assertEquals(actual, expected);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -26,7 +26,7 @@ public class Task2Test {
     void task2Test2() {
         boolean actual = clusterize("((()))").equals(List.of("((()))"));
         boolean expected = true;
-        assertEquals(actual, expected);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -40,7 +40,7 @@ public class Task2Test {
             "(()())"
         ));
         boolean expected = true;
-        assertEquals(actual, expected);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -49,15 +49,15 @@ public class Task2Test {
         boolean actual =
             clusterize("((())())(()(()()))").equals(Arrays.asList("((())())", "(()(()()))"));
         boolean expected = true;
-        assertEquals(actual, expected);
+        assertEquals(expected, actual);
     }
 
     @Test
-    @DisplayName("\"()()())\" -> [\"()\", \"()\", \"()\"]")
+    @DisplayName("\"()()())\" -> []")
     void task2Test5() {
-        boolean actual = clusterize("()()())").equals(Arrays.asList("()", "()", "()"));
+        boolean actual = clusterize("()()())").equals(List.of());
         boolean expected = true;
-        assertEquals(actual, expected);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -65,7 +65,7 @@ public class Task2Test {
     void task2Test6() {
         boolean actual = clusterize("(()()()").equals(List.of());
         boolean expected = true;
-        assertEquals(actual, expected);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -73,7 +73,7 @@ public class Task2Test {
     void task2Test7() {
         boolean actual = clusterize("").equals(List.of());
         boolean expected = true;
-        assertEquals(actual, expected);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -87,7 +87,7 @@ public class Task2Test {
     void task2Test9() {
         boolean actual = clusterize("))((").equals(List.of());
         boolean expected = true;
-        assertEquals(actual, expected);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -99,8 +99,8 @@ public class Task2Test {
     @Test
     @DisplayName("\"())(\" -> []")
     void task2Test11() {
-        boolean actual = clusterize("())(").equals(List.of("()"));
+        boolean actual = clusterize("())(").equals(List.of());
         boolean expected = true;
-        assertEquals(actual, expected);
+        assertEquals(expected, actual);
     }
 }

@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("uncommentedmain")
-public class MyGenericForFrecDict<T> {
-    public MyGenericForFrecDict() {
+public class MyGenericForFrecDict {
+    private MyGenericForFrecDict() {
     }
 
-    public Map<T, Integer> freqDict(List<T> list) {
+    public static <T> Map<T, Integer> freqDict(List<T> list) {
         Map<T, Integer> hashMap = new HashMap<>();
         for (T o : list) {
             if (hashMap.containsKey(o)) {

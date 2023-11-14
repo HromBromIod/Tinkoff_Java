@@ -19,7 +19,7 @@ public class Clusterizator3000 {
         while (!cut.isEmpty()) {
             String str = cutBalance(cut);
             if (str.isEmpty()) {
-                cut = str;
+                return result;
             } else {
                 result.add(str);
                 cut = cut.substring(str.length());
@@ -38,10 +38,12 @@ public class Clusterizator3000 {
         int iterator;
         for (iterator = 1; !st.isEmpty() && iterator < string.length(); ++iterator) {
             char c = string.charAt(iterator);
-            if (c == ')') {
-                st.pop();
-            } else {
+            if (c == '(') {
                 st.push(c);
+            } else if (st.isEmpty()) {
+                return result;
+            } else {
+                st.pop();
             }
         }
         if (st.isEmpty() && iterator <= string.length()) {
