@@ -16,13 +16,13 @@ public class Tasks {
     }
 
     //Ready
-    public static List<Animal> heightSortingTask1(List<Animal> listOfAnimals) {
-        return listOfAnimals.stream().sorted(Comparator.comparingInt(Animal::height)).collect(Collectors.toList());
+    public static List<Animal> sortAnimalsByHeight(List<Animal> listOfAnimals) {
+        return listOfAnimals.stream().sorted(Comparator.comparingInt(Animal::height)).toList();
     }
 
     //Ready
     public static List<Animal> weightSortingTask2(List<Animal> listOfAnimals, int k) {
-        return listOfAnimals.stream().sorted((o1, o2) -> o2.weight() - o1.weight()).collect(Collectors.toList())
+        return listOfAnimals.stream().sorted((o1, o2) -> o2.weight() - o1.weight()).toList()
             .subList(0, k);
     }
 
