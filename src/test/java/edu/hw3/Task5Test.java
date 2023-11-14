@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import static edu.hw3.Task5.Task5.parseContacts;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class Task5Test {
     private Task5Test() {
@@ -34,8 +35,8 @@ public class Task5Test {
         String sortType = "DESC";
         Person[] sorted = parseContacts(metallica, sortType);
         Person[] mySorted = new Person[] {
-            new Person(metallica[1].trim(), sortType), new Person(metallica[3].trim(), sortType),
-            new Person(metallica[0].trim(), sortType), new Person(metallica[2].trim(), sortType)};
+            new Person(metallica[1].trim()), new Person(metallica[3].trim()),
+            new Person(metallica[0].trim()), new Person(metallica[2].trim())};
         boolean actual = true;
         boolean expected = true;
         for (int i = 0; i < sorted.length; ++i) {
@@ -54,8 +55,8 @@ public class Task5Test {
         String sortType = "ASC";
         Person[] sorted = parseContacts(metallica, sortType);
         Person[] mySorted = new Person[] {
-            new Person(metallica[3].trim(), sortType), new Person(metallica[0].trim(), sortType),
-            new Person(metallica[4].trim(), sortType), new Person(metallica[2].trim(), sortType)};
+            new Person(metallica[3].trim()), new Person(metallica[0].trim()),
+            new Person(metallica[4].trim()), new Person(metallica[2].trim())};
         boolean actual = true;
         boolean expected = true;
         for (int i = 0; i < sorted.length; ++i) {
@@ -66,4 +67,13 @@ public class Task5Test {
         }
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("Invalid sort type test")
+    void invalidSortTypeTest() {
+        String[] metallica = new String[] {"James Hatfield", "   ", "Lars Urlich", " Kirk Hammet", "Robert"};
+        String sortType = "ABCDE";
+        assertThrows(IllegalArgumentException.class, () -> parseContacts(metallica, sortType));
+    }
+
 }
