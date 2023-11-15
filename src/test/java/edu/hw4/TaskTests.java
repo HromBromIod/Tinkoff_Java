@@ -245,9 +245,7 @@ public class TaskTests {
         Map<Animal.Type, Integer> actual = Tasks.summaryWeightTask15(AnimalTestLists.SECOND_LIST, 5, 7);
         Map<Animal.Type, Integer> expected = new HashMap<>();
         expected.put(Animal.Type.DOG, 6708);
-        expected.put(Animal.Type.CAT, 0);
         expected.put(Animal.Type.BIRD, 1230 + 785);
-        expected.put(Animal.Type.FISH, 0);
         assertEquals(expected, actual);
     }
 

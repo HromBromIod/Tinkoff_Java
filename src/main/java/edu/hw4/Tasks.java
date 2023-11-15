@@ -1,12 +1,16 @@
 package edu.hw4;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import static edu.hw4.ValidationError.animalErrors;
 import static edu.hw4.ValidationError.animalErrorsToString;
@@ -41,21 +45,18 @@ public class Tasks {
     }
 
     public static Map<Animal.Type, Animal> heaviestAnimalsTask6(List<Animal> listOfAnimals) {
-        Map<Animal.Type, List<Animal>> mapOfAnimals =
-            listOfAnimals.stream().collect(Collectors.groupingBy(Animal::type));
-        Map<Animal.Type, Animal> mapOfHeaviestAnimal = new HashMap<>();
-        for (var o : mapOfAnimals.entrySet()) {
-            mapOfHeaviestAnimal.put(
-                o.getKey(),
-                mapOfAnimals.get(o.getKey()).stream().sorted((o1, o2) -> o2.weight() - o1.weight()).toList().get(0)
-            );
-        }
-        return mapOfHeaviestAnimal;
+        return listOfAnimals.stream().collect(Collectors.toMap(
+            Animal::type,
+            Function.identity(),
+            BinaryOperator.maxBy(Comparator.comparing(Animal::weight))
+        ));
     }
 
     public static Animal oldestAnimalTask7(List<Animal> listOfAnimals, int k) {
         return k > 0 && k < listOfAnimals.size()
-            ? listOfAnimals.stream().sorted((o1, o2) -> o2.age() - o1.age()).skip(k - 1).findFirst().get() : null;
+            ?
+            listOfAnimals.stream().sorted(Comparator.comparing(Animal::age).reversed()).skip(k - 1).findFirst().get() :
+            null;
     }
 
     public static Optional<Animal> heaviestAnimalFromKTask8(List<Animal> listOfAnimals, int k) {
@@ -90,21 +91,8 @@ public class Tasks {
     }
 
     public static Map<Animal.Type, Integer> summaryWeightTask15(List<Animal> listOfAnimals, int k, int i) {
-        if (k < i && k >= 0) {
-            Map<Animal.Type, List<Animal>> mapOfAnimalTypes =
-                listOfAnimals.stream().filter(animal -> animal.age() >= k && animal.age() <= i)
-                    .collect(Collectors.groupingBy(Animal::type));
-            Map<Animal.Type, Integer> newMapOfAnimalTypes = new HashMap<>();
-            for (var o : mapOfAnimalTypes.entrySet()) {
-                newMapOfAnimalTypes.put(o.getKey(), (int) mapOfAnimalTypes.get(o.getKey())
-                    .stream()
-                    .mapToInt(Animal::weight)
-                    .summaryStatistics()
-                    .getSum());
-            }
-            return newMapOfAnimalTypes;
-        }
-        return null;
+        return k < i && k >= 0 ? listOfAnimals.stream().filter(o -> o.age() >= k && o.age() <= i)
+            .collect(Collectors.groupingBy(Animal::type, Collectors.summingInt(Animal::weight))) : null;
     }
 
     public static List<Animal> sortedListOfAnimalsTask16(List<Animal> listOfAnimals) {
@@ -121,16 +109,8 @@ public class Tasks {
     }
 
     public static Animal heaviestFishFromAllListsTask18(List<List<Animal>> listOfListsOfAnimals) {
-        //return listOfListsOfAnimals.stream().flatMap(listOfListsOfAnimals)
-
-        List<Animal> myListOfAnimals = new ArrayList<>();
-        for (List<Animal> o : listOfListsOfAnimals) {
-            myListOfAnimals.addAll(o);
-        }
-        return myListOfAnimals.stream().filter(o -> o.type().equals(Animal.Type.FISH))
-            .sorted((o1, o2) -> o2.weight() - o1.weight())
-            .toList()
-            .get(0);
+        return listOfListsOfAnimals.stream().flatMap(Collection::stream).filter(o -> o.type().equals(Animal.Type.FISH))
+            .max(Comparator.comparing(Animal::weight)).get();
     }
 
     public static Map<String, Set<ValidationError>> errorsInAnimalsTask19(List<Animal> listOfAnimals) {
