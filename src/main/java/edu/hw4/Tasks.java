@@ -1,10 +1,8 @@
 package edu.hw4;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -55,8 +53,8 @@ public class Tasks {
     public static Animal oldestAnimalTask7(List<Animal> listOfAnimals, int k) {
         return k > 0 && k < listOfAnimals.size()
             ?
-            listOfAnimals.stream().sorted(Comparator.comparing(Animal::age).reversed()).skip(k - 1).findFirst().get() :
-            null;
+            listOfAnimals.stream().sorted(Comparator.comparing(Animal::age).reversed()).skip(k - 1).findFirst().get()
+            : null;
     }
 
     public static Optional<Animal> heaviestAnimalFromKTask8(List<Animal> listOfAnimals, int k) {
