@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -39,13 +38,13 @@ public class TaskTests {
             new Animal("Paper2", Animal.Type.DOG, Animal.Sex.M, 5, 90, 6708, true)
         );
         public static final List<Animal> BAD_LIST = Arrays.asList(
+            new Animal("", null, null, -1, -1, -1, false),
             new Animal(null, Animal.Type.CAT, Animal.Sex.F, 6, 32, 5000, true),
             new Animal("Dog", null, Animal.Sex.F, 9, 57, 7000, true),
             new Animal("Чиж CO", Animal.Type.BIRD, null, 7, 46, 1230, false),
             new Animal("Harry", Animal.Type.FISH, Animal.Sex.M, -1, 5, 120, false),
             new Animal("Douglas", Animal.Type.BIRD, Animal.Sex.F, 11, -1, 785, true),
-            new Animal("Locker", Animal.Type.FISH, Animal.Sex.F, 3, 12, -1, true),
-            new Animal("", null, null, -1, -1, -1, false)
+            new Animal("Locker", Animal.Type.FISH, Animal.Sex.F, 3, 12, -1, true)
         );
     }
 
@@ -301,16 +300,18 @@ public class TaskTests {
     @Test
     @DisplayName("Check errors in animals with errors test")
     void task19Test1() {
-        Map<String, Set<ValidationError>> actual = Tasks.errorsInAnimalsTask19(AnimalTestLists.BAD_LIST);
-        Map<String, Set<ValidationError>> expected = new HashMap<>();
+        Map<String, List<AnimalValidator.ValidationError>> actual =
+            Tasks.errorsInAnimalsTask19(AnimalTestLists.BAD_LIST);
+        Map<String, List<AnimalValidator.ValidationError>> expected = new HashMap<>();
         assertNotEquals(expected, actual);
     }
 
     @Test
     @DisplayName("Check errors in animals without errors test")
     void task19Test2() {
-        Map<String, Set<ValidationError>> actual = Tasks.errorsInAnimalsTask19(AnimalTestLists.FIRST_LIST);
-        Map<String, Set<ValidationError>> expected = new HashMap<>();
+        Map<String, List<AnimalValidator.ValidationError>> actual =
+            Tasks.errorsInAnimalsTask19(AnimalTestLists.FIRST_LIST);
+        Map<String, List<AnimalValidator.ValidationError>> expected = new HashMap<>();
         assertEquals(expected, actual);
     }
 

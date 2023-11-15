@@ -1,17 +1,11 @@
 package edu.hw4;
 
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import static edu.hw4.ValidationError.animalErrors;
-import static edu.hw4.ValidationError.animalErrorsToString;
+import static edu.hw4.AnimalValidator.ValidationError.animalErrorsToString;
+import static edu.hw4.AnimalValidator.validate;
 
 public class Tasks {
     private Tasks() {
@@ -111,11 +105,11 @@ public class Tasks {
             .max(Comparator.comparing(Animal::weight)).get();
     }
 
-    public static Map<String, Set<ValidationError>> errorsInAnimalsTask19(List<Animal> listOfAnimals) {
-        Map<String, Set<ValidationError>> mapOfErrorAnimals = new HashMap<>();
+    public static Map<String, List<AnimalValidator.ValidationError>> errorsInAnimalsTask19(List<Animal> listOfAnimals) {
+        Map<String, List<AnimalValidator.ValidationError>> mapOfErrorAnimals = new HashMap<>();
         listOfAnimals.forEach((animal -> {
-            if (!(animalErrors(animal).isEmpty())) {
-                mapOfErrorAnimals.put(animal.name(), animalErrors(animal));
+            if (!(validate(animal).isEmpty())) {
+                mapOfErrorAnimals.put(animal.name(), validate(animal));
             }
         }));
         return mapOfErrorAnimals;
@@ -124,8 +118,8 @@ public class Tasks {
     public static Map<String, String> errorsInAnimalsToStringTask20(List<Animal> listOfAnimals) {
         Map<String, String> mapOfErrorAnimals = new HashMap<>();
         listOfAnimals.forEach((animal -> {
-            if (!(animalErrors(animal).isEmpty())) {
-                mapOfErrorAnimals.put(animal.name(), animalErrorsToString(animalErrors(animal)));
+            if (!(validate(animal).isEmpty())) {
+                mapOfErrorAnimals.put(animal.name(), animalErrorsToString(validate(animal)));
             }
         }));
         return mapOfErrorAnimals;
