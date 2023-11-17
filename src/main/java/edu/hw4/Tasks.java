@@ -112,7 +112,7 @@ public class Tasks {
 
     public static Map<String, List<AnimalValidator.ValidationError>> errorsInAnimalsTask19(List<Animal> listOfAnimals) {
         Map<String, List<AnimalValidator.ValidationError>> mapOfErrorAnimals = new HashMap<>();
-        listOfAnimals.forEach((animal -> {
+        listOfAnimals.stream().forEach((animal -> {
             if (!(validate(animal).isEmpty())) {
                 mapOfErrorAnimals.put(animal.name(), validate(animal));
             }
@@ -122,11 +122,11 @@ public class Tasks {
 
     public static Map<String, String> errorsInAnimalsToStringTask20(List<Animal> listOfAnimals) {
         Map<String, String> mapOfErrorAnimals = new HashMap<>();
-        listOfAnimals.forEach((animal -> {
+        listOfAnimals.stream().forEach((animal) -> {
             if (!(validate(animal).isEmpty())) {
                 mapOfErrorAnimals.put(animal.name(), animalErrorsToString(validate(animal)));
             }
-        }));
+        });
         return mapOfErrorAnimals;
     }
 }
