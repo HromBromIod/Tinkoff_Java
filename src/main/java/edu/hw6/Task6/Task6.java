@@ -8,9 +8,11 @@ import java.net.ServerSocket;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings({"UncommentedMain", "MagicNumber"})
 public class Task6 {
     private Task6() {
     }
+
     private final static Logger LOGGER = LogManager.getLogger();
 
     private static final String TCP_PROTOCOL = "TCP";
@@ -22,6 +24,7 @@ public class Task6 {
     private static final String OUTPUT_FORMAT = "%-10s%-7s%-10s";
 
     private static final int MAX_PORT_NUMBER = 49151;
+
     public static void setConnections() {
         MAP_OF_CONNECTION.put(23, "Telnet");
         MAP_OF_CONNECTION.put(110, "POP3 ");
