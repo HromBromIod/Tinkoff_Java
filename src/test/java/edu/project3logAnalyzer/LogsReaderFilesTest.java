@@ -10,10 +10,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class LogsReaderFilesTest {
-    private final static String LOG = "75.98.236.143 - - [15/Nov/2023:21:34:33 +0000] " +
-        "\"GET /Up-sized-dynamic-workforce/hybrid/monitoring.hmtl HTTP/1.1\" 200 1129 \"-\" " +
-        "\"Mozilla/5.0 (Macintosh; PPC Mac OS X 10_7_8) AppleWebKit/5330 (KHTML, like Gecko)" +
-        " Chrome/37.0.880.0 Mobile Safari/5330\"";
+    private final static String LOG =
+        "204.77.169.137 - - [17/May/2015:18:05:03 +0000] " + "\"GET /downloads/product_2 HTTP/1.1\" 404 325 \"-\" " +
+            "\"Debian APT-HTTP/1.3 (0.8.16~exp12ubuntu10.2)";
 
     private final static String DIRECTORY_PATH = "test_reader";
 
@@ -29,7 +28,7 @@ public class LogsReaderFilesTest {
     }
 
     public static void deleteDirectory(File directory) throws Exception {
-        if(!directory.exists()) {
+        if (!directory.exists()) {
             return;
         }
 

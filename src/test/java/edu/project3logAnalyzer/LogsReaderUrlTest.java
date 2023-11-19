@@ -11,10 +11,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class LogsReaderUrlTest {
-    private final static String LOG = "75.98.236.143 - - [15/Nov/2023:21:34:33 +0000] " +
-        "\"GET /Up-sized-dynamic-workforce/hybrid/monitoring.hmtl HTTP/1.1\" 200 1129 \"-\" " +
-        "\"Mozilla/5.0 (Macintosh; PPC Mac OS X 10_7_8) AppleWebKit/5330 (KHTML, like Gecko)" +
-        " Chrome/37.0.880.0 Mobile Safari/5330\"";
+    private final static String LOG = "5.83.131.103 - - [17/May/2015:08:05:57 +0000] " +
+        "\"GET /downloads/product_1 HTTP/1.1\" 404 346 \"-\" " +
+        "\"Debian APT-HTTP/1.3 (0.8.16~exp12ubuntu10.22)\"";
 
     private WireMockServer wireMockServer;
 
