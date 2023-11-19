@@ -1,15 +1,14 @@
 package edu.hw6.Task6;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 import java.net.DatagramSocket;
 import java.net.ServerSocket;
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-@SuppressWarnings({"UncommentedMain", "MagicNumber"})
-public class Task6 {
+@SuppressWarnings({"UncommentedMain", "MagicNumber"}) public class Task6 {
     private Task6() {
     }
 
@@ -60,15 +59,21 @@ public class Task6 {
                 ServerSocket serverSocket = new ServerSocket(portNumber);
                 serverSocket.close();
             } catch (IOException ignoreException) {
-                LOGGER.info(OUTPUT_FORMAT
-                    .formatted(TCP_PROTOCOL, portNumber, MAP_OF_CONNECTION.getOrDefault(portNumber, "")));
+                LOGGER.info(OUTPUT_FORMAT.formatted(
+                    TCP_PROTOCOL,
+                    portNumber,
+                    MAP_OF_CONNECTION.getOrDefault(portNumber, "")
+                ));
             }
             try {
                 DatagramSocket datagramSocket = new DatagramSocket(portNumber);
                 datagramSocket.close();
             } catch (IOException ignoreException) {
-                LOGGER.info(OUTPUT_FORMAT
-                    .formatted(UDP_PROTOCOL, portNumber, MAP_OF_CONNECTION.getOrDefault(portNumber, "")));
+                LOGGER.info(OUTPUT_FORMAT.formatted(
+                    UDP_PROTOCOL,
+                    portNumber,
+                    MAP_OF_CONNECTION.getOrDefault(portNumber, "")
+                ));
             }
         }
     }
