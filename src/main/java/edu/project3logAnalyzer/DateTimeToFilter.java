@@ -1,6 +1,5 @@
 package edu.project3logAnalyzer;
 
-
 import java.time.LocalDateTime;
 import java.util.function.Predicate;
 
