@@ -18,9 +18,7 @@ public class Labyrinth {
         final int SCATTER = 6;
         Random random = new Random();
         int randomInt = random.nextInt(MIN_HEIGHT_OR_WIDTH, MAX_HEIGHT_OR_WIDTH + 1);
-        //final int height = randomInt % 2 == 0 ? randomInt + 1 : randomInt;
         height = randomInt % 2 == 0 ? randomInt + 1 : randomInt;
-        //final int width;
         if (height > MID_SHIFT_VALUE) {
             randomInt = random.nextInt(0, SCATTER);
             width = height + (randomInt % 2 == 0 ? randomInt : randomInt + 1);
@@ -28,7 +26,6 @@ public class Labyrinth {
             randomInt = random.nextInt(0, SCATTER);
             width = height - (randomInt % 2 == 0 ? randomInt : randomInt + 1);
         }
-        //this(height, width);
         maze = new Cell[height][width];
         for (int i = 0; i < height; ++i) {
             for (int j = 0; j < width; ++j) {
@@ -53,8 +50,8 @@ public class Labyrinth {
     }
 
     public Labyrinth(Cell[][] personMatrix, int n, int m) throws IllegalArgumentException {
-        if (personMatrix == null || personMatrix.length < MIN_HEIGHT_OR_WIDTH ||
-            personMatrix.length > MAX_HEIGHT_OR_WIDTH) {
+        if (personMatrix == null || personMatrix.length < MIN_HEIGHT_OR_WIDTH
+            || personMatrix.length > MAX_HEIGHT_OR_WIDTH) {
             throw new IllegalArgumentException();
         }
         for (Cell[] matrix : personMatrix) {
@@ -110,15 +107,15 @@ public class Labyrinth {
         if (x > 1 && isKLeftNeighbourWay(myCell, k) && (k == 2 || k == 1 && !isKLeftNeighbourVisited(myCell, k))) {
             listOfNeighbours.add(maze[x - 1][y]);
         }
-        if (x < height - 2 && isKRightNeighbourWay(myCell, k) &&
-            (k == 2 || k == 1 && !isKRightNeighbourVisited(myCell, k))) {
+        if (x < height - 2 && isKRightNeighbourWay(myCell, k)
+            && (k == 2 || k == 1 && !isKRightNeighbourVisited(myCell, k))) {
             listOfNeighbours.add(maze[x + 1][y]);
         }
         if (y > 1 && isKUnderNeighbourWay(myCell, k) && (k == 2 || k == 1 && !isKUnderNeighbourVisited(myCell, k))) {
             listOfNeighbours.add(maze[x][y - 1]);
         }
-        if (y < width - 2 && isKTopNeighbourWay(myCell, k) &&
-            (k == 2 || k == 1 && !isKTopNeighbourVisited(myCell, k))) {
+        if (y < width - 2 && isKTopNeighbourWay(myCell, k)
+            && (k == 2 || k == 1 && !isKTopNeighbourVisited(myCell, k))) {
             listOfNeighbours.add(maze[x][y + 1]);
         }
         return listOfNeighbours;
