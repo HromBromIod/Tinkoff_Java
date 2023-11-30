@@ -9,11 +9,12 @@ import java.util.Stack;
 public class Labyrinth {
     private static final int MAX_HEIGHT_OR_WIDTH = 39;
     private static final int MIN_HEIGHT_OR_WIDTH = 9;
-    private final int height;
-    private final int width;
+    private int height;
+    private int width;
     protected final Cell[][] maze;
 
     public Labyrinth() {
+        this(MAX_HEIGHT_OR_WIDTH, MAX_HEIGHT_OR_WIDTH);
         final int MID_SHIFT_VALUE = 26;
         final int SCATTER = 6;
         Random random = new Random();
@@ -21,16 +22,10 @@ public class Labyrinth {
         height = randomInt % 2 == 0 ? randomInt + 1 : randomInt;
         if (height > MID_SHIFT_VALUE) {
             randomInt = random.nextInt(0, SCATTER);
-            width = height + (randomInt % 2 == 0 ? randomInt : randomInt + 1);
+            width = height - (randomInt % 2 == 0 ? randomInt : randomInt + 1);
         } else {
             randomInt = random.nextInt(0, SCATTER);
-            width = height - (randomInt % 2 == 0 ? randomInt : randomInt + 1);
-        }
-        maze = new Cell[height][width];
-        for (int i = 0; i < height; ++i) {
-            for (int j = 0; j < width; ++j) {
-                maze[i][j] = new Cell(i, j);
-            }
+            width = height + (randomInt % 2 == 0 ? randomInt : randomInt + 1);
         }
     }
 
@@ -131,7 +126,7 @@ public class Labyrinth {
         Random random = new Random();
         int randomInt = random.nextInt(1, height - 2);
         int x = randomInt % 2 == 0 ? randomInt + 1 : randomInt;
-        randomInt = random.nextInt(2, width - 2);
+        randomInt = random.nextInt(1, width - 2);
         int y = randomInt % 2 == 0 ? randomInt + 1 : randomInt;
         List<Cell> myList = new ArrayList<>();
         Cell myCell = maze[x][y];
