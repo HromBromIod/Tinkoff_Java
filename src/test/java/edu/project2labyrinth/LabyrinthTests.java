@@ -2,13 +2,11 @@ package edu.project2labyrinth;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -74,7 +72,8 @@ public class LabyrinthTests {
 
         Labyrinth labyrinth = new Labyrinth(maze, 9, 9);
         List<Cell> actual = labyrinth.findTheWay(new Cell(1, 1), new Cell(3, 7));
-        List<Cell> expected = Arrays.asList(maze[1][1],
+        List<Cell> expected = Arrays.asList(
+            maze[1][1],
             maze[2][1],
             maze[3][1],
             maze[3][2],
@@ -158,22 +157,19 @@ public class LabyrinthTests {
     @Test
     @DisplayName("Неверные параметры при иниицализации лабиринта (размерность)")
     void testBadParams1() {
-        Labyrinth labyrinth;
-        assertThrows(IllegalArgumentException.class, new Labyrinth(4, 41));
+        assertThrows(IllegalArgumentException.class, () -> new Labyrinth(4, 41));
     }
 
     @Test
     @DisplayName("Неверные параметры при иниицализации лабиринта (матрица с исходным лабиринтом пуста)")
     void testBadParams2() {
         Cell[][] maze = new Cell[][] {};
-        Labyrinth labyrinth = new Labyrinth(maze, 13, 13);
-        assertFalse(labyrinth.createLabyrinth());
+        assertThrows(IllegalArgumentException.class, () -> new Labyrinth(maze, 13, 13));
     }
 
     @Test
     @DisplayName("Неверные параметры при иниицализации лабиринта (матрица с исходным лабиринтом = null)")
     void testBadParams3() {
-        Labyrinth labyrinth = new Labyrinth(null, 13, 13);
-        assertFalse(labyrinth.createLabyrinth());
+        assertThrows(IllegalArgumentException.class, () -> new Labyrinth(null, 13, 13));
     }
 }
