@@ -2,12 +2,15 @@ package edu.project2labyrinth;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class LabyrinthTests {
     private LabyrinthTests() {
@@ -155,8 +158,8 @@ public class LabyrinthTests {
     @Test
     @DisplayName("Неверные параметры при иниицализации лабиринта (размерность)")
     void testBadParams1() {
-        Labyrinth labyrinth = new Labyrinth(4, 41);
-        assertFalse(labyrinth.createLabyrinth());
+        Labyrinth labyrinth;
+        assertThrows(IllegalArgumentException.class, new Labyrinth(4, 41));
     }
 
     @Test

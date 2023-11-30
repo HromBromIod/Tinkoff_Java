@@ -7,25 +7,28 @@ import java.util.Stack;
 
 @SuppressWarnings({"RegexpSinglelineJava", "CyclomaticComplexity"})
 public class Labyrinth {
-    private static final int MAXHEIGHTORWIDTH = 39;
-    private static final int MINHEIGHTORWIDTH = 9;
+    private static final int MAX_HEIGHT_OR_WIDTH = 39;
+    private static final int MIN_HEIGHT_OR_WIDTH = 9;
     private final int height;
     private final int width;
     protected final Cell[][] maze;
 
     public Labyrinth() {
-        final int TWENTY_SIX = 26;
-        final int SIX = 6;
+        final int MID_SHIFT_VALUE = 26;
+        final int SCATTER = 6;
         Random random = new Random();
-        int randomInt = random.nextInt(MINHEIGHTORWIDTH, MAXHEIGHTORWIDTH + 1);
+        int randomInt = random.nextInt(MIN_HEIGHT_OR_WIDTH, MAX_HEIGHT_OR_WIDTH + 1);
+        //final int height = randomInt % 2 == 0 ? randomInt + 1 : randomInt;
         height = randomInt % 2 == 0 ? randomInt + 1 : randomInt;
-        if (height > TWENTY_SIX) {
-            randomInt = random.nextInt(0, SIX);
+        //final int width;
+        if (height > MID_SHIFT_VALUE) {
+            randomInt = random.nextInt(0, SCATTER);
             width = height + (randomInt % 2 == 0 ? randomInt : randomInt + 1);
         } else {
-            randomInt = random.nextInt(0, SIX);
+            randomInt = random.nextInt(0, SCATTER);
             width = height - (randomInt % 2 == 0 ? randomInt : randomInt + 1);
         }
+        //this(height, width);
         maze = new Cell[height][width];
         for (int i = 0; i < height; ++i) {
             for (int j = 0; j < width; ++j) {
@@ -34,11 +37,9 @@ public class Labyrinth {
         }
     }
 
-    public Labyrinth(int n, int m) {
-        if (n < MINHEIGHTORWIDTH || n > MAXHEIGHTORWIDTH || m < MINHEIGHTORWIDTH || m > MAXHEIGHTORWIDTH) {
-            height = 0;
-            width = 0;
-            maze = null;
+    public Labyrinth(int n, int m) throws IllegalArgumentException {
+        if (n < MIN_HEIGHT_OR_WIDTH || n > MAX_HEIGHT_OR_WIDTH || m < MIN_HEIGHT_OR_WIDTH || m > MAX_HEIGHT_OR_WIDTH) {
+            throw new IllegalArgumentException();
         } else {
             height = n;
             width = m;
@@ -51,20 +52,18 @@ public class Labyrinth {
         }
     }
 
-    public Labyrinth(Cell[][] personMatrix, int n, int m) {
-        boolean flag = personMatrix == null || personMatrix.length < MINHEIGHTORWIDTH
-            || personMatrix.length > MAXHEIGHTORWIDTH;
-        for (int i = 0; !flag && i < personMatrix.length; ++i) {
-            if ((personMatrix[i].length < MINHEIGHTORWIDTH || personMatrix[i].length > MAXHEIGHTORWIDTH)) {
-                flag = true;
-                break;
+    public Labyrinth(Cell[][] personMatrix, int n, int m) throws IllegalArgumentException {
+        if (personMatrix == null || personMatrix.length < MIN_HEIGHT_OR_WIDTH
+            || personMatrix.length > MAX_HEIGHT_OR_WIDTH) {
+            throw new IllegalArgumentException();
+        }
+        for (Cell[] matrix : personMatrix) {
+            if ((matrix.length < MIN_HEIGHT_OR_WIDTH || matrix.length > MAX_HEIGHT_OR_WIDTH)) {
+                throw new IllegalArgumentException();
             }
         }
-        if (n < MINHEIGHTORWIDTH || n > MAXHEIGHTORWIDTH || m < MINHEIGHTORWIDTH || m > MAXHEIGHTORWIDTH
-            || flag) {
-            height = 0;
-            width = 0;
-            maze = null;
+        if (n < MIN_HEIGHT_OR_WIDTH || n > MAX_HEIGHT_OR_WIDTH || m < MIN_HEIGHT_OR_WIDTH || m > MAX_HEIGHT_OR_WIDTH) {
+            throw new IllegalArgumentException();
         } else {
             height = n;
             width = m;
