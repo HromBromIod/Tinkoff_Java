@@ -22,10 +22,10 @@ public class Task1 {
             + " (([0-1]\\d|2[0-4]):[0-5]\\d) - (\\d{4}-(0[1-9]|1[0-2])"
             + "-(0[1-9]|[1-2]\\d|3[0-1])), (([0-1]\\d|2[0-4]):[0-5]\\d)$");
 
-    public static Duration averageSessionTime(List<String> baseOfDats) throws RuntimeException {
+    public static Duration averageSessionTime(List<String> baseOfDats) {
         int sessionsCount = 0;
         int fullDuration = 0;
-        if (!baseOfDats.isEmpty() && baseOfDats != null) {
+        if (baseOfDats != null && !baseOfDats.isEmpty()) {
             for (String session : baseOfDats) {
                 Matcher sessionMatcher = DATA_PATTERN.matcher(session);
                 if (sessionMatcher.find()) {
@@ -42,14 +42,14 @@ public class Task1 {
                             (int) Duration.between(startOfSession, endOfSession).getSeconds();
                         sessionsCount += 1;
                     } catch (DateTimeParseException exception) {
-                        throw new RuntimeException("Parse error!");
+                        throw new IllegalArgumentException("Parse error!", exception);
                     }
                 } else {
-                    throw new RuntimeException("Incorrect data format!");
+                    throw new IllegalArgumentException("Incorrect data format!");
                 }
             }
         } else {
-            throw new RuntimeException("Incorrect base of dats!");
+            throw new IllegalArgumentException("Incorrect base of dats!");
         }
         return Duration.ofSeconds((long) fullDuration / sessionsCount);
     }

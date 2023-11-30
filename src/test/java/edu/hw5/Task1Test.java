@@ -15,13 +15,13 @@ public class Task1Test {
     @Test
     @DisplayName("null list test")
     void nullListTest() {
-        assertThrows(RuntimeException.class, () -> averageSessionTime(null));
+        assertThrows(IllegalArgumentException.class, () -> averageSessionTime(null));
     }
 
     @Test
     @DisplayName("empty list test")
     void emptyListTest() {
-        assertThrows(RuntimeException.class, () -> averageSessionTime(List.of()));
+        assertThrows(IllegalArgumentException.class, () -> averageSessionTime(List.of()));
     }
 
     @Test
