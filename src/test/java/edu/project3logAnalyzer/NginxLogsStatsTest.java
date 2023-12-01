@@ -126,7 +126,7 @@ public class NginxLogsStatsTest {
     }
 
     @Test
-    void url() throws IOException {
+    void url() throws IOException, InterruptedException {
         stubFor(get(urlEqualTo("/logs"))
             .willReturn(aResponse()
                 .withStatus(200)
@@ -143,7 +143,7 @@ public class NginxLogsStatsTest {
     }
 
     @Test
-    void file() throws IOException {
+    void file() throws IOException, InterruptedException {
         Path path = Path.of(DIRECTORY_PATH, "file");
         Files.createFile(path);
         Files.writeString(path, LOG);

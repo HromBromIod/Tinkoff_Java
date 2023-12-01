@@ -9,6 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.io.IOException;
 
 public class LogsReaderUrlTest {
     private final static String LOG = "5.83.131.103 - - [17/May/2015:08:05:57 +0000] " +
@@ -29,7 +30,7 @@ public class LogsReaderUrlTest {
     }
 
     @Test
-    public void answerReturned() {
+    public void answerReturned() throws IOException, InterruptedException {
         stubFor(get(urlEqualTo("/logs"))
             .willReturn(aResponse()
                 .withStatus(200)
@@ -41,7 +42,7 @@ public class LogsReaderUrlTest {
     }
 
     @Test
-    public void notOkStatus() {
+    public void notOkStatus() throws IOException, InterruptedException {
         stubFor(get(urlEqualTo("/logs"))
             .willReturn(aResponse()
                 .withStatus(404)
@@ -53,7 +54,7 @@ public class LogsReaderUrlTest {
     }
 
     @Test
-    public void noUrl() {
+    public void noUrl() throws IOException, InterruptedException {
         var stream = LogsReader.readLogsFromUrl("/logs");
 
         assertThat(stream.anyMatch(element -> true)).isFalse();

@@ -18,12 +18,12 @@ public class NginxLogsStats {
     private NginxLogsStats() {}
 
     @SuppressWarnings({"checkstyle:UncommentedMain", "checkstyle:RegexpSinglelineJava"})
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         System.out.println(nginxLogsStats(args));
     }
 
     @SuppressWarnings({"checkstyle:InnerAssignment", "checkstyle:ModifiedControlVariable"})
-    public static String nginxLogsStats(String[] args) throws IOException {
+    public static String nginxLogsStats(String[] args) throws IOException, InterruptedException {
         String path = null;
         LocalDateTime from = null;
         LocalDateTime to = null;

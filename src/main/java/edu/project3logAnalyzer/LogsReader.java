@@ -26,7 +26,7 @@ public class LogsReader {
     private LogsReader() {
     }
 
-    public static Stream<LogString> readLogsFromUrl(String url) {
+    public static Stream<LogString> readLogsFromUrl(String url) throws IOException, InterruptedException {
         try {
             HttpRequest request = HttpRequest.newBuilder()
                 .uri(new URI(url))
@@ -42,7 +42,8 @@ public class LogsReader {
 
             return Arrays.stream(response.body().split("\n"))
                 .map(string -> LogsParser.parseString(string, url));
-        } catch (URISyntaxException | IOException | InterruptedException | IllegalArgumentException e) {
+
+        } catch (URISyntaxException | IllegalArgumentException exception) {
             return Stream.empty();
         }
     }
