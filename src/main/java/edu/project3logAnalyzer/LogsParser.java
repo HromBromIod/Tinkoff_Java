@@ -13,17 +13,9 @@ public class LogsParser {
     private final static String STATUS_PATTERN = "[1-5]\\d{2}";
     private final static String BYTES_COUNT_PATTERN = "\\d{1,}";
     private final static String DATE_TIME_PATTERN = "dd/MMM/yyyy:HH:mm:ss xxxx";
-    private static String generatedPattern = null;
+    private static final String generatedPattern;
 
-    private LogsParser() {
-    }
-
-    @SuppressWarnings("checkstyle:MultipleStringLiterals")
-    private static String generateLogPattern() {
-        if (generatedPattern != null) {
-            return generatedPattern;
-        }
-
+    static {
         StringBuilder builder = new StringBuilder();
 
         builder.append("^")
@@ -45,13 +37,14 @@ public class LogsParser {
             .append("$");
 
         generatedPattern = builder.toString();
+    }
 
-        return generatedPattern;
+    private LogsParser() {
     }
 
     @SuppressWarnings("checkstyle:MagicNumber")
     public static LogString parseString(@NotNull String logString, String source) {
-        Matcher matcher = Pattern.compile(generateLogPattern()).matcher(logString);
+        Matcher matcher = Pattern.compile(generatedPattern).matcher(logString);
 
         if (!matcher.find()) {
             return null;
