@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@SuppressWarnings("MultipleStringLiterals")
 public class Task3 {
     private Task3() {
     }

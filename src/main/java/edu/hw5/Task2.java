@@ -2,7 +2,6 @@ package edu.hw5;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +12,8 @@ public class Task2 {
 
     public static List<LocalDate> getFridayThirteenDats(int year) throws IllegalArgumentException {
         List<LocalDate> result = new ArrayList<>();
-        LocalDate date = LocalDate.of(year, 1, 13);
+        final int thirteen = 13;
+        LocalDate date = LocalDate.of(year, 1, thirteen);
         while (date.getYear() == year) {
             if (date.getDayOfWeek().equals(DayOfWeek.FRIDAY)) {
                 result.add(date);
