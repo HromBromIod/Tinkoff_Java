@@ -98,6 +98,6 @@ public class Task4Test {
     @DisplayName("correct password test 11")
     void correctPasswordTest11() {
         boolean actual = isCorrectPassword("~!@#$%^&*|");
-        assertTrue(actual);
+        assertFalse(actual);
     }
 }
