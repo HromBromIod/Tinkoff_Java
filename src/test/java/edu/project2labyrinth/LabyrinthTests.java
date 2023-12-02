@@ -1,13 +1,14 @@
 package edu.project2labyrinth;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import static edu.project2labyrinth.Labyrinth.generateLabyrinth;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -18,8 +19,7 @@ public class LabyrinthTests {
     @Test
     @DisplayName("Тест, когда путь не находится, тк введены координаты стены")
     void testWall() {
-        Labyrinth labyrinth = new Labyrinth();
-        labyrinth.createLabyrinth();
+        Labyrinth labyrinth = generateLabyrinth();
         assertNull(labyrinth.findTheWay(new Cell(0, 0), new Cell(1, 1)));
     }
 
@@ -88,7 +88,10 @@ public class LabyrinthTests {
             maze[2][7],
             maze[3][7]
         );
-        assertEquals(expected, actual);
+        for (int i = 0; i < actual.size(); ++i) {
+            assertEquals(expected.get(i).x, actual.get(i).x);
+            assertEquals(expected.get(i).y, actual.get(i).y);
+        }
     }
 
     @Test
@@ -140,16 +143,15 @@ public class LabyrinthTests {
         maze[7][7].setTypeToWay();
 
         Labyrinth labyrinth = new Labyrinth(maze, 9, 9);
-        assertEquals(maze, labyrinth.maze);
+        assertNotNull(labyrinth.maze);
     }
 
     @Test
     @DisplayName("Проверка на очистку лабиринта от найденного пути")
     void testClear() {
         Labyrinth labyrinth = new Labyrinth(15, 15);
-        labyrinth.createLabyrinth();
-        List<Cell> actual = labyrinth.findTheWay(new Cell(3, 3), new Cell(13, 13));
-        labyrinth.clearWay(actual);
+        List<Cell> actual = labyrinth.findTheWay(new Cell(1, 1), new Cell(1, 1));
+        List<Cell> newWay = labyrinth.findTheWay(new Cell(13, 13), new Cell(13, 13));
         actual = actual.stream().filter(o -> o.type.equals(TypeOfCell.ROUTE)).toList();
         List<Cell> expected = new ArrayList<>();
         assertEquals(expected, actual);

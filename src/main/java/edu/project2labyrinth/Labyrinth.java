@@ -9,25 +9,9 @@ import java.util.Stack;
 public class Labyrinth {
     private static final int MAX_HEIGHT_OR_WIDTH = 39;
     private static final int MIN_HEIGHT_OR_WIDTH = 9;
-    private int height;
-    private int width;
+    private final int height;
+    private final int width;
     protected final Cell[][] maze;
-
-    public Labyrinth() {
-        this(MAX_HEIGHT_OR_WIDTH, MAX_HEIGHT_OR_WIDTH);
-        final int MID_SHIFT_VALUE = 26;
-        final int SCATTER = 6;
-        Random random = new Random();
-        int randomInt = random.nextInt(MIN_HEIGHT_OR_WIDTH, MAX_HEIGHT_OR_WIDTH + 1);
-        height = randomInt % 2 == 0 ? randomInt + 1 : randomInt;
-        if (height > MID_SHIFT_VALUE) {
-            randomInt = random.nextInt(0, SCATTER);
-            width = height - (randomInt % 2 == 0 ? randomInt : randomInt + 1);
-        } else {
-            randomInt = random.nextInt(0, SCATTER);
-            width = height + (randomInt % 2 == 0 ? randomInt : randomInt + 1);
-        }
-    }
 
     public Labyrinth(int n, int m) throws IllegalArgumentException {
         if (n < MIN_HEIGHT_OR_WIDTH || n > MAX_HEIGHT_OR_WIDTH || m < MIN_HEIGHT_OR_WIDTH || m > MAX_HEIGHT_OR_WIDTH) {
@@ -42,6 +26,7 @@ public class Labyrinth {
                 }
             }
         }
+        createLabyrinth();
     }
 
     public Labyrinth(Cell[][] personMatrix, int n, int m) throws IllegalArgumentException {
@@ -59,8 +44,30 @@ public class Labyrinth {
         } else {
             height = n;
             width = m;
-            maze = personMatrix;
+            maze = new Cell[height][width];
+            for (int i = 0; i < height; ++i) {
+                for (int j = 0; j < width; ++j) {
+                    maze[i][j] = new Cell(personMatrix[i][j]);
+                }
+            }
         }
+    }
+
+    public static Labyrinth generateLabyrinth() {
+        final int MID_SHIFT_VALUE = 26;
+        final int SCATTER = 6;
+        Random random = new Random();
+        int randomInt = random.nextInt(MIN_HEIGHT_OR_WIDTH, MAX_HEIGHT_OR_WIDTH + 1);
+        final int height = randomInt % 2 == 0 ? randomInt + 1 : randomInt;
+        final int width;
+        if (height > MID_SHIFT_VALUE) {
+            randomInt = random.nextInt(0, SCATTER);
+            width = height - (randomInt % 2 == 0 ? randomInt : randomInt + 1);
+        } else {
+            randomInt = random.nextInt(0, SCATTER);
+            width = height + (randomInt % 2 == 0 ? randomInt : randomInt + 1);
+        }
+        return new Labyrinth(height, width);
     }
 
     private boolean isKLeftNeighbourWay(Cell cell, int k) {
@@ -122,7 +129,7 @@ public class Labyrinth {
         canBeWays.get(random.nextInt(canBeWays.size())).setTypeToWay();
     }
 
-    public void createLabyrinth() {
+    private void createLabyrinth() {
         Random random = new Random();
         int randomInt = random.nextInt(1, height - 2);
         int x = randomInt % 2 == 0 ? randomInt + 1 : randomInt;
@@ -162,6 +169,7 @@ public class Labyrinth {
     }
 
     public List<Cell> findTheWay(Cell cellA, Cell cellB) {
+        clearWay();
         Cell firstCell = maze[cellA.x][cellA.y];
         Cell lastCell = maze[cellB.x][cellB.y];
         if (firstCell.type.equals(TypeOfCell.WALL) || lastCell.type.equals(TypeOfCell.WALL)) {
@@ -190,11 +198,13 @@ public class Labyrinth {
         return neighbours;
     }
 
-    public void clearWay(List<Cell> way) {
-        if (way != null) {
-            for (Cell o : way) {
-                o.setTypeToWay();
-                o.makeUnvisited();
+    private void clearWay() {
+        for (int i = 1; i < height - 1; ++i) {
+            for (int j = 1; j < width - 1; ++j) {
+                if (maze[i][j].type.equals(TypeOfCell.ROUTE) || maze[i][j].isVisited) {
+                    maze[i][j].setTypeToWay();
+                    maze[i][j].makeUnvisited();
+                }
             }
         }
     }

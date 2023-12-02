@@ -15,6 +15,13 @@ public class Cell {
         this.isVisited = false;
     }
 
+    public Cell(Cell cell) {
+        this.x = cell.x;
+        this.y = cell.y;
+        this.type = cell.type;
+        this.isVisited = cell.isVisited;
+    }
+
     public void setTypeToWay() {
         this.type = TypeOfCell.WAY;
     }
