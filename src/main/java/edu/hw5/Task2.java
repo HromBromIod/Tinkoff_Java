@@ -2,6 +2,8 @@ package edu.hw5;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjuster;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,12 +11,9 @@ public class Task2 {
     private Task2() {
     }
 
-    public static List<LocalDate> getFridayThirteenDats(Integer year) throws IllegalArgumentException {
-        if (year == null) {
-            throw new IllegalArgumentException("Invalid year!");
-        }
+    public static List<LocalDate> getFridayThirteenDats(int year) throws IllegalArgumentException {
         List<LocalDate> result = new ArrayList<>();
-        LocalDate date = LocalDate.parse(year + "-01-13");
+        LocalDate date = LocalDate.of(year, 1, 13);
         while (date.getYear() == year) {
             if (date.getDayOfWeek().equals(DayOfWeek.FRIDAY)) {
                 result.add(date);
@@ -29,12 +28,9 @@ public class Task2 {
             throw new IllegalArgumentException("Invalid date!");
         }
         final int thirteen = 13;
-        LocalDate nextFridayThirteenDate = date.plusDays(1);
+        LocalDate nextFridayThirteenDate = date.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
         while (nextFridayThirteenDate.getDayOfMonth() != thirteen) {
-            nextFridayThirteenDate = nextFridayThirteenDate.plusDays(1);
-        }
-        while (!nextFridayThirteenDate.getDayOfWeek().equals(DayOfWeek.FRIDAY)) {
-            nextFridayThirteenDate = nextFridayThirteenDate.plusMonths(1);
+            nextFridayThirteenDate = nextFridayThirteenDate.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
         }
         return nextFridayThirteenDate;
     }

@@ -14,12 +14,6 @@ public class Task2Test {
     }
 
     @Test
-    @DisplayName("null year test")
-    void nullYearTest() {
-        assertThrows(IllegalArgumentException.class, () -> getFridayThirteenDats(null));
-    }
-
-    @Test
     @DisplayName("1925 friday thirteen  test")
     void year1925Test() {
         List<LocalDate> actual = getFridayThirteenDats(1925);
