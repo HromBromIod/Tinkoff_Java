@@ -22,7 +22,7 @@ public class Task1 {
             + " (([0-1]\\d|2[0-4]):[0-5]\\d) - (\\d{4}-(0[1-9]|1[0-2])"
             + "-(0[1-9]|[1-2]\\d|3[0-1])), (([0-1]\\d|2[0-4]):[0-5]\\d)$");
 
-    public static Duration averageSessionTime(List<String> baseOfDats) {
+    public static String averageSessionTime(List<String> baseOfDats) {
         int sessionsCount = 0;
         int fullDuration = 0;
         if (baseOfDats != null && !baseOfDats.isEmpty()) {
@@ -51,6 +51,9 @@ public class Task1 {
         } else {
             throw new IllegalArgumentException("Incorrect base of dats!");
         }
-        return Duration.ofSeconds((long) fullDuration / sessionsCount);
+        final int MINUTES_AT_HOUR = 60;
+        long hours = Duration.ofSeconds((long) fullDuration / sessionsCount).toHours();
+        long minutes = Duration.ofSeconds((long) fullDuration / sessionsCount).toMinutes() - hours * MINUTES_AT_HOUR;
+        return hours + "ч " + minutes + 'м';
     }
 }
