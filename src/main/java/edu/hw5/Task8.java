@@ -13,6 +13,8 @@ public class Task8 {
     public static final Pattern STRING_PATTERN_2 = Pattern.compile("(^0([01]{2})*$)|(^(?=1)([01]{2})+$)");
     //каждый нечетный символ равен 1
     public static final Pattern STRING_PATTERN_5 = Pattern.compile("^(1([01]?))+$");
+    //нет последовательных 1
+    public static final Pattern STRING_PATTERN_7 = Pattern.compile("^(?![01]*1{2})[01]*$");
 
     public static boolean isValidString(String str, Pattern strPattern) {
         if (str != null && !str.isEmpty()) {

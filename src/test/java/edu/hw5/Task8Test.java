@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static edu.hw5.Task8.STRING_PATTERN_1;
 import static edu.hw5.Task8.STRING_PATTERN_2;
 import static edu.hw5.Task8.STRING_PATTERN_5;
+import static edu.hw5.Task8.STRING_PATTERN_7;
 import static edu.hw5.Task8.isValidString;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -73,5 +74,25 @@ public class Task8Test {
     @DisplayName("null string of string pattern 3")
     void invalidStringPattern3Null() {
         assertFalse(isValidString(null, STRING_PATTERN_5));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1010101", "001", "1001001"})
+    @DisplayName("valid string of string pattern 4")
+    void validStringPattern4(String strings) {
+        assertTrue(isValidString(strings, STRING_PATTERN_7));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1101", "011", "11111111011111111", "23", "", " "})
+    @DisplayName("invalid string of string pattern 4")
+    void invalidStringPattern4(String strings) {
+        assertFalse(isValidString(strings, STRING_PATTERN_7));
+    }
+
+    @Test
+    @DisplayName("null string of string pattern 4")
+    void invalidStringPattern4Null() {
+        assertFalse(isValidString(null, STRING_PATTERN_7));
     }
 }
