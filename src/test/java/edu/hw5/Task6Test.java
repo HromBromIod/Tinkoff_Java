@@ -32,6 +32,13 @@ public class Task6Test {
     }
 
     @Test
+    @DisplayName("specified string test")
+    void specifiedStringTest() {
+        boolean actual = isSubstring("123,123", ",");
+        assertTrue(actual);
+    }
+
+    @Test
     @DisplayName("is empty string is substring test")
     void emptyTest1() {
         boolean actual = isSubstring("abcdefg", "");
