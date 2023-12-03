@@ -9,6 +9,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 
+@SuppressWarnings("RegexpSinglelineJava")
 public class Client implements AutoCloseable {
     private final String clientName;
     private final Socket client;
@@ -37,10 +38,10 @@ public class Client implements AutoCloseable {
         }
     }
 
-    public void readFromServer() {
+    public String readFromServer() {
         try {
             String response = bufferedReader.readLine();
-            System.out.println("Сервер: " + response);
+            return "Сервер: " + response;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
