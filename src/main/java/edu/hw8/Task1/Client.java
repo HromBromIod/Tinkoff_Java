@@ -9,6 +9,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 
+@SuppressWarnings({"RegexpSinglelineJava", "MultipleStringLiterals"})
 public class Client implements AutoCloseable {
     private final String clientName;
     private final Socket client;

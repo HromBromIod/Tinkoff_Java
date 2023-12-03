@@ -1,5 +1,6 @@
 package edu.hw8.Task2;
 
+@SuppressWarnings("RegexpSinglelineJava")
 public class FibonacciNumber implements Runnable {
     private final int num;
 
