@@ -9,7 +9,6 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 
-@SuppressWarnings("RegexpSinglelineJava")
 public class Client implements AutoCloseable {
     private final String clientName;
     private final Socket client;
@@ -28,11 +27,12 @@ public class Client implements AutoCloseable {
         }
     }
 
-    public void sendToServer(String message) {
+    public String sendToServer(String message) {
         try {
             bufferedWriter.write(message);
             bufferedWriter.flush();
             System.out.println(clientName + ": " + message);
+            return clientName + ": " + message;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -41,6 +41,7 @@ public class Client implements AutoCloseable {
     public String readFromServer() {
         try {
             String response = bufferedReader.readLine();
+            System.out.println("Сервер: " + response);
             return "Сервер: " + response;
         } catch (IOException e) {
             throw new RuntimeException(e);
