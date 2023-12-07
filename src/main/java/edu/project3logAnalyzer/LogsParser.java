@@ -7,14 +7,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.jetbrains.annotations.NotNull;
 
-@SuppressWarnings("checkstyle:MultipleStringLiterals")
+@SuppressWarnings("MultipleStringLiterals")
 public class LogsParser {
     private final static String IP_ADDRESS_PATTERN = "\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b";
     private final static String ANY_STRING_PATTERN = ".*?";
     private final static String STATUS_PATTERN = "[1-5]\\d{2}";
     private final static String BYTES_COUNT_PATTERN = "\\d{1,}";
     private final static String DATE_TIME_PATTERN = "dd/MMM/yyyy:HH:mm:ss xxxx";
-    private static String generatedPattern;
+    private static final String GENERATED_PATTERN;
 
     static {
         StringBuilder builder = new StringBuilder();
@@ -37,7 +37,7 @@ public class LogsParser {
             .append("\"(").append(ANY_STRING_PATTERN).append(")\"") // $http_user_agent
             .append("$");
 
-        generatedPattern = builder.toString();
+        GENERATED_PATTERN = builder.toString();
     }
 
     private LogsParser() {
@@ -45,7 +45,7 @@ public class LogsParser {
 
     @SuppressWarnings("checkstyle:MagicNumber")
     public static LogString parseString(@NotNull String logString, String source) {
-        Matcher matcher = Pattern.compile(generatedPattern).matcher(logString);
+        Matcher matcher = Pattern.compile(GENERATED_PATTERN).matcher(logString);
 
         if (!matcher.find()) {
             return null;
