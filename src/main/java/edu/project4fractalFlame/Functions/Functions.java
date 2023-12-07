@@ -36,7 +36,38 @@ public class Functions {
             Coefficients.randomCoefficients(),
             List.of(
                 new Variation(ThreadLocalRandom.current().nextInt(1, 3), Fractal.HEART),
+                new Variation(ThreadLocalRandom.current().nextInt(1, 3), Fractal.EXPONENTIAL),
+                new Variation(ThreadLocalRandom.current().nextInt(1, 3), Fractal.POPCORN),
+                new Variation(ThreadLocalRandom.current().nextInt(1, 3), Fractal.DISC)
+            )
+        ),
+        new Function(
+            Coefficients.randomCoefficients(),
+            new RGB(),
+            Coefficients.randomCoefficients(),
+            List.of(
+                new Variation(ThreadLocalRandom.current().nextInt(1, 3), Fractal.HEART),
                 new Variation(ThreadLocalRandom.current().nextInt(1, 3), Fractal.DIAMOND)
+            )
+        ),
+        new Function(
+            Coefficients.randomCoefficients(),
+            new RGB(),
+            Coefficients.randomCoefficients(),
+            List.of(
+                new Variation(ThreadLocalRandom.current().nextInt(1, 3), Fractal.HEART),
+                new Variation(ThreadLocalRandom.current().nextInt(1, 3), Fractal.DIAMOND),
+                new Variation(ThreadLocalRandom.current().nextInt(1, 3), Fractal.WAVES)
+            )
+        ),
+        new Function(
+            Coefficients.randomCoefficients(),
+            new RGB(),
+            Coefficients.randomCoefficients(),
+            List.of(
+                new Variation(ThreadLocalRandom.current().nextInt(1, 3), Fractal.HEART),
+                new Variation(ThreadLocalRandom.current().nextInt(1, 3), Fractal.SINUSOIDAL),
+                new Variation(ThreadLocalRandom.current().nextInt(1, 3), Fractal.DISC)
             )
         ),
         new Function(
@@ -55,6 +86,15 @@ public class Functions {
             List.of(
                 new Variation(ThreadLocalRandom.current().nextInt(1, 3), Fractal.HEART),
                 new Variation(ThreadLocalRandom.current().nextInt(1, 3), Fractal.SPIRAL)
+            )
+        ),
+        new Function(
+            Coefficients.randomCoefficients(),
+            new RGB(),
+            Coefficients.randomCoefficients(),
+            List.of(
+                new Variation(ThreadLocalRandom.current().nextInt(1, 3), Fractal.HEART),
+                new Variation(ThreadLocalRandom.current().nextInt(1, 3), Fractal.EXPONENTIAL)
             )
         ),
         new Function(

@@ -9,6 +9,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class FractalFlame {
@@ -20,6 +21,7 @@ public class FractalFlame {
     private final ReentrantLock lock = new ReentrantLock();
     private final ExecutorService executorService;
     private final Pixel[][] displayMatrix;
+    private final double gamma;
     private final boolean symmetry;
 
     public FractalFlame(
@@ -28,14 +30,15 @@ public class FractalFlame {
         int samples,
         int countOfIterations,
         int countOfThreads,
+        double gamma,
         boolean symmetry
     ) {
         RESOLUTION_X = resolutionX;
         RESOLUTION_Y = resolutionY;
         this.countOfThreads = countOfThreads;
-        //this.samplesPerThread = samples / countOfThreads;
-        this.samplesPerThread = samples;
+        this.samplesPerThread = samples / countOfThreads;
         this.iterationsPerSample = countOfIterations;
+        this.gamma = gamma;
         this.symmetry = symmetry;
         executorService = Executors.newFixedThreadPool(countOfThreads);
         displayMatrix = new Pixel[RESOLUTION_X][RESOLUTION_Y];
@@ -46,45 +49,89 @@ public class FractalFlame {
         }
     }
 
+    public Pixel[][] gammaCorrection(Pixel[][] display) {
+        var tasks = IntStream.range(0, countOfThreads)
+            .mapToObj(numberOfThreads -> CompletableFuture.runAsync(
+                    () -> {
+                        double max = 0;
+                        for (int x = numberOfThreads; x < RESOLUTION_X; x += countOfThreads) {
+                            for (int y = 0; y < RESOLUTION_Y; ++y) {
+                                if (display[x][y].getHitCounter() != 0) {
+                                    display[x][y].setNormal(Math.log10(display[x][y].getHitCounter()));
+                                    if (display[x][y].getNormal() > max) {
+                                        max = display[x][y].getNormal();
+                                    }
+                                }
+                            }
+                        }
+                        for (int x = numberOfThreads; x < RESOLUTION_X; x += countOfThreads) {
+                            for (int y = 0; y < RESOLUTION_Y; ++y) {
+                                display[x][y].setNormal(display[x][y].getNormal() / max);
+                                double gammaCoefficient = Math.pow(display[x][y].getNormal(), (1.0 / gamma));
+                                display[x][y].getColour().setRed(
+                                    (int) (display[x][y].getColour().getRed() * gammaCoefficient)
+                                );
+                                display[x][y].getColour().setGreen(
+                                    (int) (display[x][y].getColour().getGreen() * gammaCoefficient)
+                                );
+                                display[x][y].getColour().setBlue(
+                                    (int) (display[x][y].getColour().getBlue() * gammaCoefficient)
+                                );
+                            }
+                        }
+                    },
+                    executorService
+                )
+            )
+            .limit(countOfThreads)
+            .toArray(CompletableFuture[]::new);
+
+        CompletableFuture.allOf(tasks).join();
+        return display;
+    }
+
     public void renderFractalFlame() {
-        renderPerThread();
-        /*var tasks = Stream.generate(() -> CompletableFuture.runAsync(
+        //renderPerThread();
+        var tasks = Stream.generate(() -> CompletableFuture.runAsync(
                 this::renderPerThread,
                 executorService
             ))
             .limit(countOfThreads)
             .toArray(CompletableFuture[]::new);
-        CompletableFuture.allOf(tasks).join();*/
+        CompletableFuture.allOf(tasks).join();
     }
 
     private void renderPerThread() {
         for (int i = 0; i < iterationsPerSample; ++i) {
-            final double x_MIN = -1.777;
-            final double x_MAX = 1.777;
+            final double x_MIN = -((double) RESOLUTION_X / RESOLUTION_Y);
+            final double x_MAX = (double) RESOLUTION_X / RESOLUTION_Y;
             final int y_MIN = -1;
             final int y_MAX = 1;
             double newX = ThreadLocalRandom.current().nextDouble(x_MIN, x_MAX);
             double newY = ThreadLocalRandom.current().nextDouble(y_MIN, y_MAX);
             final int MINIMAL_COUNT_OF_ITERATIONS = 20;
             for (int j = -MINIMAL_COUNT_OF_ITERATIONS; j < samplesPerThread; ++j) {
-                Point point = tramsformPoint(Functions.getFunction(), newX, newY, j);
+                Function function = Functions.getFunction();
+                Point point = tramsformPoint(function, newX, newY, j);
                 newX = point.x();
                 newY = point.y();
                 if (j >= 0 && point.isPointlInRange(x_MIN, x_MAX, y_MIN, y_MAX)) {
-                    int x = (int) ((RESOLUTION_X - newX) / (x_MAX - x_MIN) * RESOLUTION_X);
-                    int y = (int) ((RESOLUTION_Y - newY) / (y_MAX - y_MIN) * RESOLUTION_Y);
+                    double x = ((point.x() - x_MIN) / (x_MAX - x_MIN) * RESOLUTION_X);
+                    double y = ((point.y() - y_MIN) / (y_MAX - y_MIN) * RESOLUTION_Y);
                     if (isPointOnDisplay(new Point(x, y))) {
                         try {
                             lock.lock();
-                            displayMatrix[x][y].incrementCounter();
-                            displayMatrix[x][y].getColour()
-                                .setRed((displayMatrix[x][y].getColour().getRed() /*+ function.rgb().getRed()*/) / 2);
-                            displayMatrix[x][y].getColour()
+                            int X = (int) x;
+                            int Y = (int) y;
+                            displayMatrix[X][Y].incrementCounter();
+                            displayMatrix[X][Y].getColour()
+                                .setRed((displayMatrix[X][Y].getColour().getRed() + function.colour().getRed()) / 2);
+                            displayMatrix[X][Y].getColour()
                                 .setGreen(
-                                    (displayMatrix[x][y].getColour().getGreen() /*+ function.rgb().getGreen()*/) / 2);
-                            displayMatrix[x][y].getColour()
+                                    (displayMatrix[X][Y].getColour().getGreen() + function.colour().getGreen()) / 2);
+                            displayMatrix[X][Y].getColour()
                                 .setBlue(
-                                    (displayMatrix[x][y].getColour().getBlue() /*+ function.rgb().getBlue()*/) / 2);
+                                    (displayMatrix[X][Y].getColour().getBlue() + function.colour().getBlue()) / 2);
                         } finally {
                             lock.unlock();
                         }
@@ -110,9 +157,11 @@ public class FractalFlame {
         }
 
         newX =
-            function.coefficients().a() * fixedX + function.coefficients().b() * fixedY + function.coefficients().c();
+            function.finalTransform().a() * fixedX + function.finalTransform().b() * fixedY +
+                function.finalTransform().c();
         newY =
-            function.coefficients().d() * fixedX + function.coefficients().e() * fixedY + function.coefficients().f();
+            function.finalTransform().d() * fixedX + function.finalTransform().e() * fixedY +
+                function.finalTransform().f();
 
         if (symmetry) {
             if (iterationNumber % 4 == 0) {

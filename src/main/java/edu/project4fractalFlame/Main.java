@@ -8,13 +8,12 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        //var start = System.nanoTime();
-        FractalFlame flame = new FractalFlame(100, 100, 5_000, 1_500, 4, false);
+        int resolutionX = 1920;
+        int resolutionY = 1080;
+        FractalFlame flame = new FractalFlame(resolutionX, resolutionY, 30_000, 5_000, 6, 0.7, true);
         flame.renderFractalFlame();
-        Pixel[][] image = flame.getDisplayMatrix();
-        //var end = System.nanoTime() - start;
-        //System.out.println(end);
-        FractalFlameDrawer drawerFlame = new FractalFlameDrawer(2560, 1440);
+        Pixel[][] image = flame.gammaCorrection(flame.getDisplayMatrix());
+        FractalFlameDrawer drawerFlame = new FractalFlameDrawer(resolutionX, resolutionY);
         drawerFlame.drawFlame(image);
         drawerFlame.saveToFile();
     }
