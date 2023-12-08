@@ -11,8 +11,8 @@ public class Functions {
     private Functions() {
     }
 
-    private static final Coefficients defaultCoefficients = new Coefficients(1, 0, 0, 0, 1, 0);
-    private static final Coefficients defaulttFinalTransformation =
+    private static final Coefficients DEFAULT_COEFFICIENTS = new Coefficients(1, 0, 0, 0, 1, 0);
+    private static final Coefficients DEFAULT_FINAL_TRANSFORMATION =
         new Coefficients(1, 0, 0, 0, 1, 0);
 
     private static final List<Function> FUNCTIONS = List.of(

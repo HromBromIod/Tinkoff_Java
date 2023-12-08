@@ -2,6 +2,7 @@ package edu.project4fractalFlame.Fractal;
 
 import edu.project4fractalFlame.Resourses.Point;
 
+@SuppressWarnings("MagicNumber")
 public class Fractal {
     private Fractal() {
     }

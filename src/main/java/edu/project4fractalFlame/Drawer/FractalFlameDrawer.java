@@ -3,11 +3,11 @@ package edu.project4fractalFlame.Drawer;
 import edu.project4fractalFlame.Resourses.Pixel;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
