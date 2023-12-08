@@ -8,7 +8,8 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@SuppressWarnings({"UncommentedMain", "MagicNumber"}) public class Task6 {
+@SuppressWarnings({"UncommentedMain", "MagicNumber", "ConstantName"})
+public class Task6 {
     private Task6() {
     }
 

@@ -10,7 +10,7 @@ import java.nio.file.Path;
 import java.util.zip.Adler32;
 import java.util.zip.CheckedOutputStream;
 
-@SuppressWarnings("uncommentedmain")
+@SuppressWarnings({"uncommentedmain", "NestedTryDepth"})
 public class Task4 {
     private Task4() {
     }
