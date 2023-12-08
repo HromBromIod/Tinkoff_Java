@@ -11,11 +11,9 @@ public class Functions {
     private Functions() {
     }
 
-    private static Coefficients defaultCoefficients = new Coefficients(1, 0, 0, 0, 1, 0);
-    private static Coefficients defaulttFinalTransformation =
+    private static final Coefficients defaultCoefficients = new Coefficients(1, 0, 0, 0, 1, 0);
+    private static final Coefficients defaulttFinalTransformation =
         new Coefficients(1, 0, 0, 0, 1, 0);
-
-    private static int defaultWeight = 1;
 
     private static final List<Function> FUNCTIONS = List.of(
         new Function(
@@ -28,6 +26,26 @@ public class Functions {
                 new Variation(ThreadLocalRandom.current().nextInt(1, 3), Fractal.POPCORN),
                 new Variation(ThreadLocalRandom.current().nextInt(1, 3), Fractal.SWIRL),
                 new Variation(ThreadLocalRandom.current().nextInt(1, 3), Fractal.DISC)
+            )
+        ),
+        new Function(
+            Coefficients.randomCoefficients(),
+            new RGB(),
+            Coefficients.randomCoefficients(),
+            List.of(
+                new Variation(ThreadLocalRandom.current().nextInt(1, 3), Fractal.FISHEYE),
+                new Variation(ThreadLocalRandom.current().nextInt(1, 3), Fractal.SPHERICAL),
+                new Variation(ThreadLocalRandom.current().nextInt(1, 3), Fractal.TANGENT)
+            )
+        ),
+        new Function(
+            Coefficients.randomCoefficients(),
+            new RGB(),
+            Coefficients.randomCoefficients(),
+            List.of(
+                new Variation(ThreadLocalRandom.current().nextInt(1, 3), Fractal.EYEFISH),
+                new Variation(ThreadLocalRandom.current().nextInt(1, 3), Fractal.BUBBLE),
+                new Variation(ThreadLocalRandom.current().nextInt(1, 3), Fractal.TANGENT)
             )
         ),
         new Function(

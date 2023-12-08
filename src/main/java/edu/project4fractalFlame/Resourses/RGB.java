@@ -2,6 +2,7 @@ package edu.project4fractalFlame.Resourses;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+@SuppressWarnings("MagicNumber")
 public class RGB {
     private int red;
     private int green;

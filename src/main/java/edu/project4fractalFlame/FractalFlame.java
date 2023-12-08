@@ -12,9 +12,10 @@ import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+@SuppressWarnings("MagicNumber")
 public class FractalFlame {
-    private final int RESOLUTION_X;
-    private final int RESOLUTION_Y;
+    private final int resolutionX;
+    private final int resolutionY;
     private final int countOfThreads;
     private final int samplesPerThread;
     private final int iterationsPerSample;
@@ -33,17 +34,17 @@ public class FractalFlame {
         double gamma,
         boolean symmetry
     ) {
-        RESOLUTION_X = resolutionX;
-        RESOLUTION_Y = resolutionY;
+        this.resolutionX = resolutionX;
+        this.resolutionY = resolutionY;
         this.countOfThreads = countOfThreads;
         this.samplesPerThread = samples / countOfThreads;
         this.iterationsPerSample = countOfIterations;
         this.gamma = gamma;
         this.symmetry = symmetry;
         executorService = Executors.newFixedThreadPool(countOfThreads);
-        displayMatrix = new Pixel[RESOLUTION_X][RESOLUTION_Y];
-        for (int i = 0; i < RESOLUTION_X; ++i) {
-            for (int j = 0; j < RESOLUTION_Y; ++j) {
+        displayMatrix = new Pixel[resolutionX][resolutionY];
+        for (int i = 0; i < resolutionX; ++i) {
+            for (int j = 0; j < resolutionY; ++j) {
                 displayMatrix[i][j] = new Pixel();
             }
         }
@@ -54,8 +55,8 @@ public class FractalFlame {
             .mapToObj(numberOfThreads -> CompletableFuture.runAsync(
                     () -> {
                         double max = 0;
-                        for (int x = numberOfThreads; x < RESOLUTION_X; x += countOfThreads) {
-                            for (int y = 0; y < RESOLUTION_Y; ++y) {
+                        for (int x = numberOfThreads; x < resolutionX; x += countOfThreads) {
+                            for (int y = 0; y < resolutionY; ++y) {
                                 if (display[x][y].getHitCounter() != 0) {
                                     display[x][y].setNormal(Math.log10(display[x][y].getHitCounter()));
                                     if (display[x][y].getNormal() > max) {
@@ -64,8 +65,8 @@ public class FractalFlame {
                                 }
                             }
                         }
-                        for (int x = numberOfThreads; x < RESOLUTION_X; x += countOfThreads) {
-                            for (int y = 0; y < RESOLUTION_Y; ++y) {
+                        for (int x = numberOfThreads; x < resolutionX; x += countOfThreads) {
+                            for (int y = 0; y < resolutionY; ++y) {
                                 display[x][y].setNormal(display[x][y].getNormal() / max);
                                 double gammaCoefficient = Math.pow(display[x][y].getNormal(), (1.0 / gamma));
                                 display[x][y].getColour().setRed(
@@ -103,8 +104,8 @@ public class FractalFlame {
 
     private void renderPerThread() {
         for (int i = 0; i < iterationsPerSample; ++i) {
-            final double x_MIN = -((double) RESOLUTION_X / RESOLUTION_Y);
-            final double x_MAX = (double) RESOLUTION_X / RESOLUTION_Y;
+            final double x_MIN = -((double) resolutionX / resolutionY);
+            final double x_MAX = (double) resolutionX / resolutionY;
             final int y_MIN = -1;
             final int y_MAX = 1;
             double newX = ThreadLocalRandom.current().nextDouble(x_MIN, x_MAX);
@@ -116,22 +117,26 @@ public class FractalFlame {
                 newX = point.x();
                 newY = point.y();
                 if (j >= 0 && point.isPointlInRange(x_MIN, x_MAX, y_MIN, y_MAX)) {
-                    double x = ((point.x() - x_MIN) / (x_MAX - x_MIN) * RESOLUTION_X);
-                    double y = ((point.y() - y_MIN) / (y_MAX - y_MIN) * RESOLUTION_Y);
+                    double x = ((point.x() - x_MIN) / (x_MAX - x_MIN) * resolutionX);
+                    double y = ((point.y() - y_MIN) / (y_MAX - y_MIN) * resolutionY);
                     if (isPointOnDisplay(new Point(x, y))) {
                         try {
                             lock.lock();
-                            int X = (int) x;
-                            int Y = (int) y;
-                            displayMatrix[X][Y].incrementCounter();
-                            displayMatrix[X][Y].getColour()
-                                .setRed((displayMatrix[X][Y].getColour().getRed() + function.colour().getRed()) / 2);
-                            displayMatrix[X][Y].getColour()
+                            int pixelX = (int) x;
+                            int pixelY = (int) y;
+                            displayMatrix[pixelX][pixelY].incrementCounter();
+                            displayMatrix[pixelX][pixelY].getColour()
+                                .setRed(
+                                    (displayMatrix[pixelX][pixelY].getColour().getRed() + function.colour().getRed())
+                                        / 2);
+                            displayMatrix[pixelX][pixelY].getColour()
                                 .setGreen(
-                                    (displayMatrix[X][Y].getColour().getGreen() + function.colour().getGreen()) / 2);
-                            displayMatrix[X][Y].getColour()
+                                    (displayMatrix[pixelX][pixelY].getColour().getGreen()
+                                        + function.colour().getGreen()) / 2);
+                            displayMatrix[pixelX][pixelY].getColour()
                                 .setBlue(
-                                    (displayMatrix[X][Y].getColour().getBlue() + function.colour().getBlue()) / 2);
+                                    (displayMatrix[pixelX][pixelY].getColour().getBlue()
+                                        + function.colour().getBlue()) / 2);
                         } finally {
                             lock.unlock();
                         }
@@ -157,11 +162,11 @@ public class FractalFlame {
         }
 
         newX =
-            function.finalTransform().a() * fixedX + function.finalTransform().b() * fixedY +
-                function.finalTransform().c();
+            function.finalTransform().a() * fixedX + function.finalTransform().b() * fixedY
+                + function.finalTransform().c();
         newY =
-            function.finalTransform().d() * fixedX + function.finalTransform().e() * fixedY +
-                function.finalTransform().f();
+            function.finalTransform().d() * fixedX + function.finalTransform().e() * fixedY
+                + function.finalTransform().f();
 
         if (symmetry) {
             if (iterationNumber % 4 == 0) {
@@ -181,6 +186,6 @@ public class FractalFlame {
     }
 
     public boolean isPointOnDisplay(Point point) {
-        return 0 <= point.x() && point.x() < RESOLUTION_X && 0 <= point.y() && point.y() < RESOLUTION_Y;
+        return 0 <= point.x() && point.x() < resolutionX && 0 <= point.y() && point.y() < resolutionY;
     }
 }

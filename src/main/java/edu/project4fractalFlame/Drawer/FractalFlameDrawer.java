@@ -1,15 +1,15 @@
 package edu.project4fractalFlame.Drawer;
 
 import edu.project4fractalFlame.Resourses.Pixel;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class FractalFlameDrawer extends JFrame {
     private final BufferedImage image;
@@ -35,9 +35,9 @@ public class FractalFlameDrawer extends JFrame {
     }
 
     public void saveToFile() {
-        File outputFile = new File(UUID.randomUUID() + ".png");
+        File outputFile = new File(UUID.randomUUID() + ".bmp");
         try {
-            ImageIO.write(image, "png", outputFile);
+            ImageIO.write(image, "bmp", outputFile);
         } catch (IOException e) {
             LOGGER.warn(e.getMessage());
         }
