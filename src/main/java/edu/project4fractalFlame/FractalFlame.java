@@ -22,7 +22,6 @@ public class FractalFlame {
     private final ReentrantLock lock = new ReentrantLock();
     private final ExecutorService executorService;
     private final Pixel[][] displayMatrix;
-    private final double gamma;
     private final boolean symmetry;
 
     public FractalFlame(
@@ -31,15 +30,16 @@ public class FractalFlame {
         int samples,
         int countOfIterations,
         int countOfThreads,
-        double gamma,
         boolean symmetry
     ) {
+        if (resolutionX < 1 || resolutionY < 1 || countOfThreads < 1 || samples < 1 || countOfIterations < 1) {
+            throw new IllegalArgumentException();
+        }
         this.resolutionX = resolutionX;
         this.resolutionY = resolutionY;
         this.countOfThreads = countOfThreads;
         this.samplesPerThread = samples / countOfThreads;
         this.iterationsPerSample = countOfIterations;
-        this.gamma = gamma;
         this.symmetry = symmetry;
         executorService = Executors.newFixedThreadPool(countOfThreads);
         displayMatrix = new Pixel[resolutionX][resolutionY];
@@ -50,7 +50,7 @@ public class FractalFlame {
         }
     }
 
-    public Pixel[][] gammaCorrection(Pixel[][] display) {
+    public Pixel[][] gammaCorrection(Pixel[][] display, double gamma) {
         var tasks = IntStream.range(0, countOfThreads)
             .mapToObj(numberOfThreads -> CompletableFuture.runAsync(
                     () -> {

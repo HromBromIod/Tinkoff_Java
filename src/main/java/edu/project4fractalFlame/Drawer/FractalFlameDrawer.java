@@ -35,9 +35,9 @@ public class FractalFlameDrawer extends JFrame {
     }
 
     public void saveToFile() {
-        File outputFile = new File(UUID.randomUUID() + ".bmp");
+        File outputFile = new File(UUID.randomUUID() + ".png");
         try {
-            ImageIO.write(image, "bmp", outputFile);
+            ImageIO.write(image, "png", outputFile);
         } catch (IOException e) {
             LOGGER.warn(e.getMessage());
         }
