@@ -51,6 +51,9 @@ public class FractalFlame {
     }
 
     public Pixel[][] gammaCorrection(Pixel[][] display, double gamma) {
+        if (gamma <= 0 || display == null) {
+            throw new IllegalArgumentException();
+        }
         var tasks = IntStream.range(0, countOfThreads)
             .mapToObj(numberOfThreads -> CompletableFuture.runAsync(
                     () -> {
@@ -185,7 +188,7 @@ public class FractalFlame {
         return displayMatrix;
     }
 
-    public boolean isPointOnDisplay(Point point) {
+    private boolean isPointOnDisplay(Point point) {
         return 0 <= point.x() && point.x() < resolutionX && 0 <= point.y() && point.y() < resolutionY;
     }
 }
