@@ -8,17 +8,12 @@ public class Task2 {
     private Task2() {
     }
 
-    public static boolean cloneFile(Path path) {
+    public static boolean cloneFile(Path path) throws IOException {
         boolean result = false;
         if (path != null && !path.toString().isEmpty() && Files.exists(path)) {
             Path newFilePath = createPath(path);
-            try {
-                Files.copy(path, newFilePath);
-                result = true;
-
-            } catch (IOException exception) {
-                throw new RuntimeException(exception);
-            }
+            Files.copy(path, newFilePath);
+            result = true;
         }
         return result;
     }

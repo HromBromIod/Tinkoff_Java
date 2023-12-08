@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
     private Task6() {
     }
 
-    private final static Logger LOGGER = LogManager.getLogger();
+    private final static Logger logger = LogManager.getLogger();
 
     private static final String TCP_PROTOCOL = "TCP";
 
@@ -23,6 +23,11 @@ import org.apache.logging.log4j.Logger;
     private static final String OUTPUT_FORMAT = "%-10s%-7s%-10s";
 
     private static final int MAX_PORT_NUMBER = 49151;
+
+    static {
+        setConnections();
+        scanPort();
+    }
 
     public static void setConnections() {
         MAP_OF_CONNECTION.put(23, "Telnet");
@@ -47,19 +52,14 @@ import org.apache.logging.log4j.Logger;
         MAP_OF_CONNECTION.put(27017, "MongoDB");
     }
 
-    public static void main(String[] args) {
-        setConnections();
-        scanPort();
-    }
-
     public static void scanPort() {
-        LOGGER.info(OUTPUT_FORMAT.formatted("Протокол", "Порт", "Сервис"));
+        logger.info(OUTPUT_FORMAT.formatted("Протокол", "Порт", "Сервис"));
         for (int portNumber = 0; portNumber < MAX_PORT_NUMBER; ++portNumber) {
             try {
                 ServerSocket serverSocket = new ServerSocket(portNumber);
                 serverSocket.close();
             } catch (IOException ignoreException) {
-                LOGGER.info(OUTPUT_FORMAT.formatted(
+                logger.info(OUTPUT_FORMAT.formatted(
                     TCP_PROTOCOL,
                     portNumber,
                     MAP_OF_CONNECTION.getOrDefault(portNumber, "")
@@ -69,7 +69,7 @@ import org.apache.logging.log4j.Logger;
                 DatagramSocket datagramSocket = new DatagramSocket(portNumber);
                 datagramSocket.close();
             } catch (IOException ignoreException) {
-                LOGGER.info(OUTPUT_FORMAT.formatted(
+                logger.info(OUTPUT_FORMAT.formatted(
                     UDP_PROTOCOL,
                     portNumber,
                     MAP_OF_CONNECTION.getOrDefault(portNumber, "")

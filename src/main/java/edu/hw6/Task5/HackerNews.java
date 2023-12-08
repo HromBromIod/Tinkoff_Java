@@ -15,7 +15,7 @@ public class HackerNews {
     private static final int BEGIN_TITLE_INDEX = 9;
     private static final int BEGIN_PARENT_INDEX = 9;
 
-    public static long[] hackerNewsTopStories() {
+    public static long[] hackerNewsTopStories() throws IOException, InterruptedException {
         long[] data;
         try (HttpClient client = HttpClient.newHttpClient()) {
             HttpRequest request =
@@ -28,8 +28,6 @@ public class HackerNews {
             for (int i = 1; i < splitSize; i++) {
                 data[i - 1] = Long.parseLong(splitResponseBody[i]);
             }
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
         }
         return data;
     }
