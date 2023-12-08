@@ -41,7 +41,7 @@ public class Task3Test {
 
     @Test
     @DisplayName("magicNumber test")
-    void magicNumberTest() throws FileNotFoundException {
+    void magicNumberTest() throws FileNotFoundException, IOException {
         List<Path> list = new ArrayList<>();
         List<Path> expected = List.of(
             Path.of("src/main/java/edu/hw6/Task3/files/132.txt")
@@ -52,8 +52,6 @@ public class Task3Test {
             for (var entry : entries) {
                 list.add(entry);
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
 
         assertEquals(expected, list);

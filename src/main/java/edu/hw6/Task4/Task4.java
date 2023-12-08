@@ -15,15 +15,19 @@ public class Task4 {
     private Task4() {
     }
 
-    public static void main(String[] args) {
-        try (PrintWriter printWriter = new PrintWriter(new OutputStreamWriter(
-            new BufferedOutputStream(new CheckedOutputStream(Files.newOutputStream(Path.of(
-                "src/main/java/edu/hw6/Task4/Brian Kernighan.txt")), new Adler32())),
-            StandardCharsets.UTF_8
-        ))) {
-            printWriter.write("Programming is learned by writing programs. ― Brian Kernighan");
-        } catch (IOException | NullPointerException e) {
-            throw new RuntimeException(e);
+    public static void main(String[] args) throws IOException {
+        try (var fos = Files.newOutputStream(Path.of("src/main/java/edu/hw6/Task4/Brian Kernighan.txt"))) {
+            try (var cos = new CheckedOutputStream(fos, new Adler32())) {
+                try (var bos = new BufferedOutputStream(cos)) {
+                    try (var osw = new OutputStreamWriter(bos, StandardCharsets.UTF_8)) {
+                        try (var printWriter = new PrintWriter(osw)) {
+                            printWriter.write("Programming is learned by writing programs. ― Brian Kernighan");
+                        }
+                    }
+                }
+            }
+        } catch (NullPointerException e) {
+            throw new IllegalArgumentException(e);
         }
     }
 }
