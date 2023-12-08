@@ -24,14 +24,12 @@ public class Filter {
         return (entry) -> entry.toString().matches(pattern);
     }
 
-    public static AbstractFilter magicNumber(char... chars) {
+    public static AbstractFilter magicNumber(char... chars) throws FileNotFoundException {
         final int charsCount = chars.length;
         return (entry) -> {
             char[] charsFromFile = new char[charsCount];
             try (BufferedReader bufferedReader = new BufferedReader(new FileReader(entry.toFile()))) {
                 bufferedReader.read(charsFromFile, 0, charsCount);
-            } catch (FileNotFoundException exception) {
-                throw new RuntimeException(exception);
             }
             return Arrays.equals(chars, charsFromFile);
         };

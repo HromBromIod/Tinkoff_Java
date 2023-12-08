@@ -3,6 +3,7 @@ package edu.hw6;
 import edu.hw6.Task3.Filter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
@@ -40,7 +41,7 @@ public class Task3Test {
 
     @Test
     @DisplayName("magicNumber test")
-    void magicNumberTest() {
+    void magicNumberTest() throws FileNotFoundException {
         List<Path> list = new ArrayList<>();
         List<Path> expected = List.of(
             Path.of("src/main/java/edu/hw6/Task3/files/132.txt")
