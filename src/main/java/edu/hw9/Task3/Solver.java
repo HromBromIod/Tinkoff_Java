@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Stack;
 import java.util.concurrent.RecursiveTask;
 
+@SuppressWarnings("CyclomaticComplexity")
 public class Solver extends RecursiveTask<List<Cell>> {
     private final Stack<Cell> cellStack;
     private final Labyrinth labyrinth;
