@@ -37,4 +37,20 @@ public class Cell {
     public void makeUnvisited() {
         this.isVisited = false;
     }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public TypeOfCell getType() {
+        return type;
+    }
+
+    public boolean getIsVisited() {
+        return isVisited;
+    }
 }
