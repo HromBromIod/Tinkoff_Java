@@ -1,11 +1,11 @@
 package edu.hw9.Task1;
 
-import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 
 public class StatsCollector {
     private final BlockingQueue<Metric> collector;
+
     public StatsCollector(int collectorSize) {
         collector = new LinkedBlockingDeque<>(collectorSize);
     }
