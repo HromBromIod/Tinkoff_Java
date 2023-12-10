@@ -1,14 +1,14 @@
 package edu.hw9;
 
 import edu.hw9.Task3.Solver;
-import edu.project2labyrinth.Cell;
-import edu.project2labyrinth.Labyrinth;
+import edu.hw9.Task3.Cell;
+import edu.hw9.Task3.Labyrinth;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.List;
+import java.util.Stack;
 import java.util.concurrent.ForkJoinPool;
-import static edu.hw9.Task3.Solver.compareCells;
-import static edu.project2labyrinth.Labyrinth.generateLabyrinth;
+import static edu.hw9.Task3.Cell.compare;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Task3Test {
@@ -16,7 +16,7 @@ public class Task3Test {
     }
 
     @Test
-    @DisplayName("sdfg")
+    @DisplayName("solver's way equals labyrinth's way")
     void test() {
         Cell[][] maze = new Cell[9][9];
         for (int i = 0; i < 9; ++i) {
@@ -64,21 +64,20 @@ public class Task3Test {
         maze[7][7].setTypeToWay();
 
         Labyrinth labyrinth = new Labyrinth(maze, 9, 9);
-        List<Cell> wayLabyrinth = labyrinth.findTheWay(new Cell(1, 1), new Cell(7, 7));
+        List<Cell> way = labyrinth.findTheWay(new Cell(1, 1), new Cell(7, 7));
 
-        Solver solver = new Solver(maze, 9, 9);
-        solver.setStartEndCells(new Cell(1, 1), new Cell(7, 7));
+        Labyrinth labyrinthWithSolver = new Labyrinth(maze, 9, 9);
         ForkJoinPool forkJoinPool = new ForkJoinPool();
+        Solver solver = new Solver(new Stack<>(), labyrinthWithSolver, maze[1][1], maze[7][7]);
+        List<Cell> wayFromSolver = forkJoinPool.invoke(solver);
 
-        List<Cell> waySolver = forkJoinPool.invoke(solver);
         boolean actual = true;
         boolean expected = true;
-        for (int i = 0, j = 0; i < wayLabyrinth.size() && j < waySolver.size() && actual; ++i, ++j) {
-            if (!compareCells(wayLabyrinth.get(i), waySolver.get(j))) {
+        for (int i = 0, j = 0; i < way.size() && j < wayFromSolver.size() && actual; ++i, ++j) {
+            if (!compare(way.get(i), wayFromSolver.get(j))) {
                 actual = false;
             }
         }
         assertEquals(expected, actual);
-        forkJoinPool.close();
     }
 }
