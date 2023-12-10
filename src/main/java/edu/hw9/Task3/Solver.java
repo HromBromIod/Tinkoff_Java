@@ -8,6 +8,7 @@ import java.util.Random;
 import java.util.Stack;
 import java.util.concurrent.RecursiveTask;
 
+@SuppressWarnings({"CyclomaticComplexity", "RegexpSinglelineJava"})
 public class Solver extends RecursiveTask<List<Cell>> {
     private static final int MAX_HEIGHT_OR_WIDTH = 39;
     private static final int MIN_HEIGHT_OR_WIDTH = 9;
