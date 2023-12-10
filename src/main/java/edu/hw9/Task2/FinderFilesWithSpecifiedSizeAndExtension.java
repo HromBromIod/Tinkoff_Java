@@ -16,7 +16,12 @@ public class FinderFilesWithSpecifiedSizeAndExtension extends RecursiveTask<List
     private final List<Path> answer;
     private final Path currentPath;
 
-    public FinderFilesWithSpecifiedSizeAndExtension(long sizeInBytes, String extension, List<Path> answer, Path currentPath) {
+    public FinderFilesWithSpecifiedSizeAndExtension(
+        long sizeInBytes,
+        String extension,
+        List<Path> answer,
+        Path currentPath
+    ) {
         this.sizeInBytes = sizeInBytes;
         this.extension = extension;
         this.answer = answer;
