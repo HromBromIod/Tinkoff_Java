@@ -94,17 +94,20 @@ public class Solver extends RecursiveTask<List<Cell>> {
                 }
                 if (neighbours.isEmpty()) {
                     cellStack.pop();
-                    if (!cellStack.isEmpty()) {
-                        currentCell = cellStack.peek();
-                    }
+                }
+                if (!cellStack.isEmpty()) {
+                    currentCell = cellStack.peek();
                 }
             }
+        }
+        for (Cell cell : way) {
+            cell.setTypeToRoute();
         }
         return way;
     }
 
     private void recursive(List<Cell> neighbours, Cell currentCell, List<Cell> way) {
-        if (way.size() <= 1) {
+        if (neighbours.size() <= 1) {
             cellStack.add(currentCell);
             currentCell.makeVisited();
         } else {

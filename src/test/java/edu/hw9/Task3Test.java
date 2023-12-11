@@ -73,11 +73,15 @@ public class Task3Test {
 
         boolean actual = true;
         boolean expected = true;
-        for (int i = 0, j = 0; i < way.size() && j < wayFromSolver.size() && actual; ++i, ++j) {
+        for (int i = 0, j = 0; i < way.size() && j < wayFromSolver.size(); ++i, ++j) {
             if (!compare(way.get(i), wayFromSolver.get(j))) {
                 actual = false;
+                break;
             }
         }
+
+        assertEquals(way.size(), wayFromSolver.size());
         assertEquals(expected, actual);
+        forkJoinPool.close();
     }
 }
