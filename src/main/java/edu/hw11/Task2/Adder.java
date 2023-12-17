@@ -1,7 +1,7 @@
 package edu.hw11.Task2;
 
 public class Adder {
-    public Adder() {
+    private Adder() {
     }
 
     public int sum(int a, int b) {
