@@ -11,7 +11,7 @@ public class Task1Test {
     }
 
     @Test
-    @DisplayName("toString is \"Hello, ByteBuddy!\"")
+    @DisplayName("toString to \"Hello, ByteBuddy!\"")
     void runtimeToStringImplementation()
         throws InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
         String customToStringReturnValue = "Hello, ByteBuddy!";
