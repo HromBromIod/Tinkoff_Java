@@ -3,6 +3,7 @@ package edu.hw7.Task3;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings("ConstantName")
 public class SynchronizedPersonDatabase implements PersonDatabase {
     private static final Map<Integer, Person> idMap = new HashMap<>();
     private static final Map<String, Integer> nameMap = new HashMap<>();

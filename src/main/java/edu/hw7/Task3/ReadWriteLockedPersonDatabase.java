@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-@SuppressWarnings("MagicNumber")
+@SuppressWarnings({"MagicNumber", "ConstantName"})
 public class ReadWriteLockedPersonDatabase implements PersonDatabase {
     private static final ReadWriteLock lock = new ReentrantReadWriteLock();
     private static final Map<Integer, Person> idMap = new HashMap<>();
