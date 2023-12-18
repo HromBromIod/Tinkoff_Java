@@ -6,20 +6,13 @@ public class Task1 {
     private Task1() {
     }
 
-    public static int parallelIncrement() throws InterruptedException {
+    public static int parallelIncrement(int countOfThreads) throws InterruptedException {
         AtomicInteger counter = new AtomicInteger(0);
-        Thread thread1 = new Thread(counter::incrementAndGet);
-        Thread thread2 = new Thread(counter::incrementAndGet);
-        Thread thread3 = new Thread(counter::incrementAndGet);
-        Thread thread4 = new Thread(counter::incrementAndGet);
-        thread1.start();
-        thread2.start();
-        thread3.start();
-        thread4.start();
-        thread1.join();
-        thread2.join();
-        thread3.join();
-        thread4.join();
+        for (int i = 0; i < countOfThreads; ++i) {
+            Thread thread = new Thread(counter::incrementAndGet);
+            thread.start();
+            thread.join();
+        }
         return counter.get();
     }
 }

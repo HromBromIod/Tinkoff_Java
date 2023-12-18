@@ -12,6 +12,6 @@ public class Task1Test {
     @RepeatedTest(10)
     @DisplayName("parallel counter increment test")
     void test() throws InterruptedException {
-        assertEquals(4, parallelIncrement());
+        assertEquals(4, parallelIncrement(4));
     }
 }
