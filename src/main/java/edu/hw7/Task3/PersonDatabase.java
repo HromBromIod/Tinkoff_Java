@@ -1,13 +1,13 @@
 package edu.hw7.Task3;
 
 public interface PersonDatabase {
-    void add(Person person);
+    void add(Person person) throws InterruptedException;
 
-    void delete(int id);
+    void delete(int id) throws InterruptedException;
 
-    Person findByName(String name);
+    Person findByName(String name) throws InterruptedException;
 
-    Person findByAddress(String address);
+    Person findByAddress(String address) throws InterruptedException;
 
-    Person findByPhone(String phone);
+    Person findByPhone(String phone) throws InterruptedException;
 }

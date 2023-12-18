@@ -1,6 +1,6 @@
 package edu.hw7;
 
-import edu.hw7.Task3.MyPersonDatabase;
+import edu.hw7.Task3.SynchronizedPersonDatabase;
 import edu.hw7.Task3.Person;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -13,7 +13,7 @@ public class Task3Test {
     private Task3Test() {
     }
 
-    private static final MyPersonDatabase PERSON_DATABASE = new MyPersonDatabase();
+    private static final SynchronizedPersonDatabase PERSON_DATABASE = new SynchronizedPersonDatabase();
 
     private final Thread thread1 = new Thread(() -> {
         PERSON_DATABASE.add(new Person(0, "Klaus", "Maine", "12345"));
