@@ -1,4 +1,4 @@
-package edu.project2labyrinth;
+package edu.hw9.Task3;
 
 public class Cell {
     protected final int x;
@@ -52,5 +52,10 @@ public class Cell {
 
     public boolean getIsVisited() {
         return isVisited;
+    }
+
+    public static boolean compare(Cell left, Cell right) {
+        return left.x == right.x && left.y == right.y && left.isVisited == right.isVisited
+            && left.type.equals(right.type);
     }
 }
