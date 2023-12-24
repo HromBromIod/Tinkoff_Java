@@ -16,16 +16,12 @@ public class Task4 {
     }
 
     public static void main(String[] args) throws IOException {
-        try (var fos = Files.newOutputStream(Path.of("src/main/java/edu/hw6/Task4/Brian Kernighan.txt"))) {
-            try (var cos = new CheckedOutputStream(fos, new Adler32())) {
-                try (var bos = new BufferedOutputStream(cos)) {
-                    try (var osw = new OutputStreamWriter(bos, StandardCharsets.UTF_8)) {
-                        try (var printWriter = new PrintWriter(osw)) {
-                            printWriter.write("Programming is learned by writing programs. ― Brian Kernighan");
-                        }
-                    }
-                }
-            }
+        try (var fos = Files.newOutputStream(Path.of("src/main/java/edu/hw6/Task4/Brian Kernighan.txt"));
+             var cos = new CheckedOutputStream(fos, new Adler32());
+             var bos = new BufferedOutputStream(cos);
+             var osw = new OutputStreamWriter(bos, StandardCharsets.UTF_8);
+             var printWriter = new PrintWriter(osw)) {
+            printWriter.write("Programming is learned by writing programs. ― Brian Kernighan");
         } catch (NullPointerException e) {
             throw new IllegalArgumentException(e);
         }
