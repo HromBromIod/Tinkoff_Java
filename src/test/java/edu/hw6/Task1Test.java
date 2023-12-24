@@ -1,15 +1,14 @@
 package edu.hw6;
 
 import edu.hw6.Task1.DiskMap;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -36,6 +35,9 @@ public class Task1Test {
     void putTest() throws IOException {
         DiskMap diskMap = new DiskMap(MAP_PATH);
         diskMap.put("1", "1");
+        for (Map.Entry<String, String> entry : diskMap.entrySet()) {
+            System.out.println(entry.toString());
+        }
         assertEquals("{1=1}", diskMap.toString());
     }
 

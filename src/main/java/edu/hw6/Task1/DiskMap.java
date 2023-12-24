@@ -1,11 +1,8 @@
 package edu.hw6.Task1;
 
-import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.AbstractMap;
@@ -29,9 +26,11 @@ public class DiskMap extends AbstractMap<String, String> {
     }
 
     public void write(Set<Entry<String, String>> entrySet) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(mapPath))) {
+        try (FileOutputStream output = new FileOutputStream(mapPath)) {
             for (Entry<String, String> entry : entrySet) {
-                oos.writeObject(entry);
+                String entryString = entry.getKey() + ':' + entry.getValue();
+                output.write(entryString.getBytes(), 0, entryString.getBytes().length);
+                output.write('\n');
             }
         } catch (IOException | NullPointerException e) {
             throw new RuntimeException(e);
@@ -82,16 +81,13 @@ public class DiskMap extends AbstractMap<String, String> {
     @Override
     public Set<Entry<String, String>> entrySet() {
         Set<Entry<String, String>> entrySet = new HashSet<>();
-        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(mapPath))) {
-            boolean isReadable = true;
-            while (isReadable) {
-                try {
-                    AbstractMap.SimpleEntry<String, String> entry =
-                        (AbstractMap.SimpleEntry<String, String>) inputStream.readObject();
-                    entrySet.add(entry);
-                } catch (EOFException | ClassNotFoundException e) {
-                    isReadable = false;
-                }
+        try (FileInputStream input = new FileInputStream(mapPath)) {
+            byte[] buffer = new byte[256];
+            int count;
+            while ((count = input.read(buffer)) != -1) {
+                String entryString = new String(buffer, count);
+                SimpleEntry<String, String> entry = new SimpleEntry<>(entryString.substring(0, entryString.indexOf(':')), entryString.substring(entryString.indexOf(':') + 1, entryString.length() - 1));
+                entrySet.add(entry);
             }
         } catch (IOException e) {
             entrySet = new HashSet<>();
