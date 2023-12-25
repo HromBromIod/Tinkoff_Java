@@ -26,12 +26,12 @@ public class Task4 {
     public static void main(String[] args) throws InterruptedException {
         double expected;
         var start = System.nanoTime();
-        expected = oneThreadPI(TEN_MILLIONS * 1);
+        expected = oneThreadPI(TEN_MILLIONS);
         var second1 = System.nanoTime() - start;
         System.out.printf("One Thread PI: %s%n", expected);
         System.out.println(Math.abs(expected - Math.PI));
         start = System.nanoTime();
-        expected = fourThreadsPI(TEN_MILLIONS * 1);
+        expected = fourThreadsPI(TEN_MILLIONS);
         var second2 = System.nanoTime() - start;
         System.out.printf("Multi Thread PI: %s%n", expected);
         System.out.println(Math.abs(expected - Math.PI));
