@@ -1,7 +1,9 @@
 package edu.hw6.Task1;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -26,13 +28,12 @@ public class DiskMap extends AbstractMap<String, String> {
     }
 
     public void write(Set<Entry<String, String>> entrySet) {
-        try (FileOutputStream output = new FileOutputStream(mapPath)) {
+        try (BufferedWriter output = new BufferedWriter(new FileWriter(mapPath))) {
             for (Entry<String, String> entry : entrySet) {
-                String entryString = entry.getKey() + ':' + entry.getValue();
-                output.write(entryString.getBytes(), 0, entryString.getBytes().length);
-                output.write('\n');
+                output.write(entry.getKey() + ':' + entry.getValue());
+                output.newLine();
             }
-        } catch (IOException | NullPointerException e) {
+        } catch (NullPointerException | IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -81,12 +82,13 @@ public class DiskMap extends AbstractMap<String, String> {
     @Override
     public Set<Entry<String, String>> entrySet() {
         Set<Entry<String, String>> entrySet = new HashSet<>();
-        try (FileInputStream input = new FileInputStream(mapPath)) {
-            byte[] buffer = new byte[256];
-            int count;
-            while ((count = input.read(buffer)) != -1) {
-                String entryString = new String(buffer, count);
-                SimpleEntry<String, String> entry = new SimpleEntry<>(entryString.substring(0, entryString.indexOf(':')), entryString.substring(entryString.indexOf(':') + 1, entryString.length() - 1));
+        try (BufferedReader input = new BufferedReader(new FileReader(mapPath))) {
+            String entryString;
+            while ((entryString = input.readLine()) != null) {
+                SimpleEntry<String, String> entry = new SimpleEntry<>(
+                    entryString.substring(0, entryString.indexOf(':')),
+                    entryString.substring(entryString.indexOf(':') + 1, entryString.length())
+                );
                 entrySet.add(entry);
             }
         } catch (IOException e) {
