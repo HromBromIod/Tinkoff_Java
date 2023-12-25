@@ -53,30 +53,20 @@ public class Task4 {
         LongAdder totalCount = new LongAdder();
         LongAdder pointInCircleCount = new LongAdder();
         final int count_of_threads = 4;
-        Runnable oneThreadPILambda = (() -> {
-            for (long i = 0; i < countOfIterations / count_of_threads; ++i) {
-                Point p = new Point(ThreadLocalRandom.current().nextDouble(), ThreadLocalRandom.current().nextDouble());
-                if (isPointInCircle(p)) {
-                    pointInCircleCount.increment();
-                }
-            }
-        });
-        ThreadWithCounter thread1 = new ThreadWithCounter(oneThreadPILambda);
-        ThreadWithCounter thread2 = new ThreadWithCounter(oneThreadPILambda);
-        ThreadWithCounter thread3 = new ThreadWithCounter(oneThreadPILambda);
-        ThreadWithCounter thread4 = new ThreadWithCounter(oneThreadPILambda);
-        thread1.start();
-        thread2.start();
-        thread3.start();
-        thread4.start();
-        thread1.join();
-        thread2.join();
-        thread3.join();
-        thread4.join();
-        totalCount.add(thread1.getCounter());
-        totalCount.add(thread2.getCounter());
-        totalCount.add(thread3.getCounter());
-        totalCount.add(thread4.getCounter());
+
+        ThreadWithCounter[] threads = new ThreadWithCounter[count_of_threads];
+
+        for (int i = 0; i < count_of_threads; ++i) {
+            threads[i] = new ThreadWithCounter();
+            threads[i] = new ThreadWithCounter(threads[i].threadPiRunnable(pointInCircleCount, countOfIterations / count_of_threads));
+            threads[i].start();
+        }
+
+        for (ThreadWithCounter thread : threads) {
+            thread.join();
+            totalCount.add(thread.getCounter());
+        }
+
         return (4.0 * pointInCircleCount.longValue()) / totalCount.longValue();
     }
 }
