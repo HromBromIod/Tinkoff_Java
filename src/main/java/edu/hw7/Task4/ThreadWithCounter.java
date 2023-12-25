@@ -1,7 +1,6 @@
 package edu.hw7.Task4;
 
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.atomic.LongAdder;
 import static edu.hw7.Task4.Circle.isPointInCircle;
 
 public class ThreadWithCounter extends Thread {
