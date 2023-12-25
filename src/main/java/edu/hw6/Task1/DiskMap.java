@@ -87,7 +87,7 @@ public class DiskMap extends AbstractMap<String, String> {
             while ((entryString = input.readLine()) != null) {
                 SimpleEntry<String, String> entry = new SimpleEntry<>(
                     entryString.substring(0, entryString.indexOf(':')),
-                    entryString.substring(entryString.indexOf(':') + 1, entryString.length())
+                    entryString.substring(entryString.indexOf(':') + 1)
                 );
                 entrySet.add(entry);
             }
