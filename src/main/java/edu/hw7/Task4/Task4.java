@@ -55,8 +55,10 @@ public class Task4 {
         final int count_of_threads = 4;
         ThreadWithCounter[] threads = new ThreadWithCounter[count_of_threads];
 
+        long countOfIterationsPerThread = countOfIterations / count_of_threads;
+        long remainder = countOfIterations % count_of_threads;
         for (int i = 0; i < count_of_threads; ++i) {
-            threads[i] = new ThreadWithCounter(countOfIterations / count_of_threads);
+            threads[i] = new ThreadWithCounter(countOfIterationsPerThread + (i < remainder ? 1 : 0));
             threads[i].start();
             totalCount.add(countOfIterations / count_of_threads);
         }
